@@ -10,6 +10,7 @@ export class DepositCurrencyPageComponent implements OnInit {
   @HostBinding('class') classList = 'main-content';
 
   currency: string;
+  isPopupVisible = false;
 
   constructor(private route: ActivatedRoute) {
   }
@@ -21,6 +22,10 @@ export class DepositCurrencyPageComponent implements OnInit {
   }
 
   newDeposit(): void {
-    console.log('Creating new deposit in', this.currency);
+    this.isPopupVisible = true;
+  }
+
+  hideModal(): void {
+    this.isPopupVisible = false;
   }
 }

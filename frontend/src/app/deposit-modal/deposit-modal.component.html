@@ -1,0 +1,42 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>New deposit in {{currencyProp.toUpperCase()}}</h2>
+      <span>Fill in all fields to add a new deposit</span>
+    </div>
+    <button class="btn btn-primary">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save deposit
+    </button>
+  </div>
+  <div class="modal-content">
+    <input type="text" placeholder="Наименование покупателя\клиента:"/>
+    <input type="text" placeholder="Сумма платежа в евро:"/>
+    <input
+      type="text"
+      placeholder="Наименование банка покупателя\клиента:"
+    />
+    <input type="text" placeholder="Наименование\назначение платежа:"/>
+  </div>
+  <div class="upload">
+    <p> Добавить PDF (Платежка в PDF формате с отметкой банка исполнено) </p>
+    <div class="upload-group">
+      <button class="btn btn-upload">upload file</button>
+      <p>
+        <span>uploaded</span>21.09.2020_invoise_ooo
+        gent_and_gent_production.pdf
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save deposit
+    </button>
+  </div>
+</div>

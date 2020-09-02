@@ -80,6 +80,31 @@ $primary: #37ce9a;
       .active {
         color: $primary;
       }
+
+      .bell{
+        display: flex;
+        align-items: center;
+        margin-right: 19px;
+        position: relative;
+        svg{
+          fill: #000000;
+        }
+        .event-counter{
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Circe, sans-serif;
+          position: absolute;
+          right: -5px;
+          top: 3px;
+          font-size: 12px;
+          line-height: 11px;
+          background-color: $primary;
+          border-radius: 8px;
+          color: #ffffff;
+        }
+      }
     }
   }
 }
@@ -258,16 +283,10 @@ main {
 .exit-btn {
   display: flex;
   align-items: center;
+  padding: 13px;
   background-color: #000000;
   &:hover {
     background-color: lighten(#000000, 15%);
-  }
-  img {
-    margin-right: 8px;
-  }
-  a {
-    text-decoration: none;
-    color: inherit;
   }
 }
 
@@ -689,6 +708,15 @@ main {
     position: absolute;
     background-color: #fff;
     border-radius: 10px;
+    .close{
+      position: absolute;
+      top: -70px;
+      right: -50px;
+      font-size: 78px;
+      font-weight: 300;
+      color: #ffffff;
+      cursor: pointer;
+    }
     .modal-header {
       display: flex;
       align-items: center;

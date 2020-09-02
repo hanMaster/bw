@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './shared/main-layout/main-layout.component'
 import { HeaderComponent } from './shared/components/header/header.component';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { DepositCurrencyPageComponent } from './deposit-currency-page/deposit-currency-page.component';
+import { DepositModalComponent } from './deposit-modal/deposit-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DepositCurrencyPageComponent } from './deposit-currency-page/deposit-cu
     MainLayoutComponent,
     HeaderComponent,
     NavComponent,
-    DepositCurrencyPageComponent
+    DepositCurrencyPageComponent,
+    DepositModalComponent
   ],
   imports: [
     BrowserModule,
