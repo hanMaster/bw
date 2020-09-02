@@ -1,0 +1,24 @@
+<div class="action-panel">
+  <div class="title">
+    <h1>Deposit</h1>
+  </div>
+</div>
+<div class="panel balanse-panel">
+  <h2>Account Balanse</h2>
+  <span class="usd mr-70">1,000,000</span>
+  <span class="eur mr-70">898,800</span>
+  <span class="rub mr-70">69,711,400</span>
+</div>
+
+<h2 class="deposit-title">Сhoose a deposit account</h2>
+<div class="deposit-panels">
+  <a [routerLink]="['/deposit', 'rub']">
+    <div class="panel deposit-btn">RUB</div>
+  </a>
+  <a [routerLink]="['/deposit', 'usd']">
+    <div class="panel deposit-btn">USD</div>
+  </a>
+  <a [routerLink]="['/deposit', 'eur']">
+    <div class="panel deposit-btn">EUR</div>
+  </a>
+</div>
