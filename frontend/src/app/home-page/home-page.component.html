@@ -22,19 +22,23 @@
 <div class="panel rates-panel">
   <div class="titles">
     <h2>Rate of exchange «Bank of Russia»</h2>
-    <h2>02/06/2020</h2>
+    <h2>{{currentDate | date:'dd MMM yyyy'}}</h2>
   </div>
   <table>
     <tr>
       <td>US Dollar</td>
       <td class="col-primary">USD</td>
-      <td class="col-bold">69.7114</td>
+      <td class="col-bold" *ngIf="rates;else loading">{{rates.usd}}</td>
     </tr>
     <tr>
       <td>Euro</td>
       <td class="col-primary">EUR</td>
-      <td class="col-bold">77.6376</td>
+
+      <td class="col-bold" *ngIf="rates;else loading">{{rates.eur}}</td>
     </tr>
   </table>
 </div>
 
+<ng-template #loading>
+  Loading...
+</ng-template>
