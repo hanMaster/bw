@@ -14,6 +14,8 @@ import {NavComponent} from './shared/components/nav/nav.component';
 import {DepositCurrencyPageComponent} from './deposit-currency-page/deposit-currency-page.component';
 import {DepositModalComponent} from './deposit-modal/deposit-modal.component';
 import {HttpClientModule} from '@angular/common/http';
+import {UtilsService} from './shared/services/utils.service';
+import {RatesService} from './services/rates.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
 import {RatesService} from '../services/rates.service';
-import {Observable, Subscription} from 'rxjs';
 import {RatesInterface} from '../types/rates.interface';
 
 @Component({
@@ -11,7 +11,6 @@ import {RatesInterface} from '../types/rates.interface';
 export class HomePageComponent implements OnInit, OnDestroy {
 
   rates: RatesInterface;
-  currentDate = new Date();
   rSub: Subscription;
   @HostBinding('class') classList = 'main-content';
 
@@ -19,9 +18,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.rSub = this.ratesService.getRates().subscribe((rates) => {
-      this.rates = rates;
-    });
+    this.rSub = this.ratesService.getRates().subscribe(
+      (rates: RatesInterface) => {
+        this.rates = rates;
+      });
   }
 
   ngOnDestroy(): void {

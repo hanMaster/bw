@@ -22,7 +22,7 @@
 <div class="panel rates-panel">
   <div class="titles">
     <h2>Rate of exchange «Bank of Russia»</h2>
-    <h2>{{currentDate | date:'dd MMM yyyy'}}</h2>
+    <h2 *ngIf="rates;else loading">{{ rates.date | date:'dd MMM yyyy'}}</h2>
   </div>
   <table>
     <tr>
