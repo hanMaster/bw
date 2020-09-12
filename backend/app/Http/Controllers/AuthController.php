@@ -2,35 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     function login(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
-        if (!isset($user) || !password_verify($request->password, $user->password)) {
-            return response([
-                "message" => "Credentials doesn't mush"
-            ], 401);
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required']
+        ]);
+
+        $credentials = $request->only(['username', 'password']);
+        if (Auth::attempt($credentials)) {
+            return response()->json(Auth::user(), 200);
         }
 
-        $token = $user->createToken('my-app-token')->plainTextToken;
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+        throw ValidationException::withMessages([
+            'email' => ['Bad credentials']
+        ]);
     }
 
-    function revoke(Request $request)
+    function logout()
     {
-        $user = User::where('email', $request->email)->first();
-        $user->tokens()->delete();
-        return response([
-            "message" => "Tokens removed"
-        ], 200);
+        Auth::logout();
     }
+
 }

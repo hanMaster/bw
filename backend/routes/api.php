@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('login', 'AuthController@login');
-Route::delete('revoke', 'AuthController@revoke');
+Route::post('logout', 'AuthController@logout');
+

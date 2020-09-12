@@ -8,19 +8,18 @@ import {AuthRequestInterface} from '../types/authRequest.interface';
 export class AuthService {
 
   credentials: AuthRequestInterface = {
-    email: 'w54661c@gmail.com',
-    password: '1Qaz2Wsx'
+    username: 'hanMaster',
+    password: '1qaz2wsx'
   };
 
   constructor(private http: HttpClient) {
   }
 
   login(): void {
-    const csrfUrl = `${environment.apiUrl}/csrf-cookie`;
-    const loginUrl = `${environment.apiUrl}/login`;
-    this.http.get(csrfUrl, {withCredentials: true}).subscribe(
+    this.http.get(`${environment.apiUrl}/csrf-cookie`).subscribe(
       () => {
-        this.http.post(loginUrl, this.credentials, {withCredentials: true}).subscribe(
+
+        this.http.post(`${environment.apiUrl}/login`, this.credentials).subscribe(
           (resp: any) => {
             console.log('resp', resp);
           }
@@ -28,4 +27,13 @@ export class AuthService {
       }
     );
   }
+
+  getUser(): void {
+    this.http.get(`${environment.apiUrl}/user`).subscribe(
+      (resp: any) => {
+        console.log('resp', resp);
+      }
+    );
+  }
+
 }
