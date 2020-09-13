@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -38,7 +38,6 @@ import {environment} from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientXsrfModule,
     StoreModule.forRoot(counterReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

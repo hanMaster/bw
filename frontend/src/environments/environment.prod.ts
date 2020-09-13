@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  ratesUrl: 'https://cors-anywhere.herokuapp.com/http://www.cbr.ru/scripts/XML_daily.asp'
+  ratesUrl: 'https://cors-anywhere.herokuapp.com/http://www.cbr.ru/scripts/XML_daily.asp',
+  apiUrl: 'http://bw.local/api'
 };

@@ -36,4 +36,12 @@ export class AuthService {
     );
   }
 
+  logout(): void {
+    this.http.post(`${environment.apiUrl}/logout`, {}).subscribe(
+      (resp: any) => {
+        console.log('resp', resp);
+      }
+    );
+  }
+
 }

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   ratesUrl: 'https://cors-anywhere.herokuapp.com/http://www.cbr.ru/scripts/XML_daily.asp',
-  apiUrl: 'http://localhost:8000/api'
+  apiUrl: '/api'
 };
 
 /*

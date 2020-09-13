@@ -29,4 +29,8 @@ export class LoginComponent implements OnInit {
   getUser(): void {
     this.authService.getUser();
   }
+
+  logout(): void {
+    this.authService.logout();
+  }
 }
