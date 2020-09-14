@@ -18,7 +18,6 @@ export class AuthService {
   login(): void {
     this.http.get(`${environment.apiUrl}/csrf-cookie`).subscribe(
       () => {
-
         this.http.post(`${environment.apiUrl}/login`, this.credentials).subscribe(
           (resp: any) => {
             console.log('resp', resp);
@@ -29,7 +28,7 @@ export class AuthService {
   }
 
   getUser(): void {
-    this.http.get(`${environment.apiUrl}/user`).subscribe(
+    this.http.get(`${environment.apiUrl}/beneficiary`).subscribe(
       (resp: any) => {
         console.log('resp', resp);
       }

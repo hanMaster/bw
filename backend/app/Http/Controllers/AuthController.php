@@ -18,11 +18,13 @@ class AuthController extends Controller
         $credentials = $request->only(['username', 'password']);
         if (Auth::attempt($credentials)) {
             return response()->json(Auth::user(), 200);
+        } else {
+            return response()->json(["auth" => "Bad credentials"], 422);
         }
 
-        throw ValidationException::withMessages([
-            'email' => ['Bad credentials']
-        ]);
+//        throw ValidationException::withMessages([
+//            'auth' => 'Something went wrong'
+//        ]);
     }
 
     function logout()

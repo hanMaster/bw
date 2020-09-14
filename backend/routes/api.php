@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 
+Route::get('beneficiary', 'BeneficiaryController@index')->middleware('auth:sanctum');
