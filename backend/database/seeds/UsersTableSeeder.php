@@ -15,8 +15,9 @@ class UsersTableSeeder extends Seeder
         User::create([
             'username' => 'hanMaster',
             'email'=>'w54661c@gmail.com',
-            'email_verified_at' => now(),
-            'password'=>bcrypt('1qaz2wsx')
+            'password'=>bcrypt('1qaz2wsx'),
+            'phone_number' => '+79158762539',
+            'contact_name' => 'Василий Пупкин'
         ]);
     }
 }

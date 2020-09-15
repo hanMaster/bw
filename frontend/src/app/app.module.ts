@@ -16,10 +16,10 @@ import {NavComponent} from './shared/components/nav/nav.component';
 import {DepositCurrencyPageComponent} from './deposit-currency-page/deposit-currency-page.component';
 import {DepositModalComponent} from './deposit-modal/deposit-modal.component';
 import {UtilsService} from './shared/services/utils.service';
-import {counterReducer} from './auth/store/reducers';
 import {AuthModule} from './auth/auth.module';
 import {HttpRequestInterceptor} from './shared/services/httpRequest.interceptor';
 import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import {environment} from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(counterReducer),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
