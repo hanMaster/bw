@@ -2,6 +2,7 @@ import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {RatesService} from '../services/rates.service';
 import {RatesInterface} from '../types/rates.interface';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-home-page',

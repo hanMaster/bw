@@ -9,7 +9,7 @@
       <div class="menu">
         <div class="logged-user">
           <img src="./assets/img/loged-user-icon.svg" alt="user"/>
-          <span class="username">John Smith</span>
+          <span class="username">{{(currentUser$ | async).username}}</span>
         </div>
 
         <div class="bell">
@@ -22,7 +22,7 @@
         </div>
 
 
-        <button class="btn exit-btn" [routerLink]="['/login']">
+        <button class="btn exit-btn" (click)="logout()">
           <img src="./assets/img/exit-icon.svg" alt="exit"/>
         </button>
       </div>

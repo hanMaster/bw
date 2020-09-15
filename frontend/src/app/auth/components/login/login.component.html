@@ -35,15 +35,14 @@
           (ngSubmit)="onSubmit()"
         >
           <div class="form-control">
-            <input type="text" placeholder="Username" class="username" formControlName="username"/>
+            <input type="email" placeholder="Email" class="username" formControlName="email"/>
           </div>
           <div class="form-control">
-            <input type="text" placeholder="Password" class="password" formControlName="password"/>
+            <input type="password" placeholder="Password" class="password" formControlName="password"/>
           </div>
 
           <button type="submit">Sign in</button>
           <p class="forget" (click)="getUser()">Forget password?</p>
-          <p class="forget" (click)="logout()">Logout</p>
         </form>
       </div>
     </div>
