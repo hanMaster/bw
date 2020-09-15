@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCompaniesTable extends Migration
+class CreateRussCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_companies', function (Blueprint $table) {
+        Schema::create('russ_companies', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
             $table->enum('organization_form', ['ooo', 'ip']);
@@ -23,6 +23,7 @@ class CreateUserCompaniesTable extends Migration
             $table->string('reg_number');
             $table->bigInteger('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -33,6 +34,6 @@ class CreateUserCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_companies');
+        Schema::dropIfExists('russ_companies');
     }
 }
