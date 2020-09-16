@@ -17,7 +17,8 @@ class UsersTableSeeder extends Seeder
             'email'=>'w54661c@gmail.com',
             'password'=>bcrypt('1qaz2wsx'),
             'phone_number' => '+79158762539',
-            'contact_name' => 'Василий Пупкин'
+            'contact_name' => 'Василий Пупкин',
+            'role' => 'client'
         ]);
     }
 }

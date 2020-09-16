@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->enum('role', ['admin','client', 'small_client']);
             $table->string('password');
             $table->string('phone_number');
             $table->string('contact_name');

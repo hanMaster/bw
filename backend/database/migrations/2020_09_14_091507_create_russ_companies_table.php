@@ -21,7 +21,7 @@ class CreateRussCompaniesTable extends Migration
             $table->string('inn');
             $table->string('kpp')->nullable();
             $table->string('reg_number');
-            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
