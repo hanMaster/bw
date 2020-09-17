@@ -4,7 +4,7 @@ import {environment} from '../../../environments/environment';
 import {AuthRequestInterface} from '../types/authRequest.interface';
 import {CurrentUserInterface} from '../../types/currentUser.interface';
 import {Observable} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable()
 
@@ -21,12 +21,9 @@ export class AuthService {
     );
   }
 
-  getUser(): void {
-    this.http.get(`${environment.apiUrl}/beneficiary`).subscribe(
-      (resp: any) => {
-        console.log('resp', resp);
-      }
-    );
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url = `${environment.apiUrl}/user`;
+    return this.http.get<CurrentUserInterface>(url);
   }
 
   logout(): Observable<{}> {

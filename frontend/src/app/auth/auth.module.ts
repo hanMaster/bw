@@ -8,13 +8,14 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {LoginEffect} from './store/effects/login.effect';
 import {LogoutEffect} from './store/effects/logout.effect';
+import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([LoginEffect, LogoutEffect]),
+    EffectsModule.forFeature([LoginEffect, LogoutEffect, GetCurrentUserEffect]),
   ],
   declarations: [LoginComponent],
   providers: [AuthService]

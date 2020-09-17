@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {logoutAction, logoutFailureAction, logoutSuccessAction} from '../actions/logout.actions';
+import {PersistanceService} from '../../../shared/services/persistance.service';
 
 @Injectable()
 export class LogoutEffect {
@@ -12,7 +13,8 @@ export class LogoutEffect {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private persistanceService: PersistanceService
   ) {
   }
 
@@ -22,6 +24,7 @@ export class LogoutEffect {
       return this.authService.logout()
         .pipe(
           map(() => {
+            this.persistanceService.clear('auth');
             return logoutSuccessAction();
           }),
           catchError(() => {

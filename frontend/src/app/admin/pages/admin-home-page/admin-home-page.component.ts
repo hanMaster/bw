@@ -1,15 +1,14 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {RatesInterface} from '../../../types/rates.interface';
 import {Subscription} from 'rxjs';
-import {RatesService} from '../services/rates.service';
-import {RatesInterface} from '../types/rates.interface';
-import {Store} from '@ngrx/store';
+import {RatesService} from '../../../shared/services/rates.service';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-admin-home-page',
+  templateUrl: './admin-home-page.component.html',
+  styleUrls: ['./admin-home-page.component.scss']
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class AdminHomePageComponent implements OnInit, OnDestroy {
 
   rates: RatesInterface;
   rSub: Subscription;

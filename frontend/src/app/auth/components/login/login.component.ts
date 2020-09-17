@@ -30,11 +30,4 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(loginAction({request}));
   }
 
-  getUser(): void {
-    // this.authService.getUser();
-  }
-
-  logout(): void {
-    // this.authService.logout();
-  }
 }

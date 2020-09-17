@@ -1,0 +1,65 @@
+<div class="action-panel">
+  <div class="title">
+    <h1>Home</h1>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn btn-primary add-btn-icon mr-18" [routerLink]="['clients']">
+      new client
+    </button>
+  </div>
+</div>
+<div class="panel balanse-panel">
+  <h2>Total balance of all clients</h2>
+  <span class="usd mr-70">1,000,000</span>
+  <span class="eur mr-70">898,800</span>
+  <span class="rub mr-70">69,711,400</span>
+</div>
+
+<div class="panel rates-panel">
+  <div class="titles">
+    <h2>Rate of exchange «Bank of Russia»</h2>
+    <h2 *ngIf="rates;else loading">{{ rates.date | date:'dd MMM yyyy'}}</h2>
+  </div>
+  <table>
+    <tr>
+      <td>US Dollar</td>
+      <td class="col-primary">USD</td>
+      <td class="col-bold" *ngIf="rates;else loading">{{rates.usd}}</td>
+    </tr>
+    <tr>
+      <td>Euro</td>
+      <td class="col-primary">EUR</td>
+
+      <td class="col-bold" *ngIf="rates;else loading">{{rates.eur}}</td>
+    </tr>
+  </table>
+</div>
+
+<h2 class="mt-40">New events</h2>
+<table class="tbl mt-10">
+  <tbody>
+  <tr>
+    <td>John Smith</td>
+    <td>New transfer</td>
+    <td class="cell-name">Ref #324</td>
+    <td>45 minutes ago</td>
+  </tr>
+  <tr>
+    <td>John Smith</td>
+    <td>New transfer</td>
+    <td class="cell-name">Ref #324</td>
+    <td>45 minutes ago</td>
+  </tr>
+  <tr>
+    <td>John Smith</td>
+    <td>New transfer</td>
+    <td class="cell-name">Ref #324</td>
+    <td>45 minutes ago</td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

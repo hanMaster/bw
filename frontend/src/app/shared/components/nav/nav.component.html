@@ -1,5 +1,5 @@
-<!--<aside class="main-nav">-->
-  <ul>
+<ng-container *ngIf="(currentUser$ | async)">
+  <ul *ngIf="(currentUser$ | async).role === 'client'">
     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <a routerLink="/" >
         <svg width="32" height="29">
@@ -24,7 +24,7 @@
       >
     </li>
     <li routerLinkActive="active">
-      <a routerLink="/transfer" >
+      <a routerLink="transfer" >
         <svg width="35" height="28">
           <use xlink:href="./assets/img/icons.svg#arrow-right"></use>
         </svg>
@@ -33,4 +33,38 @@
     </li>
     <li class="last"></li>
   </ul>
-<!--</aside>-->
+  <ul *ngIf="(currentUser$ | async).role === 'admin'">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/admin" >
+        <svg width="32" height="29">
+          <use xlink:href="./assets/img/icons.svg#wallet"></use>
+        </svg>
+        Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="clients" >
+        <svg width="32" height="32">
+          <use xlink:href="./assets/img/icons.svg#clients"></use>
+        </svg>
+        Clients</a
+      >
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="deposits" >
+        <svg width="32" height="28">
+          <use xlink:href="./assets/img/icons.svg#atm"></use>
+        </svg>
+        Deposits</a
+      >
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="transfers" >
+        <svg width="35" height="28">
+          <use xlink:href="./assets/img/icons.svg#arrow-right"></use>
+        </svg>
+        Transfers</a
+      >
+    </li>
+    <li class="last"></li>
+  </ul>
+</ng-container>
