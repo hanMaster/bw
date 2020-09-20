@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {loginAction, loginFailureAction, loginSuccessAction} from '../actions/login.actions';
+import {loginActions, loginFailureAction, loginSuccessAction} from '../actions/login.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
 import {CurrentUserInterface} from '../../../types/currentUser.interface';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -23,7 +23,7 @@ export class LoginEffect {
   }
 
   login$ = createEffect(() => this.actions$.pipe(
-    ofType(loginAction),
+    ofType(loginActions),
     switchMap(({request}) => {
       return this.authService.login(request)
         .pipe(

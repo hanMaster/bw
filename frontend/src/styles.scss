@@ -288,7 +288,7 @@ main {
 
 .btn-primary {
   background-color: $primary;
-  padding: 10px 38px;
+  padding: 10px 43px;
 
   &:hover {
     background-color: darken($primary, 10%);
@@ -307,6 +307,12 @@ main {
     font-weight: 300;
     left: 15px;
   }
+}
+
+.btn-black {
+  padding: 10px 23px;
+  background-color: #000000;
+  text-decoration: none;
 }
 
 .exit-btn {
@@ -427,7 +433,7 @@ main {
     left: 15px;
   }
 
-  .balanse-panel {
+  .balance-panel {
     margin-top: 25px;
     background: #ffffff url(./assets/img/wallet.svg) center right 39px no-repeat;
 
@@ -618,11 +624,13 @@ main {
 
   tbody tr:hover {
     cursor: pointer;
+
     svg {
       fill: $primary;
     }
   }
-  tr:hover td{
+
+  tr:hover td {
     border-bottom: 1px solid $primary;
     border-top: 1px solid $primary;
 
@@ -784,7 +792,7 @@ main {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 50px;
+      margin-bottom: 38px;
 
       .modal-header_header {
         h2 {
@@ -804,6 +812,26 @@ main {
     }
 
     .modal-content {
+      .password{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .input-section{
+          width: 70%;
+          display: inline-block;
+        }
+        .link-section{
+          width: 30%;
+          text-align: center;
+          cursor: pointer;
+          span{
+            text-decoration: underline;
+          }
+          &:hover{
+            color: $primary;
+          }
+        }
+      }
       input {
         width: 100%;
         background: #f3f5f6;
@@ -840,6 +868,11 @@ main {
         align-items: center;
         color: #838383;
 
+        a {
+          text-decoration: inherit;
+          color: inherit;
+        }
+
         span {
           margin-right: 10px;
           color: $primary;
@@ -857,11 +890,46 @@ main {
     }
 
     .modal-footer {
-      margin-top: 15px;
+      &-line {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .upload {
+          margin: 0;
+
+          .upload-group {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .new-client-footer{
       display: flex;
-      justify-content: flex-end;
+      margin-top: 30px;
+      align-items: center;
+      justify-content: space-between;
+      .warning{
+        color: #ff5858;
+      }
+      .cp {
+        display: inline-block;
+        width: 130px;
+        margin-right: 50px;
+        cursor: pointer;
+      }
     }
   }
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.pull-right {
+  float: right;
 }
 
 @media (min-width: 1369px) {

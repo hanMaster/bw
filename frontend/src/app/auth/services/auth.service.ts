@@ -4,7 +4,7 @@ import {environment} from '../../../environments/environment';
 import {AuthRequestInterface} from '../types/authRequest.interface';
 import {CurrentUserInterface} from '../../types/currentUser.interface';
 import {Observable} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 @Injectable()
 

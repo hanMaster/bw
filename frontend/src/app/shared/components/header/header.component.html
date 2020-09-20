@@ -2,14 +2,14 @@
   <nav class="nav">
     <div class="logo" *ngIf="isLoggedIn$ | async">
       <a [routerLink]="(currentUser$ | async).role === 'client' ? ['/']: ['/admin']">
-        <img src="./assets/img/logo.svg" alt="B&W consulting"/>
+        <img src="../../../../assets/img/logo.svg" alt="B&W consulting"/>
       </a>
     </div>
     <div class="nav__block">
       <div class="menu">
         <div class="logged-user" *ngIf="isLoggedIn$ | async">
-          <img src="./assets/img/loged-user-icon.svg" alt="user"/>
-          <span class="username">{{(currentUser$ | async).username}}</span>
+          <img src="../../../../assets/img/loged-user-icon.svg" alt="user"/>
+          <span class="username">{{(currentUser$ | async).client_name}}</span>
         </div>
 
         <div class="bell">
@@ -23,7 +23,7 @@
 
 
         <button class="btn exit-btn" (click)="logout()">
-          <img src="./assets/img/exit-icon.svg" alt="exit"/>
+          <img src="../../../../assets/img/exit-icon.svg" alt="exit"/>
         </button>
       </div>
     </div>

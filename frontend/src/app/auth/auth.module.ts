@@ -9,10 +9,16 @@ import {EffectsModule} from '@ngrx/effects';
 import {LoginEffect} from './store/effects/login.effect';
 import {LogoutEffect} from './store/effects/logout.effect';
 import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {path: 'login', component: LoginComponent}
+];
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([LoginEffect, LogoutEffect, GetCurrentUserEffect]),

@@ -1,1 +1,24 @@
-<p>admin-deposits-page works!</p>
+<div class="action-panel">
+  <div class="title">
+    <h1>Deposits</h1>
+  </div>
+</div>
+<div class="panel balance-panel">
+  <h2>Total balance of clients</h2>
+  <span class="usd mr-70">1,000,000</span>
+  <span class="eur mr-70">898,800</span>
+  <span class="rub mr-70">69,711,400</span>
+</div>
+
+<h2 class="deposit-title">Сhoose a deposit account</h2>
+<div class="deposit-panels">
+  <a [routerLink]="['/admin','deposits', 'rub']">
+    <div class="panel deposit-btn">RUB</div>
+  </a>
+  <a [routerLink]="['/admin', 'deposits', 'usd']">
+    <div class="panel deposit-btn">USD</div>
+  </a>
+  <a [routerLink]="['/admin', 'deposits', 'eur']">
+    <div class="panel deposit-btn">EUR</div>
+  </a>
+</div>

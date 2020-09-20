@@ -1,0 +1,52 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>New client</h2>
+      <span>Fill in all fields to create a new client</span>
+    </div>
+    &nbsp;
+    <button class="btn btn-primary" (click)="onSubmit()">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save client
+    </button>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Client name" formControlName="clientName"/>
+    <input type="text" placeholder="Email" formControlName="email"/>
+
+    <div class="password">
+      <div class="input-section">
+        <input type="text" placeholder="Password" formControlName="password"/>
+      </div>
+      <div class="link-section" (click)="generatePassword()">
+        <span>generate password</span>
+      </div>
+    </div>
+
+    <input type="text" placeholder="Phone number" formControlName="phoneNumber"/>
+    <input type="text" placeholder="Contact name" formControlName="contactName"/>
+  </form>
+
+  <div class="new-client-footer">
+
+    <span class="warning">*fill in all important fields</span>
+    <div>
+      <div class="cp" (click)="handleCopyClick()">
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#copy"></use>
+        </svg>
+        {{cp}}</div>
+      <button class="btn btn-primary"  (click)="onSubmit()">
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        save client
+      </button>
+    </div>
+
+  </div>
+</div>

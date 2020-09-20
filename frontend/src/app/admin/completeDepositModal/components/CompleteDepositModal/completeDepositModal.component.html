@@ -1,0 +1,56 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>Ref.N 01</h2>
+      <span>Client: Tony Stark</span>
+    </div>
+    <div>
+      <button class="btn btn-black">
+        cancel deposit
+      </button>
+      &nbsp;
+      <button class="btn btn-primary">
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        confirm deposit
+      </button>
+    </div>
+  </div>
+  <div class="modal-content">
+    <input type="text" placeholder="Наименование покупателя\клиента:"/>
+    <input type="text" placeholder="Сумма платежа в евро:"/>
+    <input
+      type="text"
+      placeholder="Наименование банка покупателя\клиента:"
+    />
+    <input type="text" placeholder="Наименование\назначение платежа:"/>
+  </div>
+  <div class="modal-footer">
+    <div class="modal-footer-line">
+      <div class="upload">
+        <div class="upload-group">
+          <a [routerLink]="['/admin']">
+            <span>uploaded</span>21.09.2020_invoise_ooo
+            gent_and_gent_production.pdf
+          </a>
+        </div>
+      </div>
+
+      <button class="btn btn-primary">
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        confirm deposit
+      </button>
+    </div>
+
+    <div class="pull-right mt-10">
+      <button class="btn btn-black">
+        cancel deposit
+      </button>
+    </div>
+
+  </div>
+</div>

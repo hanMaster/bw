@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import {RatesInterface} from '../../../types/rates.interface';
 import {Subscription} from 'rxjs';
+
+import {RatesInterface} from '../../../types/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class AdminHomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('admin home');
     this.rSub = this.ratesService.getRates().subscribe(
       (rates: RatesInterface) => {
         this.rates = rates;

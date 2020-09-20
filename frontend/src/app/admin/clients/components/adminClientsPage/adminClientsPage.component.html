@@ -9,12 +9,12 @@
     type="text"
     placeholder="find beneficiary"
   />
-  <button class="btn btn-primary add-btn-icon">
+  <button class="btn btn-primary add-btn-icon" (click)="newClient()">
     new client
   </button>
 </div>
 
-<table class="tbl">
+<table class="tbl" *ngIf="clients$ | async">
   <thead>
   <tr>
     <th>Client</th>
@@ -24,19 +24,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>John Smith</td>
-    <td>1000</td>
-    <td>35000</td>
-    <td>45000</td>
-  </tr>  <tr>
-    <td>Jane Smith</td>
-    <td>1000</td>
-    <td>35000</td>
-    <td>45000</td>
-  </tr>
-  <tr>
-    <td>John Doe</td>
+  <tr *ngFor="let client of (clients$ | async)">
+    <td>{{client.client_name}}</td>
     <td>1000</td>
     <td>35000</td>
     <td>45000</td>
@@ -45,3 +34,4 @@
   </tbody>
 </table>
 <p class="more"><a href="#">↓ more clients</a></p>
+<app-new-client-modal [hidden]="!isPopupVisible" (closeClicked)="hideModal()"></app-new-client-modal>

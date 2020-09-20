@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {getCurrentUserAction} from './auth/store/actions/getCurrentUser.action';
+import {getCurrentUserActions} from './auth/store/actions/getCurrentUser.actions';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,10 @@ import {getCurrentUserAction} from './auth/store/actions/getCurrentUser.action';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+
   constructor(private store: Store) {
   }
   ngOnInit(): void {
-    this.store.dispatch(getCurrentUserAction());
+    this.store.dispatch(getCurrentUserActions());
   }
 }

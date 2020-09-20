@@ -1,6 +1,6 @@
 export interface CurrentUserInterface {
   id: number;
-  username: string;
+  client_name: string;
   email: string;
   role: string;
   phone_number: string;

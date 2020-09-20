@@ -1,0 +1,192 @@
+<div class="action-panel">
+  <div class="breadcrumbs">
+    <a [routerLink]="['/admin','deposits']" class="root__breadcrumb">Deposits</a>&nbsp;
+    <a [routerLink]="['/admin','deposits', currency]" class="tail__breadcrumb">→ accounts in {{currency.toUpperCase()}}</a>&nbsp;
+    <span class="tail__breadcrumb">→ completed deposits</span>
+  </div>
+</div>
+
+<div class="panel deposit-panel">
+  <div class="deposit-panel__balance">
+    <h2>Total balance of accounts in {{currency.toUpperCase()}}</h2>
+    <span class="deposit-balance" [ngClass]="currency">898,800</span>
+  </div>
+</div>
+
+<div class="search-block">
+  <input
+    class="search-input"
+    type="text"
+    placeholder="find deposit"
+  />
+  <button class="btn btn-back" [routerLink]="['/admin','deposits', currency]">come back</button>
+</div>
+
+<table class="tbl deposit">
+  <thead>
+  <tr>
+    <th>Ref.№.</th>
+    <th>Date</th>
+    <th>Beneficiary name</th>
+    <th>Beneficiary bank name</th>
+    <th>Total {{currency.toUpperCase()}}</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>01</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">46,844</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>02</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">11,711</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>03</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">96,615</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>04</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">23,546</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="26" height="20">
+          <use xlink:href="./assets/img/icons.svg#deposit-done"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">deposit done</span>
+    </td>
+  </tr>
+  <tr>
+    <td>05</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">1,478,508</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>06</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">23,000</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>07</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">126,563</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>08</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">126,563</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>09</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">126,563</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>12/22/20</td>
+    <td class="cell-name">J&J LTD first plate…</td>
+    <td>JPMorgan Chase</td>
+    <td class="cell-currency">126,563</td>
+    <td class="cell-action">
+      <a href="#">
+        <svg width="19" height="20">
+          <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+      </a>
+      <span class="tooltiptext">in processing</span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p class="more"><a href="#">↓ more deposits</a></p>
+
+<app-complete-deposit-modal [currency]="currency" [hidden]="!isPopupVisible" (closeClicked)="hideModal()"></app-complete-deposit-modal>
