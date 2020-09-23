@@ -3,13 +3,9 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './components/login/login.component';
 import {AuthService} from './services/auth.service';
 import {ReactiveFormsModule} from '@angular/forms';
-import {reducers} from './store/reducers';
-import {StoreModule} from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
-import {LoginEffect} from './store/effects/login.effect';
-import {LogoutEffect} from './store/effects/logout.effect';
-import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthStore} from '../../stores/auth.store';
+import {MobxAngularModule} from 'mobx-angular';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent}
@@ -20,11 +16,13 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([LoginEffect, LogoutEffect, GetCurrentUserEffect]),
+    MobxAngularModule
   ],
   declarations: [LoginComponent],
-  providers: [AuthService]
+  providers: [
+    AuthService,
+    AuthStore
+  ]
 })
 
 export class AuthModule {

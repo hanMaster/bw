@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container" *mobxAutorun>
   <nav class="nav">
-    <div class="logo" *ngIf="isLoggedIn$ | async">
-      <a [routerLink]="(currentUser$ | async).role === 'client' ? ['/']: ['/admin']">
+    <div class="logo" *ngIf="store.isLoggedIn">
+      <a [routerLink]="store.currentUser.role === 'client' ? ['/']: ['/admin']">
         <img src="../../../../assets/img/logo.svg" alt="B&W consulting"/>
       </a>
     </div>
     <div class="nav__block">
       <div class="menu">
-        <div class="logged-user" *ngIf="isLoggedIn$ | async">
+        <div class="logged-user" *ngIf="store.isLoggedIn">
           <img src="../../../../assets/img/loged-user-icon.svg" alt="user"/>
-          <span class="username">{{(currentUser$ | async).client_name}}</span>
+          <span class="username">{{store.currentUser.client_name}}</span>
         </div>
 
         <div class="bell">

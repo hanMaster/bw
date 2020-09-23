@@ -13,6 +13,8 @@ import {HeaderComponent} from '../shared/components/header/header.component';
 import {NavComponent} from '../shared/components/nav/nav.component';
 import {ClientsModule} from './clients/clients.module';
 import {AdminClientsPageComponent} from './clients/components/adminClientsPage/adminClientsPage.component';
+import {AuthStore} from '../../stores/auth.store';
+import {MobxAngularModule} from 'mobx-angular';
 
 const routes: Routes = [
   {
@@ -33,7 +35,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     CompleteDepositModalModule,
-    ClientsModule
+    ClientsModule,
+    MobxAngularModule
   ],
   declarations: [
     MainLayoutComponent,
@@ -44,6 +47,9 @@ const routes: Routes = [
     AdminHomePageComponent,
     AdminTransfersPageComponent,
     AdminDepositsCurrencyCompletedPageComponent
+  ],
+  providers: [
+    AuthStore
   ]
 })
 export class AdminModule {

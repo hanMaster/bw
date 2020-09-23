@@ -1,5 +1,5 @@
-<ng-container *ngIf="(currentUser$ | async)">
-  <ul *ngIf="(currentUser$ | async).role === 'client'">
+<ng-container *ngIf="store.currentUser">
+  <ul *ngIf="store.currentUser.role === 'client'">
     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <a routerLink="/" >
         <svg width="32" height="29">
@@ -33,7 +33,7 @@
     </li>
     <li class="last"></li>
   </ul>
-  <ul *ngIf="(currentUser$ | async).role === 'admin'">
+  <ul *ngIf="store.currentUser.role === 'admin'">
     <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
       <a routerLink="/admin" >
         <svg width="32" height="29">

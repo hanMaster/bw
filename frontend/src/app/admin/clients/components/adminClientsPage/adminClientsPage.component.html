@@ -14,7 +14,7 @@
   </button>
 </div>
 
-<table class="tbl" *ngIf="clients$ | async">
+<table class="tbl" *ngIf="store.clients.length">
   <thead>
   <tr>
     <th>Client</th>
@@ -24,7 +24,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let client of (clients$ | async)">
+  <tr *ngFor="let client of store.clients">
     <td>{{client.client_name}}</td>
     <td>1000</td>
     <td>35000</td>
