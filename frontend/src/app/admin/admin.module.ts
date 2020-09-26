@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminHomePageComponent} from './pages/admin-home-page/admin-home-page.component';
+import {AdminHomePageComponent} from './pages/adminHomePage/adminHomePage.component';
 import {AuthGuard} from '../auth/auth.guard';
-import {AdminDepositsPageComponent} from './pages/admin-deposits-page/admin-deposits-page.component';
+import {AdminDepositsPageComponent} from './pages/adminDepositsPage/adminDepositsPage.component';
 import {AdminDepositsCurrencyPageComponent} from './pages/adminDepositsCurrencyPage/components/adminDepositsCurrencyPage/adminDepositsCurrencyPage.component';
-import {AdminDepositsCurrencyCompletedPageComponent} from './pages/admin-deposits-currency-completed-page/admin-deposit-currency-completed-page.component';
-import {AdminTransfersPageComponent} from './pages/admin-transfers-page/admin-transfers-page.component';
+import {AdminDepositsCurrencyCompletedPageComponent} from './pages/adminDepositsCurrencyCompletedPage/adminDepositCurrencyCompletedPage.component';
+import {AdminTransfersPageComponent} from './pages/adminTransfersPage/adminTransfersPage.component';
 import {CompleteDepositModalModule} from './completeDepositModal/completeDepositModal.module';
 import {MainLayoutComponent} from '../shared/components/mainLayout/mainLayout.component';
 import {HeaderComponent} from '../shared/components/header/header.component';

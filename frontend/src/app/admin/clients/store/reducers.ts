@@ -1,12 +1,19 @@
 import {ClientsStateInterface} from '../types/clientsState.interface';
 import {Action, createReducer, on} from '@ngrx/store';
-import {requestClientsAction, requestClientsFailureAction, requestClientsSuccessAction} from './actions/requestClients.actions';
+import {
+  hideClientModalAction,
+  requestClientsAction,
+  requestClientsFailureAction,
+  requestClientsSuccessAction,
+  showClientModalAction
+} from './actions/requestClients.actions';
 
 const initialState: ClientsStateInterface = {
   isLoading: false,
   isSubmitting: false,
   clients: [],
-  validationErrors: null
+  validationErrors: null,
+  isPopupVisible: false
 };
 const clientsReducer = createReducer(initialState,
   on(requestClientsAction, (state): ClientsStateInterface => ({
@@ -24,6 +31,14 @@ const clientsReducer = createReducer(initialState,
     ...state,
     isLoading: false,
     validationErrors: null
+  })),
+  on(showClientModalAction, (state): ClientsStateInterface => ({
+    ...state,
+    isPopupVisible: true
+  })),
+  on(hideClientModalAction, (state): ClientsStateInterface => ({
+    ...state,
+    isPopupVisible: false
   })),
 );
 

@@ -4,10 +4,10 @@ import {UtilsService} from '../../../../shared/services/utils.service';
 
 @Component({
   selector: 'app-new-client-modal',
-  templateUrl: './newClientModal.component.html',
-  styleUrls: ['./newClientModal.component.scss']
+  templateUrl: './clientModal.component.html',
+  styleUrls: ['./clientModal.component.scss']
 })
-export class NewClientModalComponent implements OnInit {
+export class ClientModalComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Input('currency') currencyProp: string;

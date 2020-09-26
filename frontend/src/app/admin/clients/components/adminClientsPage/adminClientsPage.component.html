@@ -34,4 +34,4 @@
   </tbody>
 </table>
 <p class="more"><a href="#">↓ more clients</a></p>
-<app-new-client-modal [hidden]="!isPopupVisible" (closeClicked)="hideModal()"></app-new-client-modal>
+<app-new-client-modal [hidden]="!(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-client-modal>

@@ -3,8 +3,8 @@ import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-deposit-currency-page',
-  templateUrl: './admin-deposit-currency-completed-page.component.html',
-  styleUrls: ['./admin-deposit-currency-completed-page.component.scss']
+  templateUrl: './adminDepositCurrencyCompletedPage.component.html',
+  styleUrls: ['./adminDepositCurrencyCompletedPage.component.scss']
 })
 export class AdminDepositsCurrencyCompletedPageComponent implements OnInit {
   @HostBinding('class') classList = 'main-content';

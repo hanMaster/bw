@@ -13,3 +13,6 @@ export const validationErrorsSelector = createSelector(
 
 export const clientsSelector = createSelector(
   clientsFeatureSelector, (clientsState: ClientsStateInterface) => clientsState.clients);
+
+export const isPopupVisibleSelector = createSelector(
+  clientsFeatureSelector, (clientsState: ClientsStateInterface) => clientsState.isPopupVisible);

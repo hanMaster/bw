@@ -6,4 +6,5 @@ export interface ClientsStateInterface {
   isLoading: boolean;
   clients: ClientInterface[];
   validationErrors: BackendErrorsInterface | null;
+  isPopupVisible: boolean;
 }
