@@ -1,12 +1,8 @@
 import {ClientsStateInterface} from '../types/clientsState.interface';
 import {Action, createReducer, on} from '@ngrx/store';
-import {
-  hideClientModalAction,
-  requestClientsAction,
-  requestClientsFailureAction,
-  requestClientsSuccessAction,
-  showClientModalAction
-} from './actions/requestClients.actions';
+import {requestClientsAction, requestClientsFailureAction, requestClientsSuccessAction} from './actions/requestClients.actions';
+import {hideClientModalAction, showClientModalAction} from './actions/modalControl.actions';
+import {addClientAction, addClientFailureAction, addClientSuccessAction} from './actions/addClient.actions';
 
 const initialState: ClientsStateInterface = {
   isLoading: false,
@@ -39,6 +35,23 @@ const clientsReducer = createReducer(initialState,
   on(hideClientModalAction, (state): ClientsStateInterface => ({
     ...state,
     isPopupVisible: false
+  })),
+  on(addClientAction, (state): ClientsStateInterface => ({
+    ...state,
+    isSubmitting: true,
+    validationErrors: null
+  })),
+  on(addClientSuccessAction, (state, actions): ClientsStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    validationErrors: null,
+    clients: [...state.clients, actions.addedClient],
+    isPopupVisible: false
+  })),
+  on(addClientFailureAction, (state, actions): ClientsStateInterface => ({
+    ...state,
+    isSubmitting: false,
+    validationErrors: actions.errors
   })),
 );
 

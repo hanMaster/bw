@@ -9,13 +9,20 @@ import {ClientsService} from './services/clients.service';
 import {reducers} from './store/reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {RequestClientsEffect} from './store/effects/requestClients.effect';
+import {AddClientEffect} from './store/effects/addClient.effect';
+import {IConfig, NgxMaskModule} from 'ngx-mask';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfig),
     StoreModule.forFeature('clients', reducers),
-    EffectsModule.forFeature([RequestClientsEffect])
+    EffectsModule.forFeature([RequestClientsEffect, AddClientEffect])
   ],
   declarations: [
     AdminClientsPageComponent,
@@ -28,5 +35,5 @@ import {RequestClientsEffect} from './store/effects/requestClients.effect';
     ClientModalComponent
   ]
 })
-export class ClientsModule{
+export class ClientsModule {
 }

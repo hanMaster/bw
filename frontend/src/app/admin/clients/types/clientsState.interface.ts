@@ -5,6 +5,6 @@ export interface ClientsStateInterface {
   isSubmitting: boolean;
   isLoading: boolean;
   clients: ClientInterface[];
-  validationErrors: BackendErrorsInterface | null;
+  validationErrors: string[] | null;
   isPopupVisible: boolean;
 }

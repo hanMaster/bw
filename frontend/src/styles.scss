@@ -284,13 +284,17 @@ main {
   outline: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  &:disabled{
+    cursor: not-allowed;
+    background-color: #828282;
+  }
 }
 
 .btn-primary {
   background-color: $primary;
   padding: 10px 43px;
 
-  &:hover {
+  &:hover:enabled {
     background-color: darken($primary, 10%);
   }
 }
@@ -812,6 +816,9 @@ main {
     }
 
     .modal-content {
+      .invalid{
+        border: 1px solid crimson;
+      }
       .password{
         display: flex;
         justify-content: space-between;

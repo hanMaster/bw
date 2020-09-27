@@ -8,6 +8,3 @@ export const requestClientsSuccessAction = createAction(
   props<{ clients: ClientInterface[] }>()
 );
 export const requestClientsFailureAction = createAction(ActionTypes.REQUEST_CLIENTS_FAILURE);
-
-export const showClientModalAction = createAction(ActionTypes.SHOW_CLIENT_MODAL);
-export const hideClientModalAction = createAction(ActionTypes.HIDE_CLIENT_MODAL);

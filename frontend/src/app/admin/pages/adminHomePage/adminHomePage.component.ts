@@ -5,7 +5,8 @@ import {select, Store} from '@ngrx/store';
 import {RatesInterface} from '../../../types/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
 import {isPopupVisibleSelector} from '../../clients/store/selectors';
-import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/requestClients.actions';
+import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/modalControl.actions';
+
 
 @Component({
   selector: 'app-admin-home-page',

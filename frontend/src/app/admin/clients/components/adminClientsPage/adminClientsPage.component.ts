@@ -3,7 +3,8 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {clientsSelector, isLoadingSelector, isPopupVisibleSelector} from '../../store/selectors';
 import {ClientInterface} from '../../../../types/client.interface';
-import {hideClientModalAction, requestClientsAction, showClientModalAction} from '../../store/actions/requestClients.actions';
+import {requestClientsAction} from '../../store/actions/requestClients.actions';
+import {hideClientModalAction, showClientModalAction} from '../../store/actions/modalControl.actions';
 
 @Component({
   selector: 'app-admin-clients-page',

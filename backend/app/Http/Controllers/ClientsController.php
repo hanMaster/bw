@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use http\Env\Request;
+use Illuminate\Http\Request;
 
 class ClientsController extends Controller
 {
@@ -15,19 +15,19 @@ class ClientsController extends Controller
     function addNewClient(Request $request)
     {
         $request->validate([
-            'client_name' => ['required'],
-            'email' => ['required', 'email'],
+            'clientName' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
-            'phone_number' => ['required'],
-            'contact_name' => ['required']
+            'phoneNumber' => ['required'],
+            'contactName' => ['required']
         ]);
 
         $client = User::create([
-            'client_name' => $request->client_name,
+            'client_name' => $request->clientName,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'phone_number' => $request->phone_number,
-            'contact_name' => $request->contact_name,
+            'phone_number' => $request->phoneNumber,
+            'contact_name' => $request->contactName,
             'role' => 'client'
         ]);
 

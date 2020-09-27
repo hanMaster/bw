@@ -6,7 +6,11 @@
       <span>Fill in all fields to create a new client</span>
     </div>
     &nbsp;
-    <button class="btn btn-primary" (click)="onSubmit()">
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
       <svg width="20" height="15">
         <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
       </svg>
@@ -14,21 +18,54 @@
     </button>
   </div>
 
+  <div class="errors" *ngIf="errors$ | async">
+    <ul>
+      <li *ngFor="let err of (errors$ | async)">{{err}}</li>
+    </ul>
+  </div>
+
   <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Client name" formControlName="clientName"/>
-    <input type="text" placeholder="Email" formControlName="email"/>
+    <input
+      type="text"
+      placeholder="Client name"
+      formControlName="clientName"
+      [ngClass]="{invalid: form.get('clientName').touched && form.get('clientName').invalid}"
+    />
+    <input
+      type="text"
+      placeholder="Email"
+      formControlName="email"
+      [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+    />
 
     <div class="password">
       <div class="input-section">
-        <input type="text" placeholder="Password" formControlName="password"/>
+        <input
+          type="text"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+        />
       </div>
       <div class="link-section" (click)="generatePassword()">
         <span>generate password</span>
       </div>
     </div>
 
-    <input type="text" placeholder="Phone number" formControlName="phoneNumber"/>
-    <input type="text" placeholder="Contact name" formControlName="contactName"/>
+    <input
+      type="text"
+      placeholder="Phone number"
+      formControlName="phoneNumber"
+      prefix="+7"
+      mask=" 000-000-00-00"
+      [ngClass]="{invalid: form.get('phoneNumber').touched && form.get('phoneNumber').invalid}"
+    />
+    <input
+      type="text"
+      placeholder="Contact name"
+      formControlName="contactName"
+      [ngClass]="{invalid: form.get('contactName').touched && form.get('contactName').invalid}"
+    />
   </form>
 
   <div class="new-client-footer">
@@ -40,7 +77,11 @@
           <use xlink:href="./assets/img/icons.svg#copy"></use>
         </svg>
         {{cp}}</div>
-      <button class="btn btn-primary"  (click)="onSubmit()">
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
         <svg width="20" height="15">
           <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
         </svg>
