@@ -24,7 +24,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let client of (clients$ | async)">
+  <tr *ngFor="let client of (clients$ | async)" (click)="viewClient(client.id)">
     <td>{{client.client_name}}</td>
     <td>1000</td>
     <td>35000</td>
@@ -35,3 +35,4 @@
 </table>
 <p class="more"><a href="#">↓ more clients</a></p>
 <app-new-client-modal [hidden]="!(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-client-modal>
+<app-show-client-modal [hidden]="!(isShowPopupVisible$ | async)" (closeClicked)="hideShowClientModal()"></app-show-client-modal>

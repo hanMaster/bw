@@ -1,4 +1,3 @@
-import {BackendErrorsInterface} from '../../../types/backendErrors.interface';
 import {ClientInterface} from '../../../types/client.interface';
 
 export interface ClientsStateInterface {
@@ -7,4 +6,6 @@ export interface ClientsStateInterface {
   clients: ClientInterface[];
   validationErrors: string[] | null;
   isPopupVisible: boolean;
+  isShowPopupVisible: boolean;
+  client: ClientInterface | null;
 }

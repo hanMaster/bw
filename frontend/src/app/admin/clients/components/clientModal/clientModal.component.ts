@@ -17,10 +17,7 @@ import {validationErrorsSelector} from '../../store/selectors';
 export class ClientModalComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:no-input-rename
-  @Input('currency') currencyProp: string;
-
   @Output() closeClicked = new EventEmitter();
-
   @HostBinding('class') classList = 'modal-wrapper';
 
   form: FormGroup;
@@ -78,11 +75,7 @@ export class ClientModalComponent implements OnInit, OnDestroy {
     }, 3000);
 
     const text = this.form.value.password;
-    navigator.clipboard.writeText(text).then(() => {
-      console.log('Async: Copying to clipboard was successful!');
-    }, (err) => {
-      console.error('Async: Could not copy text: ', err);
-    });
+    this.utils.copyText(text);
   }
 
   ngOnDestroy(): void {

@@ -1,11 +1,22 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
+import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,6 +27,22 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         withCredentials: true
       }
     );
-    return next.handle(authRequest);
+    // return next.handle(authRequest);
+    return next.handle(authRequest)
+      .pipe(
+        tap(
+          (event: HttpEvent<any>) => {
+            if (event instanceof HttpResponse) {
+            }
+          },
+          (err: any) => {
+            if (err instanceof HttpErrorResponse) {
+              if (err.status === 401) {
+                this.router.navigate(['login']);
+              }
+            }
+          }
+        )
+      )
   }
 }

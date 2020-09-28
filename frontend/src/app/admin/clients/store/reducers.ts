@@ -1,7 +1,16 @@
 import {ClientsStateInterface} from '../types/clientsState.interface';
 import {Action, createReducer, on} from '@ngrx/store';
-import {requestClientsAction, requestClientsFailureAction, requestClientsSuccessAction} from './actions/requestClients.actions';
-import {hideClientModalAction, showClientModalAction} from './actions/modalControl.actions';
+import {
+  requestClientsAction,
+  requestClientsFailureAction,
+  requestClientsSuccessAction
+} from './actions/requestClients.actions';
+import {
+  hideClientModalAction,
+  hideViewClientModalAction,
+  showClientModalAction,
+  showViewClientModalAction
+} from './actions/modalControl.actions';
 import {addClientAction, addClientFailureAction, addClientSuccessAction} from './actions/addClient.actions';
 
 const initialState: ClientsStateInterface = {
@@ -9,7 +18,9 @@ const initialState: ClientsStateInterface = {
   isSubmitting: false,
   clients: [],
   validationErrors: null,
-  isPopupVisible: false
+  isPopupVisible: false,
+  isShowPopupVisible: false,
+  client: null
 };
 const clientsReducer = createReducer(initialState,
   on(requestClientsAction, (state): ClientsStateInterface => ({
@@ -36,6 +47,19 @@ const clientsReducer = createReducer(initialState,
     ...state,
     isPopupVisible: false
   })),
+  on(showViewClientModalAction, (state, actions): ClientsStateInterface => {
+      const singleClient = state.clients.find(client => client.id === actions.id);
+      return {
+        ...state,
+        isShowPopupVisible: true,
+        client: singleClient
+      }
+    }
+  ),
+  on(hideViewClientModalAction, (state): ClientsStateInterface => ({
+    ...state,
+    isShowPopupVisible: false
+  })),
   on(addClientAction, (state): ClientsStateInterface => ({
     ...state,
     isSubmitting: true,
@@ -53,7 +77,8 @@ const clientsReducer = createReducer(initialState,
     isSubmitting: false,
     validationErrors: actions.errors
   })),
-);
+  )
+;
 
 export function reducers(state: ClientsStateInterface, action: Action): any {
   return clientsReducer(state, action);

@@ -1,10 +1,19 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {clientsSelector, isLoadingSelector, isPopupVisibleSelector} from '../../store/selectors';
+import {
+  clientsSelector,
+  isLoadingSelector,
+  isPopupVisibleSelector,
+  isShowPopupVisibleSelector
+} from '../../store/selectors';
 import {ClientInterface} from '../../../../types/client.interface';
 import {requestClientsAction} from '../../store/actions/requestClients.actions';
-import {hideClientModalAction, showClientModalAction} from '../../store/actions/modalControl.actions';
+import {
+  hideClientModalAction,
+  hideViewClientModalAction,
+  showClientModalAction, showViewClientModalAction
+} from '../../store/actions/modalControl.actions';
 
 @Component({
   selector: 'app-admin-clients-page',
@@ -16,6 +25,7 @@ export class AdminClientsPageComponent implements OnInit {
   @HostBinding('class') classList = 'main-content';
 
   isPopupVisible$: Observable<boolean>;
+  isShowPopupVisible$: Observable<boolean>;
   isLoading$: Observable<boolean>;
   clients$: Observable<ClientInterface[] | null>;
 
@@ -25,6 +35,7 @@ export class AdminClientsPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     this.isPopupVisible$ = this.store.pipe(select(isPopupVisibleSelector));
+    this.isShowPopupVisible$ = this.store.pipe(select(isShowPopupVisibleSelector));
     this.clients$ = this.store.pipe(select(clientsSelector));
     this.store.dispatch(requestClientsAction());
   }
@@ -37,4 +48,11 @@ export class AdminClientsPageComponent implements OnInit {
     this.store.dispatch(hideClientModalAction());
   }
 
+  viewClient(id: number): void {
+    this.store.dispatch(showViewClientModalAction({id}));
+  }
+
+  hideShowClientModal(): void {
+    this.store.dispatch(hideViewClientModalAction());
+  }
 }

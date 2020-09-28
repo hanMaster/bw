@@ -19,4 +19,14 @@ export class UtilsService {
     }
     return result;
   }
+
+
+  copyText(text: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log('Async: Copying to clipboard was successful!');
+    }, (err) => {
+      console.error('Async: Could not copy text: ', err);
+    });
+  }
+
 }

@@ -1,0 +1,27 @@
+<div class="modal-window" *ngIf="client$ | async">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{(client$ | async).client_name}}</h2>
+    </div>
+    <button class="btn btn-primary">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      Change
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <h4><span class="label">Email:</span> {{(client$ | async).email}}</h4>
+    <h4><span class="label">Phone:</span> {{(client$ | async).phone_number}}</h4>
+    <h4><span class="label">Contact name:</span> {{(client$ | async).contact_name}}</h4>
+    <h4><span class="label">Created:</span> {{(client$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+    <h4><span class="label">Updated:</span> {{(client$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  </div>
+
+  <div class="new-client-footer">
+
+
+  </div>
+</div>

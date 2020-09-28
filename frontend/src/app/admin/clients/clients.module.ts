@@ -11,6 +11,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {RequestClientsEffect} from './store/effects/requestClients.effect';
 import {AddClientEffect} from './store/effects/addClient.effect';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
+import {ShowClientModalComponent} from './components/showClientModal/showClientModal.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -26,7 +27,8 @@ const maskConfig: Partial<IConfig> = {
   ],
   declarations: [
     AdminClientsPageComponent,
-    ClientModalComponent
+    ClientModalComponent,
+    ShowClientModalComponent
   ],
   providers: [
     ClientsService
