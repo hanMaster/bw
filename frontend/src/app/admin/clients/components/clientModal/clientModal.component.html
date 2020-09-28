@@ -2,8 +2,8 @@
   <span class="close" (click)="closeModal()">&times;</span>
   <div class="modal-header">
     <div class="modal-header_header">
-      <h2>New client</h2>
-      <span>Fill in all fields to create a new client</span>
+      <h2>{{(editMode$ | async) ? 'Edit' : 'New'}} client</h2>
+      <span *ngIf="!(editMode$ | async)">Fill in all fields to create a new client</span>
     </div>
     &nbsp;
     <button
@@ -29,12 +29,14 @@
       type="text"
       placeholder="Client name"
       formControlName="clientName"
+      [attr.disabled]="(editMode$ | async) ? '': null"
       [ngClass]="{invalid: form.get('clientName').touched && form.get('clientName').invalid}"
     />
     <input
       type="text"
       placeholder="Email"
       formControlName="email"
+      [attr.disabled]="(editMode$ | async) ? '': null"
       [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
     />
 

@@ -8,4 +8,5 @@ export interface ClientsStateInterface {
   isPopupVisible: boolean;
   isShowPopupVisible: boolean;
   client: ClientInterface | null;
+  editMode: boolean;
 }

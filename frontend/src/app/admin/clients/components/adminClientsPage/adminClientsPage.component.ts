@@ -14,6 +14,7 @@ import {
   hideViewClientModalAction,
   showClientModalAction, showViewClientModalAction
 } from '../../store/actions/modalControl.actions';
+import {FormControlService} from '../../services/formControl.service';
 
 @Component({
   selector: 'app-admin-clients-page',
@@ -29,7 +30,7 @@ export class AdminClientsPageComponent implements OnInit {
   isLoading$: Observable<boolean>;
   clients$: Observable<ClientInterface[] | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private formControlService: FormControlService) {
   }
 
   ngOnInit(): void {
@@ -41,7 +42,9 @@ export class AdminClientsPageComponent implements OnInit {
   }
 
   newClient(): void {
-    this.store.dispatch(showClientModalAction());
+    const edit = false;
+    this.store.dispatch(showClientModalAction({edit}));
+    this.formControlService.clearForm();
   }
 
   hideModal(): void {

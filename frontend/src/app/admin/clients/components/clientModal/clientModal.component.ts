@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostBinding, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {select, Store} from '@ngrx/store';
@@ -6,8 +6,10 @@ import {select, Store} from '@ngrx/store';
 import {UtilsService} from '../../../../shared/services/utils.service';
 import {ClientInterface} from '../../../../types/client.interface';
 import {addClientAction} from '../../store/actions/addClient.actions';
-import {ClearFormService} from '../../services/clearForm.service';
-import {validationErrorsSelector} from '../../store/selectors';
+import {FormControlService} from '../../services/formControl.service';
+import {clientSelector, editModeSelector, validationErrorsSelector} from '../../store/selectors';
+import {take} from 'rxjs/operators';
+import {editClientAction} from '../../store/actions/updateClient.actions';
 
 @Component({
   selector: 'app-new-client-modal',
@@ -23,20 +25,28 @@ export class ClientModalComponent implements OnInit, OnDestroy {
   form: FormGroup;
   cp = 'copy password';
   cfSub: Subscription;
+  ffSub: Subscription;
   errors$: Observable<any[]>;
+  editMode$: Observable<boolean>;
+  editMode = false;
+  client: ClientInterface;
 
   constructor(
     private utils: UtilsService,
     private store: Store,
-    private clearFormService: ClearFormService
+    private formControlService: FormControlService
   ) {
   }
 
+
   ngOnInit(): void {
     this.errors$ = this.store.pipe(select(validationErrorsSelector));
-    this.cfSub = this.clearFormService.clearForm$
+    this.editMode$ = this.store.pipe(select(editModeSelector));
+
+    this.cfSub = this.formControlService.clearForm$
       .subscribe(() => {
         this.form.reset();
+        this.editMode = false;
       });
 
     this.form = new FormGroup({
@@ -46,6 +56,22 @@ export class ClientModalComponent implements OnInit, OnDestroy {
       phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^((\\+7-?)|0)?[0-9]{10}$')]),
       contactName: new FormControl('', Validators.required)
     });
+
+    this.ffSub = this.formControlService.fillForm$
+      .subscribe(() => {
+        this.store.pipe(select(clientSelector), take(1)).subscribe(
+          (client: ClientInterface) => {
+            this.client = client;
+          }
+        );
+        this.form.patchValue({clientName: this.client.client_name});
+        this.form.patchValue({phoneNumber: this.client.phone_number});
+        this.form.patchValue({email: this.client.email});
+        this.form.patchValue({password: '********'});
+        this.form.patchValue({contactName: this.client.contact_name});
+        this.editMode = true;
+      });
+
   }
 
   closeModal(): void {
@@ -59,10 +85,18 @@ export class ClientModalComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const client: ClientInterface = {
-      ...this.form.value
-    };
-    this.store.dispatch(addClientAction({client}));
+    if (this.editMode) {
+      const client: ClientInterface = {
+        id: this.client.id,
+        ...this.form.value
+      };
+      this.store.dispatch(editClientAction({client}));
+    } else {
+      const client: ClientInterface = {
+        ...this.form.value
+      };
+      this.store.dispatch(addClientAction({client}));
+    }
   }
 
   handleCopyClick(): void {
@@ -81,6 +115,9 @@ export class ClientModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.cfSub) {
       this.cfSub.unsubscribe();
+    }
+    if (this.ffSub) {
+      this.ffSub.unsubscribe();
     }
   }
 }

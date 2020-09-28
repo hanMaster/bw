@@ -24,3 +24,4 @@ Route::post('logout', 'AuthController@logout');
 Route::get('beneficiary', 'BeneficiaryController@index')->middleware('auth:sanctum');
 Route::get('clients', 'ClientsController@index')->middleware('auth:sanctum');
 Route::post('clients', 'ClientsController@addNewClient')->middleware('auth:sanctum');
+Route::put('clients', 'ClientsController@updateClient')->middleware('auth:sanctum');

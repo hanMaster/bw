@@ -33,4 +33,25 @@ class ClientsController extends Controller
 
         return response()->json($client, 201);
     }
+
+    function updateClient(Request $request)
+    {
+        $request->validate([
+            'id' => ['required'],
+            'password' => ['required'],
+            'phoneNumber' => ['required'],
+            'contactName' => ['required']
+        ]);
+
+        $client = User::where('id', $request->id)->first();
+
+        if ($request->password !== "********"){
+            $client->password = bcrypt($request->password);
+        }
+        $client->phone_number = $request->phoneNumber;
+        $client->contact_name = $request->contactName;
+        $client->save();
+        return response()->json($client, 200);
+
+    }
 }

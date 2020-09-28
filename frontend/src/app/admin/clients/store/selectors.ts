@@ -22,3 +22,6 @@ export const isPopupVisibleSelector = createSelector(
 
 export const isShowPopupVisibleSelector = createSelector(
   clientsFeatureSelector, (clientsState: ClientsStateInterface) => clientsState.isShowPopupVisible);
+
+export const editModeSelector = createSelector(
+  clientsFeatureSelector, (clientsState: ClientsStateInterface) => clientsState.editMode);

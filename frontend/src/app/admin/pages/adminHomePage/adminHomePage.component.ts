@@ -6,6 +6,7 @@ import {RatesInterface} from '../../../types/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
 import {isPopupVisibleSelector} from '../../clients/store/selectors';
 import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/modalControl.actions';
+import {FormControlService} from '../../clients/services/formControl.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class AdminHomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private ratesService: RatesService
+    private ratesService: RatesService,
+    private formControlService: FormControlService
   ) {
   }
 
@@ -42,7 +44,9 @@ export class AdminHomePageComponent implements OnInit, OnDestroy {
   }
 
   newClient(): void {
-    this.store.dispatch(showClientModalAction());
+    this.formControlService.clearForm();
+    const edit = false;
+    this.store.dispatch(showClientModalAction({edit}));
   }
 
   hideModal(): void {

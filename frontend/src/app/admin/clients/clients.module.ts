@@ -12,6 +12,7 @@ import {RequestClientsEffect} from './store/effects/requestClients.effect';
 import {AddClientEffect} from './store/effects/addClient.effect';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {ShowClientModalComponent} from './components/showClientModal/showClientModal.component';
+import {UpdateClientEffect} from './store/effects/updateClient.effect';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -23,7 +24,7 @@ const maskConfig: Partial<IConfig> = {
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
     StoreModule.forFeature('clients', reducers),
-    EffectsModule.forFeature([RequestClientsEffect, AddClientEffect])
+    EffectsModule.forFeature([RequestClientsEffect, AddClientEffect, UpdateClientEffect])
   ],
   declarations: [
     AdminClientsPageComponent,

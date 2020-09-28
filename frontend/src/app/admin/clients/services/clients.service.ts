@@ -19,6 +19,7 @@ export class ClientsService {
   }
 
   updateClient(client: ClientInterface): Observable<ClientInterface> {
+    console.log('updateService');
     return this.http.put<ClientInterface>(`${environment.apiUrl}/clients`, client);
   }
 }

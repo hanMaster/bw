@@ -12,4 +12,7 @@ export enum ActionTypes {
   NEW_CLIENT_SUCCESS = '[Clients] Creating new client success',
   NEW_CLIENT_FAILURE = '[Clients] Creating new client failure',
 
+  EDIT_CLIENT = '[Clients] Edit client',
+  EDIT_CLIENT_SUCCESS = '[Clients] Edit client success',
+  EDIT_CLIENT_FAILURE = '[Clients] Edit client failure'
 }
