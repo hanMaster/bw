@@ -613,6 +613,11 @@ main {
       border: 1px solid transparent;
     }
 
+    td.client-name{
+      font-weight: bold;
+      color: var(--dark-color);
+    }
+
     td:first-child {
       border-top-left-radius: 10px;
     }

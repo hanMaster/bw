@@ -20,6 +20,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/admin', pathMatch: 'full'},
       {path: '', component: AdminHomePageComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
+      // {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits', component: AdminDepositsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency/completed', component: AdminDepositsCurrencyCompletedPageComponent, canActivate: [AuthGuard]},
