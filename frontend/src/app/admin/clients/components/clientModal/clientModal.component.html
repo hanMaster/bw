@@ -25,24 +25,40 @@
   </div>
 
   <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <label for="clientName">Client name:</label>
     <input
+      id="clientName"
       type="text"
       placeholder="Client name"
       formControlName="clientName"
       [attr.disabled]="(editMode$ | async) ? '': null"
       [ngClass]="{invalid: form.get('clientName').touched && form.get('clientName').invalid}"
     />
+    <label for="email">Email:</label>
     <input
+      id="email"
       type="text"
       placeholder="Email"
       formControlName="email"
       [attr.disabled]="(editMode$ | async) ? '': null"
       [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
     />
+    <div
+      *ngIf="form.get('email').touched && form.get('email').invalid"
+      class="validation">
+      <small
+        *ngIf="form.get('email').errors.required"
+      >Введите email</small>
+      <small
+        *ngIf="form.get('email').errors.email"
+      >Введите корректый email</small>
+    </div>
 
     <div class="password">
       <div class="input-section">
+        <label for="password">Password:</label>
         <input
+          id="password"
           type="text"
           placeholder="Password"
           formControlName="password"
@@ -54,7 +70,9 @@
       </div>
     </div>
 
+    <label for="phone">Phone number:</label>
     <input
+      id="phone"
       type="text"
       placeholder="Phone number"
       formControlName="phoneNumber"
@@ -62,7 +80,9 @@
       mask=" 000-000-00-00"
       [ngClass]="{invalid: form.get('phoneNumber').touched && form.get('phoneNumber').invalid}"
     />
+    <label for="contact">Contact name:</label>
     <input
+      id="contact"
       type="text"
       placeholder="Contact name"
       formControlName="contactName"

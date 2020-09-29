@@ -22,8 +22,7 @@ export class ShowClientModalComponent implements OnInit {
 
   constructor(
     private utils: UtilsService,
-    private store: Store,
-    private formControlService: FormControlService
+    private store: Store
   ) {
   }
 
@@ -37,7 +36,6 @@ export class ShowClientModalComponent implements OnInit {
   }
 
   updateClient(): void {
-    this.formControlService.fillForm();
     const edit = true;
     this.store.dispatch(showClientModalAction({edit}));
   }

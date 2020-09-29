@@ -40,13 +40,18 @@ export class ClientModalComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    console.log('Modal init');
     this.errors$ = this.store.pipe(select(validationErrorsSelector));
     this.editMode$ = this.store.pipe(select(editModeSelector));
+    this.store.pipe(select(editModeSelector), take(1)).subscribe(
+      editMode => {
+        this.editMode = editMode;
+      }
+    );
 
     this.cfSub = this.formControlService.clearForm$
       .subscribe(() => {
         this.form.reset();
-        this.editMode = false;
       });
 
     this.form = new FormGroup({
@@ -57,21 +62,18 @@ export class ClientModalComponent implements OnInit, OnDestroy {
       contactName: new FormControl('', Validators.required)
     });
 
-    this.ffSub = this.formControlService.fillForm$
-      .subscribe(() => {
-        this.store.pipe(select(clientSelector), take(1)).subscribe(
-          (client: ClientInterface) => {
-            this.client = client;
-          }
-        );
-        this.form.patchValue({clientName: this.client.client_name});
-        this.form.patchValue({phoneNumber: this.client.phone_number});
-        this.form.patchValue({email: this.client.email});
-        this.form.patchValue({password: '********'});
-        this.form.patchValue({contactName: this.client.contact_name});
-        this.editMode = true;
-      });
-
+    if(this.editMode){
+      this.store.pipe(select(clientSelector), take(1)).subscribe(
+        (client: ClientInterface) => {
+          this.client = client;
+        }
+      );
+      this.form.patchValue({clientName: this.client.client_name});
+      this.form.patchValue({phoneNumber: this.client.phone_number});
+      this.form.patchValue({email: this.client.email});
+      this.form.patchValue({password: '********'});
+      this.form.patchValue({contactName: this.client.contact_name});
+    }
   }
 
   closeModal(): void {
@@ -113,6 +115,7 @@ export class ClientModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('Destroy modal');
     if (this.cfSub) {
       this.cfSub.unsubscribe();
     }

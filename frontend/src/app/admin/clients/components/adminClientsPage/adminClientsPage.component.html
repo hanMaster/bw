@@ -14,7 +14,7 @@
   </button>
 </div>
 
-<table class="tbl" *ngIf="clients$ | async">
+<table class="tbl" *ngIf="(clients$ | async);else loading">
   <thead>
   <tr>
     <th>Client</th>
@@ -34,5 +34,11 @@
   </tbody>
 </table>
 <p class="more"><a href="#">↓ more clients</a></p>
-<app-new-client-modal [hidden]="!(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-client-modal>
-<app-show-client-modal [hidden]="!(isShowPopupVisible$ | async)" (closeClicked)="hideShowClientModal()"></app-show-client-modal>
+
+<app-new-client-modal *ngIf="(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-client-modal>
+
+<app-show-client-modal *ngIf="(isShowPopupVisible$ | async)" (closeClicked)="hideShowClientModal()"></app-show-client-modal>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

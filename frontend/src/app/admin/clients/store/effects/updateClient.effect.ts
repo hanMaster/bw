@@ -20,7 +20,6 @@ export class UpdateClientEffect {
   updateClient$ = createEffect(() => this.actions$.pipe(
     ofType(editClientAction),
     switchMap(({client}) => {
-      console.log('effect');
       return this.clientsService.updateClient(client)
         .pipe(
           map((updatedClient: ClientInterface) => {
