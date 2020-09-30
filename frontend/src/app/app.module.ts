@@ -14,6 +14,8 @@ import {EffectsModule} from '@ngrx/effects';
 import {PersistanceService} from './shared/services/persistance.service';
 import {AdminModule} from './admin/admin.module';
 import {ClientModule} from './client/client.module';
+import {CompaniesModule} from './shared/modules/companies/companies.module';
+import {BanksModule} from './shared/modules/banks/banks.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {ClientModule} from './client/client.module';
     }),
     AuthModule,
     AdminModule,
-    ClientModule
+    ClientModule,
+    CompaniesModule,
+    BanksModule
   ],
   providers: [
     UtilsService,

@@ -6,7 +6,7 @@ import {UtilsService} from '../../../../shared/services/utils.service';
 import {ClientInterface} from '../../../../types/client.interface';
 import {clientSelector} from '../../store/selectors';
 import {showClientModalAction} from '../../store/actions/modalControl.actions';
-import {FormControlService} from '../../services/formControl.service';
+import {FormControlService} from '../../../../shared/services/formControl.service';
 
 @Component({
   selector: 'app-show-client-modal',

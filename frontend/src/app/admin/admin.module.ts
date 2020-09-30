@@ -13,6 +13,8 @@ import {HeaderComponent} from '../shared/components/header/header.component';
 import {NavComponent} from '../shared/components/nav/nav.component';
 import {ClientsModule} from './clients/clients.module';
 import {AdminClientsPageComponent} from './clients/components/adminClientsPage/adminClientsPage.component';
+import {CompaniesListComponent} from '../shared/modules/companies/components/companiesList/companiesList.component';
+import {BanksListComponent} from '../shared/modules/banks/components/banks-list/banks-list.component';
 
 const routes: Routes = [
   {
@@ -20,7 +22,8 @@ const routes: Routes = [
       {path: '', redirectTo: '/admin', pathMatch: 'full'},
       {path: '', component: AdminHomePageComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
-      // {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
+      {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
+      {path: 'banks', component: BanksListComponent, canActivate: [AuthGuard]},
       {path: 'deposits', component: AdminDepositsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency/completed', component: AdminDepositsCurrencyCompletedPageComponent, canActivate: [AuthGuard]},

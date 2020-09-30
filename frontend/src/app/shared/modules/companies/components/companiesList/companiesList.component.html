@@ -1,0 +1,44 @@
+<div class="action-panel">
+  <div class="title">
+    <h1>Compamies</h1>
+  </div>
+</div>
+<div class="beneficiary-controls">
+  <input
+    class="search-input"
+    type="text"
+    placeholder="find beneficiary"
+  />
+  <button class="btn btn-primary add-btn-icon" (click)="newCompany()">
+    new company
+  </button>
+</div>
+
+<table class="tbl" *ngIf="(companies$ | async);else loading">
+  <thead>
+  <tr>
+    <th>Client</th>
+    <th>Balance RUB</th>
+    <th>Balance USD</th>
+    <th>Balance EUR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let company of (companies$ | async)" (click)="viewCompany(company.id)">
+    <td class="client-name">{{company.company_name}}</td>
+    <td>1000</td>
+    <td>35000</td>
+    <td>45000</td>
+  </tr>
+
+  </tbody>
+</table>
+<p class="more"><a href="#">↓ more companies</a></p>
+
+<app-new-company-modal *ngIf="(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-company-modal>
+
+<app-show-company-modal *ngIf="(isShowPopupVisible$ | async)" (closeClicked)="hideShowCompanyModal()"></app-show-company-modal>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

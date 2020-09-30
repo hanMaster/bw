@@ -37,7 +37,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           },
           (err: any) => {
             if (err instanceof HttpErrorResponse) {
-              if (err.status === 401) {
+              if (err.status === 401 || err.status === 419) {
                 this.router.navigate(['login']);
               }
             }

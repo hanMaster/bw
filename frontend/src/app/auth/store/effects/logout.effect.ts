@@ -28,6 +28,7 @@ export class LogoutEffect {
             return logoutSuccessAction();
           }),
           catchError(() => {
+            this.persistanceService.clear('auth');
             return of(logoutFailureAction());
           })
         );

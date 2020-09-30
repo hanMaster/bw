@@ -1,0 +1,30 @@
+<div class="modal-window" *ngIf="company$ | async">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{(company$ | async).company_name}}</h2>
+    </div>
+    <button class="btn btn-primary" (click)="updateCompany()">
+      <svg width="30" height="20">
+        <use xlink:href="./assets/img/icons.svg#pencil-edit"></use>
+      </svg>
+      Change
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <h4><span class="label">Company name:</span> {{(company$ | async).company_name}}</h4>
+    <h4><span class="label">Organization form:</span> {{(company$ | async).organization_form}}</h4>
+    <h4><span class="label">Law address:</span> {{(company$ | async).law_address}}</h4>
+    <h4><span class="label">ИНН:</span> {{(company$ | async).inn}}</h4>
+    <h4><span class="label">КПП:</span> {{(company$ | async).kpp}}</h4>
+    <h4><span class="label">ОГРН/ОГРНИП:</span> {{(company$ | async).reg_number}}</h4>
+    <h4><span class="label">Created:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+    <h4><span class="label">Updated:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  </div>
+
+  <div class="new-client-footer">
+
+
+  </div>
+</div>

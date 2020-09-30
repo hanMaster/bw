@@ -6,7 +6,7 @@ import {RatesInterface} from '../../../types/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
 import {isPopupVisibleSelector} from '../../clients/store/selectors';
 import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/modalControl.actions';
-import {FormControlService} from '../../clients/services/formControl.service';
+import {FormControlService} from '../../../shared/services/formControl.service';
 
 
 @Component({

@@ -1,0 +1,120 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{(editMode$ | async) ? 'Edit' : 'New'}} company</h2>
+      <span *ngIf="!(editMode$ | async)">Fill in all fields to create a new client</span>
+    </div>
+    &nbsp;
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save client
+    </button>
+  </div>
+
+  <div class="errors" *ngIf="errors$ | async">
+    <ul>
+      <li *ngFor="let err of (errors$ | async)">{{err}}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="companyName">Company name:</label>
+      <input
+        id="companyName"
+        type="text"
+        placeholder="Company name"
+        formControlName="company_name"
+        [ngClass]="{invalid: form.get('company_name').touched && form.get('company_name').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="org-form">Organization form:</label>
+      <input
+        id="org-form"
+        type="text"
+        placeholder="Organization form"
+        formControlName="organization_form"
+        [ngClass]="{invalid: form.get('organization_form').touched && form.get('organization_form').invalid}"
+      />
+      <div
+        *ngIf="form.get('organization_form').touched && form.get('organization_form').invalid"
+        class="validation">
+        <small
+          *ngIf="form.get('organization_form').errors.required"
+        >Введите organization_form</small>
+        <small
+          *ngIf="form.get('organization_form').errors.email"
+        >Введите корректый organization_form</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="lawAddr">Law address:</label>
+      <input
+        id="lawAddr"
+        type="text"
+        placeholder="Law address"
+        formControlName="law_address"
+        [ngClass]="{invalid: form.get('law_address').touched && form.get('law_address').invalid}"
+      />
+    </div>
+    <div>
+      <label for="inn">ИНН:</label>
+      <input
+        id="inn"
+        type="text"
+        placeholder="ИНН"
+        formControlName="inn"
+        [ngClass]="{invalid: form.get('inn').touched && form.get('inn').invalid}"
+      />
+    </div>
+    <div>
+      <label for="kpp">KPP:</label>
+      <input
+        id="kpp"
+        type="text"
+        placeholder="КПП"
+        formControlName="kpp"
+        [ngClass]="{invalid: form.get('kpp').touched && form.get('kpp').invalid}"
+      />
+    </div>
+    <div>
+      <label for="regNumber">ОГРН/ОГРНИП:</label>
+      <input
+        id="regNumber"
+        type="text"
+        placeholder="ОГРН/ОГРНИП"
+        formControlName="reg_number"
+        [ngClass]="{invalid: form.get('reg_number').touched && form.get('reg_number').invalid}"
+      />
+    </div>
+
+  </form>
+
+  <div class="new-client-footer">
+
+    <span class="warning">*fill in all important fields</span>
+    <div>
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        save client
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -6,7 +6,7 @@ import {of} from 'rxjs';
 import {ClientsService} from '../../services/clients.service';
 import {ClientInterface} from '../../../../types/client.interface';
 import {addClientAction, addClientFailureAction, addClientSuccessAction} from '../actions/addClient.actions';
-import {FormControlService} from '../../services/formControl.service';
+import {FormControlService} from '../../../../shared/services/formControl.service';
 
 @Injectable()
 export class AddClientEffect {

@@ -6,7 +6,7 @@ import {select, Store} from '@ngrx/store';
 import {UtilsService} from '../../../../shared/services/utils.service';
 import {ClientInterface} from '../../../../types/client.interface';
 import {addClientAction} from '../../store/actions/addClient.actions';
-import {FormControlService} from '../../services/formControl.service';
+import {FormControlService} from '../../../../shared/services/formControl.service';
 import {clientSelector, editModeSelector, validationErrorsSelector} from '../../store/selectors';
 import {take} from 'rxjs/operators';
 import {editClientAction} from '../../store/actions/updateClient.actions';

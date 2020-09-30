@@ -21,6 +21,7 @@ class CreateDepositsTable extends Migration
             $table->foreignId('admin_company_id')->constrained();
             $table->foreignId('user_company_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->enum('currency', ['usd', 'eur', 'rub']);
             $table->integer('amount');
             $table->string('payment_purpose');
             $table->string('payment_order_pdf');

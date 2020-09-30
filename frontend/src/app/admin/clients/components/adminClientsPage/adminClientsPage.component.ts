@@ -14,7 +14,7 @@ import {
   hideViewClientModalAction,
   showClientModalAction, showViewClientModalAction
 } from '../../store/actions/modalControl.actions';
-import {FormControlService} from '../../services/formControl.service';
+import {FormControlService} from '../../../../shared/services/formControl.service';
 
 @Component({
   selector: 'app-admin-clients-page',
