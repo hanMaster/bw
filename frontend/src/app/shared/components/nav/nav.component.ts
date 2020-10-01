@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {CurrentUserInterface} from '../../../types/currentUser.interface';
+import {CurrentUser} from '../../../models/currentUser';
 import {currentUserSelector} from '../../../auth/store/selectors';
 
 @Component({
@@ -12,7 +12,7 @@ import {currentUserSelector} from '../../../auth/store/selectors';
 })
 export class NavComponent implements OnInit {
   @HostBinding('class') classList = 'main-nav';
-  currentUser$: Observable<CurrentUserInterface | null>;
+  currentUser$: Observable<CurrentUser | null>;
 
   constructor(private store: Store) {
   }

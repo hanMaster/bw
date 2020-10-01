@@ -1,4 +1,4 @@
-export interface ForeignBankInterface{
+export class ForeignBank{
   id?: number;
   bank_name: string;
   bank_address: string;

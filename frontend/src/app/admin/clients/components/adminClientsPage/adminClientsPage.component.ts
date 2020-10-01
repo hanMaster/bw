@@ -7,7 +7,7 @@ import {
   isPopupVisibleSelector,
   isShowPopupVisibleSelector
 } from '../../store/selectors';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 import {requestClientsAction} from '../../store/actions/requestClients.actions';
 import {
   hideClientModalAction,
@@ -28,7 +28,7 @@ export class AdminClientsPageComponent implements OnInit {
   isPopupVisible$: Observable<boolean>;
   isShowPopupVisible$: Observable<boolean>;
   isLoading$: Observable<boolean>;
-  clients$: Observable<ClientInterface[] | null>;
+  clients$: Observable<Client[]>;
 
   constructor(private store: Store, private formControlService: FormControlService) {
   }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {ClientInterface} from '../../../types/client.interface';
+import {Client} from '../../../models/client';
 import {environment} from '../../../../environments/environment';
 
 @Injectable()
@@ -10,15 +10,15 @@ export class ClientsService {
   constructor(private http: HttpClient) {
   }
 
-  getClients(): Observable<ClientInterface[]> {
-    return this.http.get<ClientInterface[]>(`${environment.apiUrl}/clients`);
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>(`${environment.apiUrl}/clients`);
   }
 
-  addClient(client: ClientInterface): Observable<ClientInterface> {
-    return this.http.post<ClientInterface>(`${environment.apiUrl}/clients`, client);
+  addClient(client: Client): Observable<Client> {
+    return this.http.post<Client>(`${environment.apiUrl}/clients`, client);
   }
 
-  updateClient(client: ClientInterface): Observable<ClientInterface> {
-    return this.http.put<ClientInterface>(`${environment.apiUrl}/clients`, client);
+  updateClient(client: Client): Observable<Client> {
+    return this.http.put<Client>(`${environment.apiUrl}/clients`, client);
   }
 }

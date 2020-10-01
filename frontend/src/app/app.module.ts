@@ -15,7 +15,10 @@ import {PersistanceService} from './shared/services/persistance.service';
 import {AdminModule} from './admin/admin.module';
 import {ClientModule} from './client/client.module';
 import {CompaniesModule} from './shared/modules/companies/companies.module';
-import {BanksModule} from './shared/modules/banks/banks.module';
+import {RussBanksModule} from './shared/modules/banks/russBanks.module';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './store/entity-metadata';
+import {SharedModule} from './shared/modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import {BanksModule} from './shared/modules/banks/banks.module';
     AdminModule,
     ClientModule,
     CompaniesModule,
-    BanksModule
+    RussBanksModule,
+    EntityDataModule.forRoot(entityConfig),
+    SharedModule
   ],
   providers: [
     UtilsService,

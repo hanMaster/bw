@@ -4,7 +4,7 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
 import {ClientsService} from '../../services/clients.service';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 import {addClientAction, addClientFailureAction, addClientSuccessAction} from '../actions/addClient.actions';
 import {FormControlService} from '../../../../shared/services/formControl.service';
 
@@ -22,7 +22,7 @@ export class AddClientEffect {
     switchMap(({client}) => {
       return this.clientsService.addClient(client)
         .pipe(
-          map((addedClient: ClientInterface) => {
+          map((addedClient: Client) => {
             this.formControlService.clearForm();
             return addClientSuccessAction({addedClient});
           }),

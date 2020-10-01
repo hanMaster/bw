@@ -8,7 +8,7 @@ import {
   editCompanyFailureAction,
   editCompanySuccessAction
 } from '../actions/updateCompanies.actions';
-import {RussCompanyInterface} from '../../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../../models/russCompany';
 import {CompaniesService} from '../../services/companies.service';
 import {FormControlService} from '../../../../services/formControl.service';
 
@@ -26,7 +26,7 @@ export class UpdateCompanyEffect {
     switchMap(({company}) => {
       return this.companiesService.updateCompany(company)
         .pipe(
-          map((updatedCompany: RussCompanyInterface) => {
+          map((updatedCompany: RussCompany) => {
             this.formControlService.clearForm();
             return editCompanySuccessAction({updatedCompany});
           }),

@@ -2,7 +2,7 @@ import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
-import {RatesInterface} from '../../../types/rates.interface';
+import {RatesInterface} from '../../../models/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
 import {isPopupVisibleSelector} from '../../clients/store/selectors';
 import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/modalControl.actions';

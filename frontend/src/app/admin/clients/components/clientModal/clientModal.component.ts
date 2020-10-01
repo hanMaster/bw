@@ -4,7 +4,7 @@ import {Observable, Subscription} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
 import {UtilsService} from '../../../../shared/services/utils.service';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 import {addClientAction} from '../../store/actions/addClient.actions';
 import {FormControlService} from '../../../../shared/services/formControl.service';
 import {clientSelector, editModeSelector, validationErrorsSelector} from '../../store/selectors';
@@ -29,7 +29,7 @@ export class ClientModalComponent implements OnInit, OnDestroy {
   errors$: Observable<any[]>;
   editMode$: Observable<boolean>;
   editMode = false;
-  client: ClientInterface;
+  client: Client;
 
   constructor(
     private utils: UtilsService,
@@ -64,7 +64,7 @@ export class ClientModalComponent implements OnInit, OnDestroy {
 
     if(this.editMode){
       this.store.pipe(select(clientSelector), take(1)).subscribe(
-        (client: ClientInterface) => {
+        (client: Client) => {
           this.client = client;
         }
       );
@@ -88,13 +88,13 @@ export class ClientModalComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.editMode) {
-      const client: ClientInterface = {
+      const client: Client = {
         id: this.client.id,
         ...this.form.value
       };
       this.store.dispatch(editClientAction({client}));
     } else {
-      const client: ClientInterface = {
+      const client: Client = {
         ...this.form.value
       };
       this.store.dispatch(addClientAction({client}));

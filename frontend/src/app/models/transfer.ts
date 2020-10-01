@@ -1,6 +1,6 @@
-import {CurrencyType} from './currency.type';
+import {CurrencyType} from '../shared/types/currency.type';
 
-export interface TransferInterface{
+export class Transfer{
   id?: number;
   beneficiary_id: number;
   user_id: number;

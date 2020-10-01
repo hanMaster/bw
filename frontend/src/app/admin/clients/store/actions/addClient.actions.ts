@@ -1,13 +1,13 @@
 import {createAction, props} from '@ngrx/store';
 import {ActionTypes} from '../actionTypes';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 
 export const addClientAction = createAction(ActionTypes.NEW_CLIENT,
-  props<{client: ClientInterface}>()
+  props<{client: Client}>()
   );
 export const addClientSuccessAction = createAction(
   ActionTypes.NEW_CLIENT_SUCCESS,
-  props<{ addedClient: ClientInterface }>()
+  props<{ addedClient: Client }>()
 );
 export const addClientFailureAction = createAction(
   ActionTypes.NEW_CLIENT_FAILURE,

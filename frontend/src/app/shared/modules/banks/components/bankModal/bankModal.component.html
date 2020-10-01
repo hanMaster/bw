@@ -1,0 +1,86 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{editMode ? 'Edit' : 'New'}} bank</h2>
+      <span *ngIf="!editMode">Fill in all fields to create a new client</span>
+    </div>
+    &nbsp;
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save bank
+    </button>
+  </div>
+
+  <div class="errors" *ngIf="errors">
+    <ul>
+      <li *ngFor="let err of errors">{{err}}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="bank_name">Company name:</label>
+      <input
+        id="bank_name"
+        type="text"
+        placeholder="Company name"
+        formControlName="bank_name"
+        [ngClass]="{invalid: form.get('bank_name').touched && form.get('bank_name').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="bic_code">БИК:</label>
+      <input
+        id="bic_code"
+        type="text"
+        placeholder="БИК"
+        formControlName="bic_code"
+        [ngClass]="{invalid: form.get('bic_code').touched && form.get('bic_code').invalid}"
+      />
+      <div
+        *ngIf="form.get('bic_code').touched && form.get('bic_code').invalid"
+        class="validation">
+        <small
+          *ngIf="form.get('bic_code').errors.required"
+        >Введите БИК</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="corr_account">Корр счет:</label>
+      <input
+        id="corr_account"
+        type="text"
+        placeholder="Корр счет"
+        formControlName="corr_account"
+        [ngClass]="{invalid: form.get('corr_account').touched && form.get('corr_account').invalid}"
+      />
+    </div>
+  </form>
+
+  <div class="new-client-footer">
+
+    <span class="warning">*fill in all important fields</span>
+    <div>
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        save bank
+      </button>
+    </div>
+
+  </div>
+</div>
