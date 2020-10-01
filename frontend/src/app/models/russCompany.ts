@@ -1,4 +1,4 @@
-export interface RussCompanyInterface {
+export class RussCompany {
   id?: number;
   user_id: number;
   company_name: string;

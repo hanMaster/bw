@@ -4,7 +4,7 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
 import {ClientsService} from '../../services/clients.service';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 import {requestClientsAction, requestClientsFailureAction, requestClientsSuccessAction} from '../actions/requestClients.actions';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class RequestClientsEffect {
     switchMap(() => {
       return this.clientsService.getClients()
         .pipe(
-          map((clients: ClientInterface[]) => {
+          map((clients: Client[]) => {
             return requestClientsSuccessAction({clients});
           }),
           catchError(() => {

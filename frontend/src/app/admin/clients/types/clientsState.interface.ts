@@ -1,12 +1,12 @@
-import {ClientInterface} from '../../../types/client.interface';
+import {Client} from '../../../models/client';
 
 export interface ClientsStateInterface {
   isSubmitting: boolean;
   isLoading: boolean;
-  clients: ClientInterface[];
+  clients: Client[];
   validationErrors: string[] | null;
   isPopupVisible: boolean;
   isShowPopupVisible: boolean;
-  client: ClientInterface | null;
+  client: Client | null;
   editMode: boolean;
 }

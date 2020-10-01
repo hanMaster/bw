@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {RussCompanyInterface} from '../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../models/russCompany';
 import {environment} from '../../../../../environments/environment';
 
 @Injectable()
@@ -10,15 +10,15 @@ export class CompaniesService {
   constructor(private http: HttpClient) {
   }
 
-  getUserCompanies(): Observable<RussCompanyInterface[]> {
-    return this.http.get<RussCompanyInterface[]>(`${environment.apiUrl}/companies`);
+  getUserCompanies(): Observable<RussCompany[]> {
+    return this.http.get<RussCompany[]>(`${environment.apiUrl}/companies`);
   }
 
-  addCompany(company: RussCompanyInterface): Observable<RussCompanyInterface> {
-    return this.http.post<RussCompanyInterface>(`${environment.apiUrl}/companies`, company);
+  addCompany(company: RussCompany): Observable<RussCompany> {
+    return this.http.post<RussCompany>(`${environment.apiUrl}/companies`, company);
   }
 
-  updateCompany(company: RussCompanyInterface): Observable<RussCompanyInterface> {
-    return this.http.put<RussCompanyInterface>(`${environment.apiUrl}/companies`, company);
+  updateCompany(company: RussCompany): Observable<RussCompany> {
+    return this.http.put<RussCompany>(`${environment.apiUrl}/companies`, company);
   }
 }

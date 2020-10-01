@@ -1,6 +1,6 @@
-import {CurrencyType} from './currency.type';
+import {CurrencyType} from '../shared/types/currency.type';
 
-export interface DepositInterface{
+export class Deposit{
   id?: number;
   admin_company_invoice_number: string;
   admin_company_invoice_date: string;

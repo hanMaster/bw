@@ -1,4 +1,4 @@
-export interface ForeignAccountInterface{
+export class ForeignAccount{
   id?: number;
   account_number: string;
   beneficiary_id: number;

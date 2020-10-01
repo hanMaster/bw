@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {RatesInterface} from '../../types/rates.interface';
+import {RatesInterface} from '../../models/rates.interface';
 import {map} from 'rxjs/operators';
 import {UtilsService} from './utils.service';
 import {environment} from '../../../environments/environment';

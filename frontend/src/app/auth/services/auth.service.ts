@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {AuthRequestInterface} from '../types/authRequest.interface';
-import {CurrentUserInterface} from '../../types/currentUser.interface';
+import {CurrentUser} from '../../models/currentUser';
 import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
@@ -13,17 +13,17 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  login(credentials: AuthRequestInterface): Observable<CurrentUserInterface> {
+  login(credentials: AuthRequestInterface): Observable<CurrentUser> {
     return this.http.get(`${environment.apiUrl}/csrf-cookie`).pipe(
       switchMap((response) => {
-        return this.http.post<CurrentUserInterface>(`${environment.apiUrl}/login`, credentials);
+        return this.http.post<CurrentUser>(`${environment.apiUrl}/login`, credentials);
       })
     );
   }
 
-  getCurrentUser(): Observable<CurrentUserInterface> {
+  getCurrentUser(): Observable<CurrentUser> {
     const url = `${environment.apiUrl}/user`;
-    return this.http.get<CurrentUserInterface>(url);
+    return this.http.get<CurrentUser>(url);
   }
 
   logout(): Observable<{}> {

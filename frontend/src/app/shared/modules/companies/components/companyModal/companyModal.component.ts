@@ -5,11 +5,11 @@ import {select, Store} from '@ngrx/store';
 
 import {companySelector, editModeSelector, validationErrorsSelector} from '../../store/selectors';
 import {take} from 'rxjs/operators';
-import {RussCompanyInterface} from '../../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../../models/russCompany';
 import {editCompanyAction} from '../../store/actions/updateCompanies.actions';
 import {addCompanyAction} from '../../store/actions/addCompanies.actions';
 import {FormControlService} from '../../../../services/formControl.service';
-import {CurrentUserInterface} from '../../../../../types/currentUser.interface';
+import {CurrentUser} from '../../../../../models/currentUser';
 import {currentUserSelector} from '../../../../../auth/store/selectors';
 
 
@@ -30,8 +30,8 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
   errors$: Observable<any[]>;
   editMode$: Observable<boolean>;
   editMode = false;
-  company: RussCompanyInterface;
-  currentUser: CurrentUserInterface;
+  company: RussCompany;
+  currentUser: CurrentUser;
 
   constructor(
     private store: Store,
@@ -71,16 +71,11 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
 
     if (this.editMode) {
       this.store.pipe(select(companySelector), take(1)).subscribe(
-        (company: RussCompanyInterface) => {
+        (company: RussCompany) => {
           this.company = company;
         }
       );
-      this.form.patchValue({company_name: this.company.company_name});
-      this.form.patchValue({organization_form: this.company.organization_form});
-      this.form.patchValue({law_address: this.company.law_address});
-      this.form.patchValue({inn: this.company.inn});
-      this.form.patchValue({kpp: this.company.kpp});
-      this.form.patchValue({reg_number: this.company.reg_number});
+      this.form.patchValue(this.company);
     }
   }
 
@@ -90,14 +85,14 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.editMode) {
-      const company: RussCompanyInterface = {
+      const company: RussCompany = {
         id: this.company.id,
         user_id: this.currentUser.id,
         ...this.form.value
       };
       this.store.dispatch(editCompanyAction({company}));
     } else {
-      const company: RussCompanyInterface = {
+      const company: RussCompany = {
         ...this.form.value,
         user_id: this.currentUser.id
       };

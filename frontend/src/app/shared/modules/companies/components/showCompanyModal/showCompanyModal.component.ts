@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 
 import {companySelector} from '../../store/selectors';
 import {showCompanyModalAction} from '../../store/actions/modalControl.actions';
-import {RussCompanyInterface} from '../../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../../models/russCompany';
 
 @Component({
   selector: 'app-show-company-modal',
@@ -16,7 +16,7 @@ export class ShowCompanyModalComponent implements OnInit {
   @Output() closeClicked = new EventEmitter();
   @HostBinding('class') classList = 'modal-wrapper';
 
-  company$: Observable<RussCompanyInterface>;
+  company$: Observable<RussCompany>;
 
   constructor(
     private store: Store

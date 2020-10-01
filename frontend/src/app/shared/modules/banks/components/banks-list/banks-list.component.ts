@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
+import {RussBankService} from '../../russBank.service';
+import {Observable} from 'rxjs';
+import {RussBank} from '../../../../../models/russBank';
 
 @Component({
   selector: 'app-banks-list',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BanksListComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding('class') classList = 'main-content';
+  loading$: Observable<boolean>;
+  banks$: Observable<RussBank[]>;
+  selected: RussBank;
 
-  ngOnInit(): void {
+  constructor(private russBankService: RussBankService) {
+    this.loading$ = this.russBankService.loading$;
+    this.banks$ = this.russBankService.entities$;
   }
 
+  ngOnInit(): void {
+    this.russBankService.getAll();
+  }
+
+  hideModal(): void{
+    this.selected = null;
+  }
+
+  showModal(bank: RussBank) {
+    this.selected = bank;
+  }
+  enableAddMode() {
+    this.selected = <any>{};
+  }
 }

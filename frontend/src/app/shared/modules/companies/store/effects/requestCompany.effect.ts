@@ -9,7 +9,7 @@ import {
   requestCompaniesFailureAction,
   requestCompaniesSuccessAction
 } from '../actions/requestCompanies.actions';
-import {RussCompanyInterface} from '../../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../../models/russCompany';
 
 
 @Injectable()
@@ -25,7 +25,7 @@ export class RequestCompanyEffect {
     switchMap(() => {
       return this.companiesService.getUserCompanies()
         .pipe(
-          map((companies: RussCompanyInterface[]) => {
+          map((companies: RussCompany[]) => {
             return requestCompaniesSuccessAction({companies});
           }),
           catchError(() => {

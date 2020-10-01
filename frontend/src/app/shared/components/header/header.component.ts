@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {CurrentUserInterface} from '../../../types/currentUser.interface';
+import {CurrentUser} from '../../../models/currentUser';
 import {currentUserSelector, isAnonymousSelector, isLoggedInSelector} from '../../../auth/store/selectors';
 import {logoutAction} from '../../../auth/store/actions/logout.actions';
 
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   isAnonymous$: Observable<boolean>;
-  currentUser$: Observable<CurrentUserInterface | null>;
+  currentUser$: Observable<CurrentUser | null>;
 
   constructor(private store: Store) {
   }

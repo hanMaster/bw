@@ -1,12 +1,12 @@
-import {RussCompanyInterface} from '../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../models/russCompany';
 
 export interface CompaniesStateInterface{
   isSubmitting: boolean;
   isLoading: boolean;
-  companies: RussCompanyInterface[];
+  companies: RussCompany[];
   validationErrors: string[] | null;
   isPopupVisible: boolean;
   isShowPopupVisible: boolean;
-  company: RussCompanyInterface | null;
+  company: RussCompany | null;
   editMode: boolean;
 }

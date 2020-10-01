@@ -1,4 +1,4 @@
-export interface CurrentUserInterface {
+export class CurrentUser {
   id: number;
   client_name: string;
   email: string;

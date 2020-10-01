@@ -4,7 +4,7 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {loginActions, loginFailureAction, loginSuccessAction} from '../actions/login.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {CurrentUserInterface} from '../../../types/currentUser.interface';
+import {CurrentUser} from '../../../models/currentUser';
 import {HttpErrorResponse} from '@angular/common/http';
 import {of} from 'rxjs';
 import {PersistanceService} from '../../../shared/services/persistance.service';
@@ -27,7 +27,7 @@ export class LoginEffect {
     switchMap(({request}) => {
       return this.authService.login(request)
         .pipe(
-          map((currentUser: CurrentUserInterface) => {
+          map((currentUser: CurrentUser) => {
             this.persistanceService.set('auth', 'true');
             this.role = currentUser.role;
             return loginSuccessAction({currentUser});

@@ -3,10 +3,9 @@ import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
 import {UtilsService} from '../../../../shared/services/utils.service';
-import {ClientInterface} from '../../../../types/client.interface';
+import {Client} from '../../../../models/client';
 import {clientSelector} from '../../store/selectors';
 import {showClientModalAction} from '../../store/actions/modalControl.actions';
-import {FormControlService} from '../../../../shared/services/formControl.service';
 
 @Component({
   selector: 'app-show-client-modal',
@@ -18,7 +17,7 @@ export class ShowClientModalComponent implements OnInit {
   @Output() closeClicked = new EventEmitter();
   @HostBinding('class') classList = 'modal-wrapper';
 
-  client$: Observable<ClientInterface>;
+  client$: Observable<Client>;
 
   constructor(
     private utils: UtilsService,

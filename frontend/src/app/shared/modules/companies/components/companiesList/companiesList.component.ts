@@ -2,7 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
-import {RussCompanyInterface} from '../../../../../types/russCompany.interface';
+import {RussCompany} from '../../../../../models/russCompany';
 import {
   companiesSelector,
   isLoadingSelector,
@@ -17,9 +17,6 @@ import {
   showViewCompanyModalAction
 } from '../../store/actions/modalControl.actions';
 import {FormControlService} from '../../../../services/formControl.service';
-import {CurrentUserInterface} from '../../../../../types/currentUser.interface';
-import {currentUserSelector} from '../../../../../auth/store/selectors';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-companies-list',
@@ -29,7 +26,7 @@ import {take} from 'rxjs/operators';
 export class CompaniesListComponent implements OnInit {
 
   @HostBinding('class') classList = 'main-content';
-  companies$: Observable<RussCompanyInterface[] | null>;
+  companies$: Observable<RussCompany[] | null>;
 
   isPopupVisible$: Observable<boolean>;
   isLoading$: Observable<boolean>;

@@ -1,10 +1,10 @@
-import {CurrentUserInterface} from '../../types/currentUser.interface';
-import {BackendErrorsInterface} from '../../types/backendErrors.interface';
+import {CurrentUser} from '../../models/currentUser';
+import {BackendErrorsInterface} from '../../models/backendErrors.interface';
 
 export interface AuthStateInterface {
   isSubmitting: boolean;
   isLoading: boolean;
-  currentUser: CurrentUserInterface | null;
+  currentUser: CurrentUser | null;
   isLoggedIn: boolean | null;
   validationErrors: BackendErrorsInterface | null;
 }

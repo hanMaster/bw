@@ -1,4 +1,4 @@
-export interface BeneficiaryInterface{
+export class Beneficiary{
   id?: number;
   beneficiary_name: string;
   address_line1: string;

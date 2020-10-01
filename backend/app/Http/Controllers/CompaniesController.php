@@ -12,6 +12,10 @@ class CompaniesController extends Controller
     {
         return RussCompanies::where('user_id', Auth::user()->getAuthIdentifier())->get();
     }
+    public function getAll()
+    {
+        return RussCompanies::all();
+    }
 
     public function addNewCompany(Request $request)
     {
@@ -42,10 +46,10 @@ class CompaniesController extends Controller
             'kpp' => ['required'],
             'reg_number' => ['required'],
             'law_address' => ['required'],
-            'user_id' => ['required']
+            'id' => ['required']
         ]);
 
-        $company = RussCompanies::where('user_id', $request->user_id)->first();
+        $company = RussCompanies::where('id', $request->id)->first();
         $company->fill($validated);
         $company->save();
 
