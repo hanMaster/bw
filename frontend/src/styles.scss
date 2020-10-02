@@ -617,6 +617,11 @@ main {
       font-weight: bold;
       color: var(--dark-color);
     }
+    td.tbl-link:hover{
+      color: $primary;
+      text-decoration: underline;
+      cursor: pointer;
+    }
 
     td:first-child {
       border-top-left-radius: 10px;

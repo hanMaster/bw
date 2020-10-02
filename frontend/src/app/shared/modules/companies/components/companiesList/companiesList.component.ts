@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
 
 import {RussCompany} from '../../../../../models/russCompany';
 import {
@@ -13,8 +14,7 @@ import {requestCompaniesAction} from '../../store/actions/requestCompanies.actio
 import {
   hideCompanyModalAction,
   hideViewCompanyModalAction,
-  showCompanyModalAction,
-  showViewCompanyModalAction
+  showCompanyModalAction
 } from '../../store/actions/modalControl.actions';
 import {FormControlService} from '../../../../services/formControl.service';
 
@@ -32,7 +32,11 @@ export class CompaniesListComponent implements OnInit {
   isLoading$: Observable<boolean>;
   isShowPopupVisible$: Observable<boolean>;
 
-  constructor(private store: Store, private formControlService: FormControlService) {
+  constructor(
+    private store: Store,
+    private formControlService: FormControlService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -53,11 +57,9 @@ export class CompaniesListComponent implements OnInit {
     this.store.dispatch(hideCompanyModalAction());
   }
 
-  viewCompany(id: number): void {
-    this.store.dispatch(showViewCompanyModalAction({id}));
+  viewCompany(company: RussCompany): void {
+    this.router.navigate(['/', 'company-profile', company.id], {state: {data: {company: company}}});
   }
 
-  hideShowCompanyModal() {
-    this.store.dispatch(hideViewCompanyModalAction());
-  }
+
 }

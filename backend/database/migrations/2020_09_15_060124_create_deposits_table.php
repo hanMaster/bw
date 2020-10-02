@@ -17,6 +17,8 @@ class CreateDepositsTable extends Migration
             $table->id();
             $table->string('admin_company_invoice_number');
             $table->string('admin_company_invoice_date');
+            $table->string('payment_order_number');
+            $table->string('payment_order_date');
             $table->foreignId('admin_company_bank_id')->constrained();
             $table->foreignId('admin_company_id')->constrained();
             $table->foreignId('user_company_id')->constrained();
