@@ -9,6 +9,9 @@ import {DepositPageComponent} from './pages/deposit-page/deposit-page.component'
 import {DepositCurrencyPageComponent} from './pages/deposit-currency-page/deposit-currency-page.component';
 import {TransferPageComponent} from './pages/transfer-page/transfer-page.component';
 import {DepositModalComponent} from './deposit-modal/deposit-modal.component';
+import {CompaniesListComponent} from '../shared/modules/companies/components/companiesList/companiesList.component';
+import {BanksListComponent} from '../shared/modules/banks/components/banks-list/banks-list.component';
+import {CompanyProfileComponent} from '../shared/modules/companies/components/companyProfile/companyProfile.component';
 
 const routes: Routes = [
   {
@@ -16,6 +19,10 @@ const routes: Routes = [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
       {path: 'beneficiary', component: BeneficiaryPageComponent, canActivate: [AuthGuard]},
+      {path: 'foreign-banks', component: BanksListComponent, canActivate: [AuthGuard]},
+      {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
+      {path: 'company-profile/:companyId', component: CompanyProfileComponent, canActivate: [AuthGuard] },
+      {path: 'banks', component: BanksListComponent, canActivate: [AuthGuard]},
       {path: 'deposit', component: DepositPageComponent, canActivate: [AuthGuard]},
       {path: 'deposit/:currency', component: DepositCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'transfer', component: TransferPageComponent, canActivate: [AuthGuard]},

@@ -1,6 +1,6 @@
 <div class="action-panel">
   <div class="title">
-    <h1>Compamies</h1>
+    <h1>Companies</h1>
   </div>
 </div>
 <div class="beneficiary-controls">
@@ -17,26 +17,20 @@
 <table class="tbl" *ngIf="(companies$ | async);else loading">
   <thead>
   <tr>
-    <th>Client</th>
-    <th>Balance RUB</th>
-    <th>Balance USD</th>
-    <th>Balance EUR</th>
+    <th>Company</th>
+    <th>Address</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let company of (companies$ | async)" (click)="viewCompany(company.id)">
+  <tr *ngFor="let company of (companies$ | async)" (click)="viewCompany(company)">
     <td class="client-name">{{company.company_name}}</td>
-    <td>1000</td>
-    <td>35000</td>
-    <td>45000</td>
+    <td>{{company.law_address}}</td>
   </tr>
   </tbody>
 </table>
 <p class="more"><a href="#">↓ more companies</a></p>
 
 <app-new-company-modal *ngIf="(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-company-modal>
-
-<app-show-company-modal *ngIf="(isShowPopupVisible$ | async)" (closeClicked)="hideShowCompanyModal()"></app-show-company-modal>
 
 <ng-template #loading>
   Loading...

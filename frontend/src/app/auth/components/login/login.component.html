@@ -34,6 +34,7 @@
           [formGroup]="form"
           (ngSubmit)="onSubmit()"
         >
+          <p class="back-errors">{{(errors$ | async)}}</p>
           <div class="form-control">
             <input type="email" placeholder="Email" class="username" formControlName="email"/>
           </div>

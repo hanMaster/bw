@@ -1,0 +1,23 @@
+<div *ngIf="company">
+  <div class="action-panel">
+    <div class="title">
+      <h1>{{company.company_name}}</h1>
+    </div>
+    <button class="btn btn-back" routerLink="/companies">come back</button>
+    <button class="btn btn-primary" (click)="updateCompany()">
+      <svg width="30" height="20">
+        <use xlink:href="./assets/img/icons.svg#pencil-edit"></use>
+      </svg>
+      Change
+    </button>
+  </div>
+
+  <h4><span class="label">Organization form:</span> {{company.organization_form}}</h4>
+  <h4><span class="label">Law address:</span> {{company.law_address}}</h4>
+  <h4><span class="label">ИНН:</span> {{company.inn}}</h4>
+  <h4><span class="label">КПП:</span> {{company.kpp}}</h4>
+  <h4><span class="label">ОГРН/ОГРНИП:</span> {{company.reg_number}}</h4>
+  <h4><span class="label">Created:</span> {{company.created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  <h4><span class="label">Updated:</span> {{company.updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+</div>
+<app-new-company-modal *ngIf="(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-company-modal>

@@ -12,16 +12,20 @@ import {UpdateCompanyEffect} from './store/effects/updateCompany.effect';
 import {RequestCompanyEffect} from './store/effects/requestCompany.effect';
 import {CompaniesService} from './services/companies.service';
 import {reducers} from './store/reducers';
+import {RouterModule} from '@angular/router';
+import {CompanyProfileComponent} from './components/companyProfile/companyProfile.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    StoreModule.forFeature('companies', reducers),
-    EffectsModule.forFeature([AddCompanyEffect, UpdateCompanyEffect, RequestCompanyEffect])
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        StoreModule.forFeature('companies', reducers),
+        EffectsModule.forFeature([AddCompanyEffect, UpdateCompanyEffect, RequestCompanyEffect]),
+        RouterModule
+    ],
   declarations: [
     CompaniesListComponent,
+    CompanyProfileComponent,
     CompanyModalComponent,
     ShowCompanyModalComponent,
   ],
@@ -29,7 +33,8 @@ import {reducers} from './store/reducers';
     CompaniesService
   ],
   exports: [
-    CompaniesListComponent
+    CompaniesListComponent,
+    CompanyProfileComponent
   ]
 })
 export class CompaniesModule {

@@ -2,9 +2,9 @@ import {Component, EventEmitter, HostBinding, OnDestroy, OnInit, Output} from '@
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
 import {select, Store} from '@ngrx/store';
+import {take} from 'rxjs/operators';
 
 import {companySelector, editModeSelector, validationErrorsSelector} from '../../store/selectors';
-import {take} from 'rxjs/operators';
 import {RussCompany} from '../../../../../models/russCompany';
 import {editCompanyAction} from '../../store/actions/updateCompanies.actions';
 import {addCompanyAction} from '../../store/actions/addCompanies.actions';

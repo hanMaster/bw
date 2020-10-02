@@ -1,10 +1,11 @@
 import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 
 const entityMetadata: EntityMetadataMap = {
-  RussBank:{}
+  RussBank: {},
+  Beneficiary: {}
 };
 
-const pluralNames = {  };
+const pluralNames = { Beneficiary: 'Beneficiaries' };
 
 export const entityConfig: EntityDataModuleConfig = {
   entityMetadata,
