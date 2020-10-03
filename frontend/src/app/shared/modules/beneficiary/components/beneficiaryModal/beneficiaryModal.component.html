@@ -1,0 +1,116 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{company ? 'Edit' : 'New'}} beneficiary</h2>
+      <span *ngIf="!company">Fill in all fields to create a new beneficiary</span>
+    </div>
+    &nbsp;
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save beneficiary
+    </button>
+  </div>
+
+  <div class="errors" *ngIf="errors">
+    <ul>
+      <li *ngFor="let err of errors">{{err}}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="companyName">Beneficiary name:</label>
+      <input
+        id="companyName"
+        type="text"
+        placeholder="Beneficiary name"
+        formControlName="beneficiary_name"
+        [ngClass]="{invalid: form.get('beneficiary_name').touched && form.get('beneficiary_name').invalid}"
+      />
+    </div>
+
+
+    <div>
+      <label for="addr1">Address line1:</label>
+      <input
+        id="addr1"
+        type="text"
+        placeholder="Address line1"
+        formControlName="address_line1"
+        [ngClass]="{invalid: form.get('address_line1').touched && form.get('address_line1').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="addr2">Address line2:</label>
+      <input
+        id="addr2"
+        type="text"
+        placeholder="Address line2"
+        formControlName="address_line2"
+        [ngClass]="{invalid: form.get('address_line2').touched && form.get('address_line2').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="addr3">Address line3:</label>
+      <input
+        id="addr3"
+        type="text"
+        placeholder="Address line3"
+        formControlName="address_line3"
+        [ngClass]="{invalid: form.get('address_line3').touched && form.get('address_line3').invalid}"
+      />
+    </div>
+
+
+
+    <div>
+      <label for="www">Email/www:</label>
+      <input
+        id="www"
+        type="text"
+        placeholder="Email/www"
+        formControlName="beneficiary_email_www"
+        [ngClass]="{invalid: form.get('beneficiary_email_www').touched && form.get('beneficiary_email_www').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="email">Contact email:</label>
+      <input
+        id="email"
+        type="text"
+        placeholder="Contact email"
+        formControlName="contact_email"
+        [ngClass]="{invalid: form.get('contact_email').touched && form.get('contact_email').invalid}"
+      />
+    </div>
+
+  </form>
+
+  <div class="new-client-footer">
+
+    <span class="warning">*fill in all important fields</span>
+    <div>
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        save beneficiary
+      </button>
+    </div>
+
+  </div>
+</div>

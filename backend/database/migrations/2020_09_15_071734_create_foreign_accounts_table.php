@@ -19,7 +19,7 @@ class CreateForeignAccountsTable extends Migration
             $table->foreignId('beneficiary_id')->constrained();
             $table->foreignId('foreign_bank_id')->constrained();
             $table->timestamps();
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiary');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
             $table->foreign('foreign_bank_id')->references('id')->on('foreign_banks');
         });
     }

@@ -4,22 +4,24 @@ import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {take} from 'rxjs/operators';
 
-import {RussCompany} from '../../../../../models/russCompany';
+
 import {CurrentUser} from '../../../../../models/currentUser';
 import {currentUserSelector} from '../../../../../auth/store/selectors';
-import {RussCompanyService} from '../../services/russCompanies.service';
+import {BeneficiaryService} from '../../services/beneficiaries.service';
+import {Beneficiary} from '../../../../../models/beneficiary';
+
 
 
 @Component({
-  selector: 'app-company-modal',
-  templateUrl: './companyModal.component.html',
-  styleUrls: ['./companyModal.component.scss']
+  selector: 'app-beneficiary-modal',
+  templateUrl: './beneficiaryModal.component.html',
+  styleUrls: ['./beneficiaryModal.component.scss']
 })
-export class CompanyModalComponent implements OnInit, OnDestroy {
+export class BeneficiaryModalComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:no-input-rename
   @Output() closeClicked = new EventEmitter();
-  @Input() company: RussCompany;
+  @Input() company: Beneficiary;
   @HostBinding('class') classList = 'modal-wrapper';
 
   form: FormGroup;
@@ -28,7 +30,7 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private companyService: RussCompanyService
+    private companyService: BeneficiaryService
   ) {
   }
 
@@ -42,12 +44,12 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
     );
 
     this.form = new FormGroup({
-      company_name: new FormControl('', Validators.required),
-      organization_form: new FormControl('', Validators.required),
-      law_address: new FormControl('', Validators.required),
-      inn: new FormControl('', Validators.required),
-      kpp: new FormControl('', Validators.required),
-      reg_number: new FormControl('', Validators.required),
+      beneficiary_name: new FormControl('', Validators.required),
+      address_line1: new FormControl('', Validators.required),
+      address_line2: new FormControl(''),
+      address_line3: new FormControl(''),
+      beneficiary_email_www: new FormControl('', Validators.required),
+      contact_email: new FormControl('', Validators.required),
     });
 
     if (this.company && this.company.id) {
@@ -61,7 +63,7 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.company && this.company.id) {
-      const company: RussCompany = {
+      const company: Beneficiary = {
         id: this.company.id,
         user_id: this.currentUser.id,
         ...this.form.value
@@ -75,7 +77,7 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      const company: RussCompany = {
+      const company: Beneficiary = {
         ...this.form.value,
         user_id: this.currentUser.id
       };

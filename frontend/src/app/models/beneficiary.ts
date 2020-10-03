@@ -1,3 +1,5 @@
+import {ForeignAccount} from './foreignAccount';
+
 export class Beneficiary{
   id?: number;
   beneficiary_name: string;
@@ -7,6 +9,7 @@ export class Beneficiary{
   beneficiary_email_www: string;
   contact_email: string;
   user_id: number;
+  accounts: ForeignAccount[];
   created_at?: string;
   updated_at?: string;
 }

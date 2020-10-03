@@ -20,6 +20,7 @@ import { EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './store/entity-metadata';
 import {SharedModule} from './shared/modules/shared.module';
 import {ForeignBanksModule} from './shared/modules/foreignBanks/foreignBanks.module';
+import {BeneficiaryModule} from './shared/modules/beneficiary/beneficiary.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {ForeignBanksModule} from './shared/modules/foreignBanks/foreignBanks.mod
     CompaniesModule,
     RussBanksModule,
     ForeignBanksModule,
+    BeneficiaryModule,
     EntityDataModule.forRoot(entityConfig),
     SharedModule
   ],

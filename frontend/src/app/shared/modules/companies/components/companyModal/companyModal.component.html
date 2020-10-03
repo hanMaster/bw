@@ -18,9 +18,9 @@
     </button>
   </div>
 
-  <div class="errors" *ngIf="errors$ | async">
+  <div class="errors" *ngIf="errors">
     <ul>
-      <li *ngFor="let err of (errors$ | async)">{{err}}</li>
+      <li *ngFor="let err of errors">{{err}}</li>
     </ul>
   </div>
 
@@ -95,7 +95,6 @@
         type="text"
         placeholder="ОГРН/ОГРНИП"
         formControlName="reg_number"
-        title="ОГРН/ОГРНИП"
         [ngClass]="{invalid: form.get('reg_number').touched && form.get('reg_number').invalid}"
       />
     </div>

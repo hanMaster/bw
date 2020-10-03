@@ -21,14 +21,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 
-Route::get('beneficiary', 'BeneficiaryController@index')->middleware('auth:sanctum');
-
 Route::get('clients', 'ClientsController@index')->middleware('auth:sanctum');
 Route::get('clients', 'ClientsController@index');
 Route::post('clients', 'ClientsController@addNewClient')->middleware('auth:sanctum');
 Route::put('clients', 'ClientsController@updateClient')->middleware('auth:sanctum');
 
-Route::get('companies', 'CompaniesController@index')->middleware('auth:sanctum');
+
+Route::get('beneficiaries', 'BeneficiaryController@index')->middleware('auth:sanctum');
+Route::post('beneficiary', 'BeneficiaryController@addNewBeneficiary')->middleware('auth:sanctum');
+Route::put('beneficiary/{beneficiary}', 'BeneficiaryController@updateBeneficiary')->middleware('auth:sanctum');
+Route::get('beneficiary/{beneficiary}', 'BeneficiaryController@getBeneficiaryById')->middleware('auth:sanctum');
+
+
 Route::get('russcompanies', 'CompaniesController@getAll');
 Route::post('russcompany', 'CompaniesController@addNewCompany')->middleware('auth:sanctum');
 Route::put('russcompany/{company}', 'CompaniesController@updateCompany')->middleware('auth:sanctum');
@@ -45,3 +49,7 @@ Route::put('foreignbank/{bank}', 'ForeignBanksController@updateBank')->middlewar
 Route::get('russaccounts', 'RussianAccountsController@getAccountsByCompanyId')->middleware('auth:sanctum');
 Route::post('russaccount', 'RussianAccountsController@addAccount')->middleware('auth:sanctum');
 Route::put('russaccount/{account}', 'RussianAccountsController@updateAccount')->middleware('auth:sanctum');
+
+Route::get('foreignaccounts', 'ForeignAccountsController@getAccountsByCompanyId')->middleware('auth:sanctum');
+Route::post('foreignaccount', 'ForeignAccountsController@addAccount')->middleware('auth:sanctum');
+Route::put('foreignaccount/{account}', 'ForeignAccountsController@updateAccount')->middleware('auth:sanctum');

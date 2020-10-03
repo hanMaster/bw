@@ -13,13 +13,16 @@ import {CompaniesListComponent} from '../shared/modules/companies/components/com
 import {BanksListComponent} from '../shared/modules/banks/components/banks-list/banks-list.component';
 import {CompanyProfileComponent} from '../shared/modules/companies/components/companyProfile/companyProfile.component';
 import {ForeignBanksListComponent} from '../shared/modules/foreignBanks/components/foreignBanksList/foreignBanksList.component';
+import {BeneficiariesListComponent} from '../shared/modules/beneficiary/components/beneficiariesList/beneficiariesList.component';
+import {BeneficiaryProfileComponent} from '../shared/modules/beneficiary/components/beneficiaryProfile/beneficiaryProfile.component';
 
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/', pathMatch: 'full'},
       {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
-      {path: 'beneficiary', component: BeneficiaryPageComponent, canActivate: [AuthGuard]},
+      {path: 'beneficiary', component: BeneficiariesListComponent, canActivate: [AuthGuard]},
+      {path: 'beneficiary-profile/:beneficiaryId', component: BeneficiaryProfileComponent, canActivate: [AuthGuard]},
       {path: 'foreign-banks', component: ForeignBanksListComponent, canActivate: [AuthGuard]},
       {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
       {path: 'company-profile/:companyId', component: CompanyProfileComponent, canActivate: [AuthGuard] },

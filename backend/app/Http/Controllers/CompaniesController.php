@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\RussCompanies;
-use App\RussianAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +13,7 @@ class CompaniesController extends Controller
     {
         return RussCompanies::where('user_id', Auth::user()->getAuthIdentifier())->get();
     }
+
     public function getAll()
     {
         return RussCompanies::all();

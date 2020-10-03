@@ -1,10 +1,10 @@
 <div *ngIf="company$ | async">
   <div class="action-panel">
     <div class="title">
-      <h1>{{(company$ | async).organization_form === 'ooo' ? 'ООО ' : 'ИП '}}  {{(company$ | async).company_name}}</h1>
+      <h1>{{(company$ | async).beneficiary_name}}</h1>
     </div>
     <div>
-      <button class="btn btn-back" routerLink="/companies">come back</button>
+      <button class="btn btn-back" routerLink="/beneficiary">come back</button>
       &nbsp;
       <button class="btn btn-primary" (click)="updateCompany()">
         <svg width="30" height="20">
@@ -15,12 +15,16 @@
     </div>
   </div>
 
-  <h4><span class="label">Юр. адрес:</span> {{(company$ | async).law_address}}</h4>
-  <h4><span class="label">ИНН:</span> {{(company$ | async).inn}}</h4>
-  <h4><span class="label">КПП:</span> {{(company$ | async).kpp}}</h4>
-  <h4><span class="label">ОГРН/ОГРНИП:</span> {{(company$ | async).reg_number}}</h4>
-  <h4><span class="label">Дата создания:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
-  <h4><span class="label">Дата изменения:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  <h4><span class="label">Address line1:</span> {{(company$ | async).address_line1}}</h4>
+  <h4><span class="label">Address line2:</span> {{(company$ | async).address_line2}}</h4>
+  <h4><span class="label">Address line3:</span> {{(company$ | async).address_line3}}</h4>
+
+  <h4><span class="label">Email/www:</span> {{(company$ | async).beneficiary_email_www}}</h4>
+  <h4><span class="label">Conatct email:</span> {{(company$ | async).contact_email}}</h4>
+
+
+  <h4><span class="label">Created at:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  <h4><span class="label">Updated at:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
 </div>
 
 <hr class="mt-10">
@@ -47,8 +51,8 @@
   </tbody>
 </table>
 
-<app-company-modal *ngIf="companyModalVisible" [company]="company$ | async"
-                   (closeClicked)="hideCompanyModal()"></app-company-modal>
+<app-beneficiary-modal *ngIf="companyModalVisible" [company]="company$ | async"
+                   (closeClicked)="hideCompanyModal()"></app-beneficiary-modal>
 <app-account-modal
   *ngIf="accountModalVisible"
   [selected]="selected"
