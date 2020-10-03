@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\RussCompanies;
+use App\RussianAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
@@ -15,6 +17,19 @@ class CompaniesController extends Controller
     public function getAll()
     {
         return RussCompanies::all();
+    }
+
+    public function getCompanyById(RussCompanies $company)
+    {
+
+        $accounts = DB::table('russian_accounts')
+            ->join('russian_banks', 'russian_banks.id', '=', 'russian_accounts.russian_bank_id')
+            ->select('russian_accounts.*', 'russian_banks.bank_name')
+            ->where('russian_accounts.russ_company_id', $company->id)
+            ->get();
+
+        $company['accounts'] = $accounts;
+        return response()->json($company, 201);
     }
 
     public function addNewCompany(Request $request)
@@ -37,7 +52,7 @@ class CompaniesController extends Controller
 
     }
 
-    public function updateCompany(Request $request)
+    public function updateCompany(Request $request, RussCompanies $company)
     {
         $validated = $this->validate($request, [
             'company_name' => ['required'],
@@ -49,7 +64,6 @@ class CompaniesController extends Controller
             'id' => ['required']
         ]);
 
-        $company = RussCompanies::where('id', $request->id)->first();
         $company->fill($validated);
         $company->save();
 

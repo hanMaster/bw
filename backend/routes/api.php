@@ -30,9 +30,18 @@ Route::put('clients', 'ClientsController@updateClient')->middleware('auth:sanctu
 
 Route::get('companies', 'CompaniesController@index')->middleware('auth:sanctum');
 Route::get('russcompanies', 'CompaniesController@getAll');
-Route::post('companies', 'CompaniesController@addNewCompany')->middleware('auth:sanctum');
-Route::put('companies', 'CompaniesController@updateCompany')->middleware('auth:sanctum');
+Route::post('russcompany', 'CompaniesController@addNewCompany')->middleware('auth:sanctum');
+Route::put('russcompany/{company}', 'CompaniesController@updateCompany')->middleware('auth:sanctum');
+Route::get('russcompany/{company}', 'CompaniesController@getCompanyById')->middleware('auth:sanctum');
 
 Route::get('russbanks', 'RussianBanksController@index')->middleware('auth:sanctum');
 Route::post('russbank', 'RussianBanksController@addBank')->middleware('auth:sanctum');
 Route::put('russbank/{bank}', 'RussianBanksController@updateBank')->middleware('auth:sanctum');
+
+Route::get('foreignbanks', 'ForeignBanksController@index')->middleware('auth:sanctum');
+Route::post('foreignbank', 'ForeignBanksController@addBank')->middleware('auth:sanctum');
+Route::put('foreignbank/{bank}', 'ForeignBanksController@updateBank')->middleware('auth:sanctum');
+
+Route::get('russaccounts', 'RussianAccountsController@getAccountsByCompanyId')->middleware('auth:sanctum');
+Route::post('russaccount', 'RussianAccountsController@addAccount')->middleware('auth:sanctum');
+Route::put('russaccount/{account}', 'RussianAccountsController@updateAccount')->middleware('auth:sanctum');

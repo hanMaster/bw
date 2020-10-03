@@ -12,6 +12,6 @@ class RussCompanies extends Model
 
     public function accounts()
     {
-        return $this->hasMany(RussianBankAccount::class);
+        return $this->hasMany(RussianAccount::class, 'russ_company_id');
     }
 }

@@ -2,8 +2,8 @@ import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angu
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {take} from 'rxjs/operators';
 
-import {RussBank} from '../../../../../models/russBank';
-import {RussBankService} from '../../russBank.service';
+import {ForeignBankService} from '../../foreignBank.service';
+import {ForeignBank} from '../../../../../models/foreignBank';
 
 
 @Component({
@@ -13,7 +13,7 @@ import {RussBankService} from '../../russBank.service';
 })
 export class BankModalComponent implements OnInit {
 
-  @Input() bank: RussBank;
+  @Input() bank: ForeignBank;
 
   @Output() closeClicked = new EventEmitter();
 
@@ -23,19 +23,19 @@ export class BankModalComponent implements OnInit {
   errors: string[];
   editMode = false;
 
-  constructor(private russBankService: RussBankService) {
+  constructor(private bankService: ForeignBankService) {
   }
 
 
   ngOnInit(): void {
     this.form = new FormGroup({
       bank_name: new FormControl('', Validators.required),
-      bic_code: new FormControl('', [
+      swift_code: new FormControl('', [
         Validators.required,
         Validators.maxLength(9),
         Validators.minLength(9)
       ]),
-      corr_account: new FormControl('', Validators.required),
+      bank_address: new FormControl('', Validators.required),
     });
 
     this.editMode = !!(this.bank && this.bank.id);
@@ -59,11 +59,11 @@ export class BankModalComponent implements OnInit {
 
   onSubmit(): void {
     if (this.editMode) {
-      const bank: RussBank = {
+      const bank: ForeignBank = {
         id: this.bank.id,
         ...this.form.value
       };
-      this.russBankService.update(bank).pipe(take(1)).subscribe(
+      this.bankService.update(bank).pipe(take(1)).subscribe(
         () => {
           this.closeModal();
         },
@@ -73,10 +73,10 @@ export class BankModalComponent implements OnInit {
       );
 
     } else {
-      const bank: RussBank = {
+      const bank: ForeignBank = {
         ...this.form.value,
       };
-      this.russBankService.add(bank).pipe(take(1)).subscribe(
+      this.bankService.add(bank).pipe(take(1)).subscribe(
         () => {
           this.closeModal();
         },

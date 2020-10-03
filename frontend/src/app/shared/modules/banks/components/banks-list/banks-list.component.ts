@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {RussBankService} from '../../russBank.service';
 import {Observable} from 'rxjs';
+
+import {RussBankService} from '../../russBank.service';
 import {RussBank} from '../../../../../models/russBank';
 
 @Component({
@@ -24,14 +25,15 @@ export class BanksListComponent implements OnInit {
     this.russBankService.getAll();
   }
 
-  hideModal(): void{
+  hideModal(): void {
     this.selected = null;
   }
 
-  showModal(bank: RussBank) {
+  showModal(bank: RussBank): void {
     this.selected = bank;
   }
-  enableAddMode() {
-    this.selected = <any>{};
+
+  enableAddMode(): void {
+    this.selected = <any> {};
   }
 }

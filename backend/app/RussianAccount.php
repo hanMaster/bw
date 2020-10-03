@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RussianBankAccount extends Model
+class RussianAccount extends Model
 {
     protected $fillable = [
         'account_number', 'russ_company_id', 'russian_bank_id'
@@ -12,6 +12,6 @@ class RussianBankAccount extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(RussCompanies::class);
+        return $this->belongsToMany(RussCompanies::class, 'russ_companies', 'russ_company_id');
     }
 }

@@ -23,7 +23,7 @@ const routes: Routes = [
       {path: '', component: AdminHomePageComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
       {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
-      {path: 'banks', component: BanksListComponent, canActivate: [AuthGuard]},
+      {path: 'rus-banks', component: BanksListComponent, canActivate: [AuthGuard]},
       {path: 'deposits', component: AdminDepositsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency/completed', component: AdminDepositsCurrencyCompletedPageComponent, canActivate: [AuthGuard]},

@@ -1,22 +1,11 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 
 import {RussCompany} from '../../../../../models/russCompany';
-import {
-  companiesSelector,
-  isLoadingSelector,
-  isPopupVisibleSelector,
-  isShowPopupVisibleSelector
-} from '../../store/selectors';
-import {requestCompaniesAction} from '../../store/actions/requestCompanies.actions';
-import {
-  hideCompanyModalAction,
-  hideViewCompanyModalAction,
-  showCompanyModalAction
-} from '../../store/actions/modalControl.actions';
 import {FormControlService} from '../../../../services/formControl.service';
+import {RussCompanyService} from '../../services/russCompanies.service';
 
 @Component({
   selector: 'app-companies-list',
@@ -28,38 +17,33 @@ export class CompaniesListComponent implements OnInit {
   @HostBinding('class') classList = 'main-content';
   companies$: Observable<RussCompany[] | null>;
 
-  isPopupVisible$: Observable<boolean>;
   isLoading$: Observable<boolean>;
-  isShowPopupVisible$: Observable<boolean>;
+  modalVisible = false;
 
   constructor(
     private store: Store,
     private formControlService: FormControlService,
-    private router: Router
+    private router: Router,
+    private companyService: RussCompanyService
   ) {
+    this.companies$ = this.companyService.entities$;
+    this.isLoading$ = this.companyService.loading$;
   }
 
   ngOnInit(): void {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
-    this.isPopupVisible$ = this.store.pipe(select(isPopupVisibleSelector));
-    this.isShowPopupVisible$ = this.store.pipe(select(isShowPopupVisibleSelector));
-    this.companies$ = this.store.pipe(select(companiesSelector));
-    this.store.dispatch(requestCompaniesAction());
+    this.companyService.getAll();
   }
 
-  newCompany() {
-    const edit = false;
-    this.store.dispatch(showCompanyModalAction({edit}));
-    this.formControlService.clearForm();
+  newCompany(): void {
+    this.modalVisible = true;
   }
 
   hideModal(): void {
-    this.store.dispatch(hideCompanyModalAction());
+    this.modalVisible = false;
   }
 
   viewCompany(company: RussCompany): void {
-    this.router.navigate(['/', 'company-profile', company.id], {state: {data: {company: company}}});
+    this.router.navigate(['/', 'company-profile', company.id]);
   }
-
 
 }

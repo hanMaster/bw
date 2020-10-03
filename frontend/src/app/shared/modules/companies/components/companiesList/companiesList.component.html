@@ -7,7 +7,7 @@
   <input
     class="search-input"
     type="text"
-    placeholder="find beneficiary"
+    placeholder="find company"
   />
   <button class="btn btn-primary add-btn-icon" (click)="newCompany()">
     new company
@@ -30,7 +30,7 @@
 </table>
 <p class="more"><a href="#">↓ more companies</a></p>
 
-<app-new-company-modal *ngIf="(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-company-modal>
+<app-company-modal *ngIf="modalVisible" [editMode]="false" (closeClicked)="hideModal()"></app-company-modal>
 
 <ng-template #loading>
   Loading...

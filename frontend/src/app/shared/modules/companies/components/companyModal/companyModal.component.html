@@ -2,8 +2,8 @@
   <span class="close" (click)="closeModal()">&times;</span>
   <div class="modal-header">
     <div class="modal-header_header">
-      <h2>{{(editMode$ | async) ? 'Edit' : 'New'}} company</h2>
-      <span *ngIf="!(editMode$ | async)">Fill in all fields to create a new client</span>
+      <h2>{{company ? 'Edit' : 'New'}} company</h2>
+      <span *ngIf="!company">Fill in all fields to create a new client</span>
     </div>
     &nbsp;
     <button
@@ -26,7 +26,7 @@
 
   <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
     <div>
-      <label for="companyName">Company name:</label>
+      <label for="companyName">Название компании:</label>
       <input
         id="companyName"
         type="text"
@@ -36,29 +36,9 @@
       />
     </div>
 
-    <div>
-      <label for="org-form">Organization form:</label>
-      <input
-        id="org-form"
-        type="text"
-        placeholder="Organization form"
-        formControlName="organization_form"
-        [ngClass]="{invalid: form.get('organization_form').touched && form.get('organization_form').invalid}"
-      />
-      <div
-        *ngIf="form.get('organization_form').touched && form.get('organization_form').invalid"
-        class="validation">
-        <small
-          *ngIf="form.get('organization_form').errors.required"
-        >Введите organization_form</small>
-        <small
-          *ngIf="form.get('organization_form').errors.email"
-        >Введите корректый organization_form</small>
-      </div>
-    </div>
 
     <div>
-      <label for="lawAddr">Law address:</label>
+      <label for="lawAddr">Юридический адрес:</label>
       <input
         id="lawAddr"
         type="text"
@@ -67,25 +47,46 @@
         [ngClass]="{invalid: form.get('law_address').touched && form.get('law_address').invalid}"
       />
     </div>
-    <div>
-      <label for="inn">ИНН:</label>
-      <input
-        id="inn"
-        type="text"
-        placeholder="ИНН"
-        formControlName="inn"
-        [ngClass]="{invalid: form.get('inn').touched && form.get('inn').invalid}"
-      />
-    </div>
-    <div>
-      <label for="kpp">KPP:</label>
-      <input
-        id="kpp"
-        type="text"
-        placeholder="КПП"
-        formControlName="kpp"
-        [ngClass]="{invalid: form.get('kpp').touched && form.get('kpp').invalid}"
-      />
+    <div class="double">
+      <div>
+        <label for="org_form">Организационная форма:</label>
+        <select formControlName="organization_form" id="org_form">
+          <option value="ooo" selected>ООО</option>
+          <option value="ip">ИП</option>
+        </select>
+
+        <div
+          *ngIf="form.get('organization_form').touched && form.get('organization_form').invalid"
+          class="validation">
+          <small
+            *ngIf="form.get('organization_form').errors.required"
+          >Введите organization_form</small>
+          <small
+            *ngIf="form.get('organization_form').errors.email"
+          >Введите корректый organization_form</small>
+        </div>
+      </div>
+      <div>
+        <label for="inn">ИНН:</label>
+        <input
+          id="inn"
+          type="text"
+          placeholder="ИНН"
+          formControlName="inn"
+          [ngClass]="{invalid: form.get('inn').touched && form.get('inn').invalid}"
+        />
+      </div>
+      <div>
+        <label for="kpp">КПП:</label>
+        <input
+          id="kpp"
+          type="text"
+          placeholder="КПП"
+          formControlName="kpp"
+          [ngClass]="{invalid: form.get('kpp').touched && form.get('kpp').invalid}"
+        />
+      </div>
+
     </div>
     <div>
       <label for="regNumber">ОГРН/ОГРНИП:</label>
@@ -94,6 +95,7 @@
         type="text"
         placeholder="ОГРН/ОГРНИП"
         formControlName="reg_number"
+        title="ОГРН/ОГРНИП"
         [ngClass]="{invalid: form.get('reg_number').touched && form.get('reg_number').invalid}"
       />
     </div>

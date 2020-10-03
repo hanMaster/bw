@@ -834,6 +834,10 @@ main {
     }
 
     .modal-content {
+      .double{
+        display: flex;
+        justify-content: space-around;
+      }
       label{
         font-size: 12px;
         margin-left: 10px;
@@ -874,7 +878,8 @@ main {
         }
       }
 
-      input {
+      input,select {
+        display: inline-block;
         width: 100%;
         background: #f3f5f6;
         border-radius: 24px;
