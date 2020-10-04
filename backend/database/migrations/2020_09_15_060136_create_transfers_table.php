@@ -20,6 +20,7 @@ class CreateTransfersTable extends Migration
             $table->integer('amount');
             $table->string('payment_purposes');
             $table->enum('currency', ['usd', 'eur']);
+            $table->enum('status', ['in processing', 'completed']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('beneficiary_id')->references('id')->on('beneficiary');

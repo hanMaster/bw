@@ -4,7 +4,7 @@
       <h1>{{(company$ | async).organization_form === 'ooo' ? 'ООО ' : 'ИП '}}  {{(company$ | async).company_name}}</h1>
     </div>
     <div>
-      <button class="btn btn-back" routerLink="/companies">come back</button>
+      <button class="btn btn-back" (click)="goBack()">come back</button>
       &nbsp;
       <button class="btn btn-primary" (click)="updateCompany()">
         <svg width="30" height="20">

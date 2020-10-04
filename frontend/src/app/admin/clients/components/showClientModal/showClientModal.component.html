@@ -16,8 +16,14 @@
     <h4><span class="label">Email:</span> {{(client$ | async).email}}</h4>
     <h4><span class="label">Phone:</span> {{(client$ | async).phone_number}}</h4>
     <h4><span class="label">Contact name:</span> {{(client$ | async).contact_name}}</h4>
-    <h4><span class="label">Created:</span> {{(client$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
-    <h4><span class="label">Updated:</span> {{(client$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+    <br>
+    <br>
+    <h3>Компания администратора</h3>
+    <h4><span class="label">Название компании:</span>
+      {{(client$ | async).organization_form === 'ooo' ? 'ООО ' : 'ИП '}}   {{(client$ | async).company_name}}
+    </h4>
+    <h4><span class="label">Юр. адрес:</span> {{(client$ | async).law_address}}</h4>
+
   </div>
 
   <div class="new-client-footer">

@@ -1,1 +1,1 @@
-export type CurrencyType = "rub" | "usd" | "eur";
+export type CurrencyType = 'rub' | 'usd' | 'eur';

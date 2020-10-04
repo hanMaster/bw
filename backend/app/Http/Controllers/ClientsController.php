@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\RussCompanies;
 use App\User;
+use App\UserCompany;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -10,6 +12,20 @@ class ClientsController extends Controller
     function index()
     {
         return User::where('role', 'client')->get();
+    }
+
+    public function getClientById(User $client)
+    {
+
+        $companies = RussCompanies::whereIn('id', UserCompany::where('user_id', $client->id))->get();
+//        $companies = DB::table('russian_accounts')
+//            ->join('russian_banks', 'russian_banks.id', '=', 'russian_accounts.russian_bank_id')
+//            ->select('russian_accounts.*', 'russian_banks.bank_name')
+//            ->where('russian_accounts.russ_company_id', $company->id)
+//            ->get();
+//
+        $client['companies'] = $companies;
+        return response()->json($client, 201);
     }
 
     function addNewClient(Request $request)

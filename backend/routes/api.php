@@ -33,7 +33,7 @@ Route::put('beneficiary/{beneficiary}', 'BeneficiaryController@updateBeneficiary
 Route::get('beneficiary/{beneficiary}', 'BeneficiaryController@getBeneficiaryById')->middleware('auth:sanctum');
 
 
-Route::get('russcompanies', 'CompaniesController@getAll');
+Route::get('russcompanies', 'CompaniesController@index');
 Route::post('russcompany', 'CompaniesController@addNewCompany')->middleware('auth:sanctum');
 Route::put('russcompany/{company}', 'CompaniesController@updateCompany')->middleware('auth:sanctum');
 Route::get('russcompany/{company}', 'CompaniesController@getCompanyById')->middleware('auth:sanctum');

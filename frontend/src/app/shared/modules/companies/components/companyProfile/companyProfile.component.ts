@@ -1,12 +1,11 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {Observable} from 'rxjs';
 
 import {RussCompany} from '../../../../../models/russCompany';
 import {RussCompanyService} from '../../services/russCompanies.service';
-import {Observable} from 'rxjs';
-import {RussAccountService} from '../../services/russAccounts.service';
 import {RussAccount} from '../../../../../models/russAccount';
-import {QueryParams} from '@ngrx/data';
 
 @Component({
   selector: 'app-companies-list',
@@ -28,7 +27,7 @@ export class CompanyProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private companyService: RussCompanyService,
-    private accountService: RussAccountService
+    private location: Location
   ) {
   }
 
@@ -65,5 +64,9 @@ export class CompanyProfileComponent implements OnInit {
   editAccount(account: RussAccount): void {
     this.accountModalVisible = true;
     this.selected = account;
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

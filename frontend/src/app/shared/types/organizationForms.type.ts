@@ -1,1 +1,1 @@
-export type OrganizationFormsType = "ooo" | "ip";
+export type OrganizationFormsType = 'ooo' | 'ip';

@@ -27,6 +27,7 @@ class CreateDepositsTable extends Migration
             $table->integer('amount');
             $table->string('payment_purpose');
             $table->string('payment_order_pdf');
+            $table->enum('status', ['in processing', 'confirmed', 'canceled']);
             $table->timestamps();
             $table->foreign('admin_company_bank_id')->references('id')->on('banks');
             $table->foreign('admin_company_id')->references('id')->on('russ_companies');

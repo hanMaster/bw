@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Beneficiary} from '../../../../../models/beneficiary';
 import {ForeignAccount} from '../../../../../models/foreignAccount';
 import {BeneficiaryService} from '../../services/beneficiaries.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class BeneficiaryProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private companyService: BeneficiaryService
+    private companyService: BeneficiaryService,
+    private location: Location
   ) {
   }
 
@@ -60,5 +62,9 @@ export class BeneficiaryProfileComponent implements OnInit {
   editAccount(account: ForeignAccount): void {
     this.accountModalVisible = true;
     this.selected = account;
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

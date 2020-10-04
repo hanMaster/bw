@@ -8,7 +8,8 @@ const entityMetadata: EntityMetadataMap = {
   ForeignBank: {},
   ForeignAccount: {},
   RussBank: {},
-  RussAccount: {}
+  RussAccount: {},
+  Client: {}
 };
 
 const pluralNames = {

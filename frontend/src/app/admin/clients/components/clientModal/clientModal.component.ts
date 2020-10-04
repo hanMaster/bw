@@ -62,7 +62,7 @@ export class ClientModalComponent implements OnInit, OnDestroy {
       contactName: new FormControl('', Validators.required)
     });
 
-    if(this.editMode){
+    if (this.editMode) {
       this.store.pipe(select(clientSelector), take(1)).subscribe(
         (client: Client) => {
           this.client = client;

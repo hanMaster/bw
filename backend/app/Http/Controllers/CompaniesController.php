@@ -46,6 +46,12 @@ class CompaniesController extends Controller
 
         $company = new RussCompanies();
         $company->fill($validated);
+        if(Auth::user()->getRole() === 'admin')
+        {
+            $company->belongs_to_admin = true;
+        }else{
+            $company->belongs_to_admin = false;
+        }
         $company->save();
 
         return response()->json($company, 201);

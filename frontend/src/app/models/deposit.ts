@@ -1,4 +1,5 @@
 import {CurrencyType} from '../shared/types/currency.type';
+import {DepositStatusesType} from '../shared/types/depositStatuses.type';
 
 export class Deposit{
   id?: number;
@@ -9,6 +10,7 @@ export class Deposit{
   user_company_id: number;
   user_id: number;
   currency: CurrencyType;
+  status: DepositStatusesType;
   amount: number;
   payment_purpose: string;
   payment_order_pdf: string;

@@ -4,7 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainLayoutComponent} from '../shared/components/mainLayout/mainLayout.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {AuthGuard} from '../auth/auth.guard';
-import {BeneficiaryPageComponent} from './pages/beneficiary-page/beneficiary-page.component';
 import {DepositPageComponent} from './pages/deposit-page/deposit-page.component';
 import {DepositCurrencyPageComponent} from './pages/deposit-currency-page/deposit-currency-page.component';
 import {TransferPageComponent} from './pages/transfer-page/transfer-page.component';
@@ -41,7 +40,6 @@ const routes: Routes = [
   ],
   declarations: [
     DepositModalComponent,
-    BeneficiaryPageComponent,
     DepositPageComponent,
     DepositCurrencyPageComponent,
     HomePageComponent,
