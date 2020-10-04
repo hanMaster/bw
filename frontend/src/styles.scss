@@ -837,6 +837,9 @@ main {
       .double{
         display: flex;
         justify-content: space-around;
+        div{
+          flex-grow: 1;
+        }
       }
       label{
         font-size: 12px;

@@ -15,7 +15,7 @@ import {RussCompanyService} from '../../services/russCompanies.service';
   templateUrl: './companyModal.component.html',
   styleUrls: ['./companyModal.component.scss']
 })
-export class CompanyModalComponent implements OnInit, OnDestroy {
+export class CompanyModalComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Output() closeClicked = new EventEmitter();
@@ -96,10 +96,5 @@ export class CompanyModalComponent implements OnInit, OnDestroy {
     for (const [_, value] of Object.entries(err.error.error.errors)) {
       this.errors.push(value[0]);
     }
-  }
-
-
-  ngOnDestroy(): void {
-
   }
 }

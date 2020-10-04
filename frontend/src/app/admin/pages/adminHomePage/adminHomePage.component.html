@@ -64,4 +64,4 @@
   Loading...
 </ng-template>
 
-<app-new-client-modal [hidden]="!(isPopupVisible$ | async)" (closeClicked)="hideModal()"></app-new-client-modal>
+<app-client-modal *ngIf="modalVisible" (closeClicked)="hideModal()"></app-client-modal>

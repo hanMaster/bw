@@ -1,0 +1,30 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>Assign company</h2>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save company
+    </button>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <select formControlName="admin_company_id">
+      <option value="" disabled selected>Select company</option>
+      <option
+        *ngFor="let company of (adminCompanies$ | async)"
+        value="{{company.id}}"
+        [selected]="company.id === selected.id"
+      >{{company.company_name}}</option>
+    </select>
+  </form>
+
+</div>

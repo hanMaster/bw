@@ -8,7 +8,7 @@ import {RussCompanyService} from '../../services/russCompanies.service';
 import {RussAccount} from '../../../../../models/russAccount';
 
 @Component({
-  selector: 'app-companies-list',
+  selector: 'app-company-profile',
   templateUrl: './companyProfile.component.html',
   styleUrls: ['./companyProfile.component.scss']
 })
@@ -37,10 +37,6 @@ export class CompanyProfileComponent implements OnInit {
     });
 
     this.company$ = this.companyService.getByKey(this.companyId);
-    // const params: QueryParams = {
-    //   companyId: this.companyId.toString()
-    // };
-    // this.accounts$ = this.accountService.getWithQuery(params);
   }
 
   updateCompany(): void {

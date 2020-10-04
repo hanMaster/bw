@@ -3,15 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\RussCompanies;
+use App\UserCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return RussCompanies::where('user_id', Auth::user()->getAuthIdentifier())->get();
+        $user_id = Auth::user()->getAuthIdentifier();
+        if($request->has(['assigned'])) {
+            $companies = RussCompanies::select('id','company_name')->whereIn('id', UserCompany::select('admin_company_id')->where('user_id', $user_id))->get();
+            return response()->json($companies, 200);
+        }
+        if($request->has(['client'])) {
+            $companies = RussCompanies::select('id','company_name')->where('user_id', $user_id)->get();
+            return response()->json($companies, 200);
+        }
+
+        return RussCompanies::where('user_id', $user_id)->get();
     }
 
     public function getAll()

@@ -2,8 +2,8 @@
   <span class="close" (click)="closeModal()">&times;</span>
   <div class="modal-header">
     <div class="modal-header_header">
-      <h2>{{(editMode$ | async) ? 'Edit' : 'New'}} client</h2>
-      <span *ngIf="!(editMode$ | async)">Fill in all fields to create a new client</span>
+      <h2>{{client ? 'Edit' : 'New'}} client</h2>
+      <span *ngIf="!client">Fill in all fields to create a new client</span>
     </div>
     &nbsp;
     <button
@@ -18,9 +18,9 @@
     </button>
   </div>
 
-  <div class="errors" *ngIf="errors$ | async">
+  <div class="errors" *ngIf="errors">
     <ul>
-      <li *ngFor="let err of (errors$ | async)">{{err}}</li>
+      <li *ngFor="let err of errors">{{err}}</li>
     </ul>
   </div>
 
@@ -30,9 +30,9 @@
       id="clientName"
       type="text"
       placeholder="Client name"
-      formControlName="clientName"
-      [attr.disabled]="(editMode$ | async) ? '': null"
-      [ngClass]="{invalid: form.get('clientName').touched && form.get('clientName').invalid}"
+      formControlName="client_name"
+      [attr.disabled]="client ? '': null"
+      [ngClass]="{invalid: form.get('client_name').touched && form.get('client_name').invalid}"
     />
     <label for="email">Email:</label>
     <input
@@ -40,7 +40,7 @@
       type="text"
       placeholder="Email"
       formControlName="email"
-      [attr.disabled]="(editMode$ | async) ? '': null"
+      [attr.disabled]="client ? '': null"
       [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
     />
     <div
@@ -75,18 +75,18 @@
       id="phone"
       type="text"
       placeholder="Phone number"
-      formControlName="phoneNumber"
+      formControlName="phone_number"
       prefix="+7"
       mask=" 000-000-00-00"
-      [ngClass]="{invalid: form.get('phoneNumber').touched && form.get('phoneNumber').invalid}"
+      [ngClass]="{invalid: form.get('phone_number').touched && form.get('phone_number').invalid}"
     />
     <label for="contact">Contact name:</label>
     <input
       id="contact"
       type="text"
       placeholder="Contact name"
-      formControlName="contactName"
-      [ngClass]="{invalid: form.get('contactName').touched && form.get('contactName').invalid}"
+      formControlName="contact_name"
+      [ngClass]="{invalid: form.get('contact_name').touched && form.get('contact_name').invalid}"
     />
   </form>
 

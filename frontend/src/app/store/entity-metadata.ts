@@ -9,12 +9,14 @@ const entityMetadata: EntityMetadataMap = {
   ForeignAccount: {},
   RussBank: {},
   RussAccount: {},
-  Client: {}
+  Client: {},
+  UserCompanies: {}
 };
 
 const pluralNames = {
   Beneficiary: 'Beneficiaries',
-  RussCompany: 'RussCompanies'
+  RussCompany: 'RussCompanies',
+  Client: 'Clients'
 };
 
 export const entityConfig: EntityDataModuleConfig = {

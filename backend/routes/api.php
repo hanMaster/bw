@@ -22,9 +22,9 @@ Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 
 Route::get('clients', 'ClientsController@index')->middleware('auth:sanctum');
-Route::get('clients', 'ClientsController@index');
-Route::post('clients', 'ClientsController@addNewClient')->middleware('auth:sanctum');
-Route::put('clients', 'ClientsController@updateClient')->middleware('auth:sanctum');
+Route::post('client', 'ClientsController@addNewClient')->middleware('auth:sanctum');
+Route::put('client/{client}', 'ClientsController@updateClient')->middleware('auth:sanctum');
+Route::get('client/{client}', 'ClientsController@getClientById')->middleware('auth:sanctum');
 
 
 Route::get('beneficiaries', 'BeneficiaryController@index')->middleware('auth:sanctum');
@@ -53,3 +53,6 @@ Route::put('russaccount/{account}', 'RussianAccountsController@updateAccount')->
 Route::get('foreignaccounts', 'ForeignAccountsController@getAccountsByCompanyId')->middleware('auth:sanctum');
 Route::post('foreignaccount', 'ForeignAccountsController@addAccount')->middleware('auth:sanctum');
 Route::put('foreignaccount/{account}', 'ForeignAccountsController@updateAccount')->middleware('auth:sanctum');
+
+Route::post('usercompanies', 'UserCompaniesController@assignCompany')->middleware('auth:sanctum');
+Route::put('usercompanies/{id}', 'UserCompaniesController@reassignCompany')->middleware('auth:sanctum');

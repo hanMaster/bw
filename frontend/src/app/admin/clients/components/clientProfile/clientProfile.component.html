@@ -1,0 +1,56 @@
+<div *ngIf="client$ | async">
+  <div class="action-panel">
+    <div class="title">
+      <h1>{{(client$ | async).client_name}}</h1>
+    </div>
+    <div>
+      <button class="btn btn-back" (click)="goBack()">come back</button>
+      &nbsp;
+      <button class="btn btn-primary" (click)="updateClient()">
+        <svg width="30" height="20">
+          <use xlink:href="./assets/img/icons.svg#pencil-edit"></use>
+        </svg>
+        Change
+      </button>
+    </div>
+  </div>
+
+  <h4><span class="label">Email:</span> {{(client$ | async).email}}</h4>
+  <h4><span class="label">Phone:</span> {{(client$ | async).phone_number}}</h4>
+  <h4><span class="label">Contact name:</span> {{(client$ | async).contact_name}}</h4>
+  <h4><span class="label">Дата создания:</span> {{(client$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  <h4><span class="label">Дата изменения:</span> {{(client$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+</div>
+
+<hr class="mt-10">
+
+<div class="beneficiary-controls">
+  <h2>Administrator companies</h2>
+  <button class="btn btn-primary add-btn-icon" (click)="addCompany()">
+    new company
+  </button>
+</div>
+
+<table class="tbl">
+  <thead>
+  <tr>
+    <th>Company name</th>
+    <th>Address</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="client$ | async">
+  <tr *ngFor="let company of (client$ | async).companies" (click)="editCompany(company)">
+    <td class="client-name">{{company.company_name}}</td>
+    <td>{{company.law_address}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<app-client-modal *ngIf="clientModalVisible" [client]="client$ | async"
+                   (closeClicked)="hideClientModal()"></app-client-modal>
+<app-assign-company-modal
+  *ngIf="companiesModalVisible"
+  [selected]="selected"
+  [client]="client$ | async"
+  (closeClicked)="hideAssignCompanyModal()"
+></app-assign-company-modal>

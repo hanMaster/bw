@@ -39,8 +39,6 @@ export class AccountModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    console.log('selected', this.selected);
-
     this.form = new FormGroup({
       account_number: new FormControl('', Validators.required),
       russian_bank_id: new FormControl('', Validators.required),

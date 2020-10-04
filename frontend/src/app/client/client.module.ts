@@ -14,6 +14,7 @@ import {CompanyProfileComponent} from '../shared/modules/companies/components/co
 import {ForeignBanksListComponent} from '../shared/modules/foreignBanks/components/foreignBanksList/foreignBanksList.component';
 import {BeneficiariesListComponent} from '../shared/modules/beneficiary/components/beneficiariesList/beneficiariesList.component';
 import {BeneficiaryProfileComponent} from '../shared/modules/beneficiary/components/beneficiaryProfile/beneficiaryProfile.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   declarations: [
     DepositModalComponent,

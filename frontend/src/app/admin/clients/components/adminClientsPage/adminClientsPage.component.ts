@@ -1,20 +1,9 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {
-  clientsSelector,
-  isLoadingSelector,
-  isPopupVisibleSelector,
-  isShowPopupVisibleSelector
-} from '../../store/selectors';
+
 import {Client} from '../../../../models/client';
-import {requestClientsAction} from '../../store/actions/requestClients.actions';
-import {
-  hideClientModalAction,
-  hideViewClientModalAction,
-  showClientModalAction, showViewClientModalAction
-} from '../../store/actions/modalControl.actions';
-import {FormControlService} from '../../../../shared/services/formControl.service';
+import {ClientService} from '../../services/client.service';
 
 @Component({
   selector: 'app-admin-clients-page',
@@ -25,37 +14,32 @@ export class AdminClientsPageComponent implements OnInit {
 
   @HostBinding('class') classList = 'main-content';
 
-  isPopupVisible$: Observable<boolean>;
-  isShowPopupVisible$: Observable<boolean>;
   isLoading$: Observable<boolean>;
   clients$: Observable<Client[]>;
+  modalVisible = false;
 
-  constructor(private store: Store, private formControlService: FormControlService) {
+  constructor(
+    private clientService: ClientService,
+    private router: Router
+  ) {
+    this.clients$ = this.clientService.entities$;
+    this.isLoading$ = this.clientService.loading$;
   }
 
   ngOnInit(): void {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
-    this.isPopupVisible$ = this.store.pipe(select(isPopupVisibleSelector));
-    this.isShowPopupVisible$ = this.store.pipe(select(isShowPopupVisibleSelector));
-    this.clients$ = this.store.pipe(select(clientsSelector));
-    this.store.dispatch(requestClientsAction());
+    this.clients$ = this.clientService.getAll();
   }
 
   newClient(): void {
-    const edit = false;
-    this.store.dispatch(showClientModalAction({edit}));
-    this.formControlService.clearForm();
+    this.modalVisible = true;
   }
 
   hideModal(): void {
-    this.store.dispatch(hideClientModalAction());
+    this.modalVisible = false;
   }
 
-  viewClient(id: number): void {
-    this.store.dispatch(showViewClientModalAction({id}));
+  viewClient(client: Client): void {
+    this.router.navigate(['/admin', 'client-profile', client.id]);
   }
 
-  hideShowClientModal(): void {
-    this.store.dispatch(hideViewClientModalAction());
-  }
 }

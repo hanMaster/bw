@@ -15,6 +15,8 @@ import {ClientsModule} from './clients/clients.module';
 import {AdminClientsPageComponent} from './clients/components/adminClientsPage/adminClientsPage.component';
 import {CompaniesListComponent} from '../shared/modules/companies/components/companiesList/companiesList.component';
 import {BanksListComponent} from '../shared/modules/banks/components/banks-list/banks-list.component';
+import {ClientProfileComponent} from './clients/components/clientProfile/clientProfile.component';
+import {CompanyProfileComponent} from '../shared/modules/companies/components/companyProfile/companyProfile.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,9 @@ const routes: Routes = [
       {path: '', redirectTo: '/admin', pathMatch: 'full'},
       {path: '', component: AdminHomePageComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
+      {path: 'client-profile/:clientId', component: ClientProfileComponent, canActivate: [AuthGuard]},
       {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
+      {path: 'company-profile/:companyId', component: CompanyProfileComponent, canActivate: [AuthGuard] },
       {path: 'rus-banks', component: BanksListComponent, canActivate: [AuthGuard]},
       {path: 'deposits', component: AdminDepositsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},

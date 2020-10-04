@@ -1,11 +1,13 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 
 import {RussCompany} from '../../../../../models/russCompany';
-import {FormControlService} from '../../../../services/formControl.service';
 import {RussCompanyService} from '../../services/russCompanies.service';
+import {CurrentUser} from '../../../../../models/currentUser';
+import {currentUserSelector} from '../../../../../auth/store/selectors';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-companies-list',
@@ -16,15 +18,14 @@ export class CompaniesListComponent implements OnInit {
 
   @HostBinding('class') classList = 'main-content';
   companies$: Observable<RussCompany[] | null>;
-
   isLoading$: Observable<boolean>;
   modalVisible = false;
+  currentUser$: Observable<CurrentUser>;
 
   constructor(
-    private store: Store,
-    private formControlService: FormControlService,
     private router: Router,
-    private companyService: RussCompanyService
+    private companyService: RussCompanyService,
+    private store: Store
   ) {
     this.companies$ = this.companyService.entities$;
     this.isLoading$ = this.companyService.loading$;
@@ -32,6 +33,7 @@ export class CompaniesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.companyService.getAll();
+    this.currentUser$ = this.store.pipe(select(currentUserSelector));
   }
 
   newCompany(): void {
@@ -43,7 +45,15 @@ export class CompaniesListComponent implements OnInit {
   }
 
   viewCompany(company: RussCompany): void {
-    this.router.navigate(['/', 'company-profile', company.id]);
+    this.currentUser$.pipe(take(1)).subscribe(
+      (user: CurrentUser) => {
+        if (user.role === 'admin') {
+          this.router.navigate(['/admin', 'company-profile', company.id]);
+        } else {
+          this.router.navigate(['/', 'company-profile', company.id]);
+        }
+      }
+    );
   }
 
 }

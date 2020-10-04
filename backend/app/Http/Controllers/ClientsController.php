@@ -16,56 +16,42 @@ class ClientsController extends Controller
 
     public function getClientById(User $client)
     {
-
-        $companies = RussCompanies::whereIn('id', UserCompany::where('user_id', $client->id))->get();
-//        $companies = DB::table('russian_accounts')
-//            ->join('russian_banks', 'russian_banks.id', '=', 'russian_accounts.russian_bank_id')
-//            ->select('russian_accounts.*', 'russian_banks.bank_name')
-//            ->where('russian_accounts.russ_company_id', $company->id)
-//            ->get();
-//
+        $companies = RussCompanies::whereIn('id', UserCompany::select('admin_company_id')
+            ->where('user_id', $client->id))->get();
         $client['companies'] = $companies;
-        return response()->json($client, 201);
+        return response()->json($client, 200);
     }
 
     function addNewClient(Request $request)
     {
-        $request->validate([
-            'clientName' => ['required'],
+        $validated = $this->validate($request,[
+            'client_name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required'],
-            'phoneNumber' => ['required'],
-            'contactName' => ['required']
+            'phone_number' => ['required'],
+            'contact_name' => ['required']
         ]);
 
-        $client = User::create([
-            'client_name' => $request->clientName,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'phone_number' => $request->phoneNumber,
-            'contact_name' => $request->contactName,
-            'role' => 'client'
-        ]);
-
+        $client = new User();
+        $client->fill($validated);
+        $client->role = 'client';
+        $client->save();
         return response()->json($client, 201);
     }
 
-    function updateClient(Request $request)
+    function updateClient(Request $request, User $client)
     {
-        $request->validate([
+        $validated = $this->validate($request,[
             'id' => ['required'],
             'password' => ['required'],
-            'phoneNumber' => ['required'],
-            'contactName' => ['required']
+            'phone_number' => ['required'],
+            'contact_name' => ['required']
         ]);
 
-        $client = User::where('id', $request->id)->first();
-
+        $client->fill($validated);
         if ($request->password !== "********"){
             $client->password = bcrypt($request->password);
         }
-        $client->phone_number = $request->phoneNumber;
-        $client->contact_name = $request->contactName;
         $client->save();
         return response()->json($client, 200);
 

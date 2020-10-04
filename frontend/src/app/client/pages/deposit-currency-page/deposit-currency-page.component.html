@@ -192,4 +192,4 @@
 
 <p class="more"><a href="#">↓ more deposits</a></p>
 
-<app-deposit-modal [currency]="currency" [hidden]="!isPopupVisible" (closeClicked)="hideModal()"></app-deposit-modal>
+<app-deposit-modal [currency]="currency" *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-deposit-modal>

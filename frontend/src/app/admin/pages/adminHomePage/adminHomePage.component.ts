@@ -1,12 +1,9 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {select, Store} from '@ngrx/store';
+import {Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
 
 import {RatesInterface} from '../../../models/rates.interface';
 import {RatesService} from '../../../shared/services/rates.service';
-import {isPopupVisibleSelector} from '../../clients/store/selectors';
-import {hideClientModalAction, showClientModalAction} from '../../clients/store/actions/modalControl.actions';
-import {FormControlService} from '../../../shared/services/formControl.service';
 
 
 @Component({
@@ -18,19 +15,17 @@ export class AdminHomePageComponent implements OnInit, OnDestroy {
 
   rates: RatesInterface;
   rSub: Subscription;
-  isPopupVisible$: Observable<boolean>;
+  modalVisible = false;
 
   @HostBinding('class') classList = 'main-content';
 
   constructor(
     private store: Store,
-    private ratesService: RatesService,
-    private formControlService: FormControlService
+    private ratesService: RatesService
   ) {
   }
 
   ngOnInit(): void {
-    this.isPopupVisible$ = this.store.pipe(select(isPopupVisibleSelector));
     this.rSub = this.ratesService.getRates().subscribe(
       (rates: RatesInterface) => {
         this.rates = rates;
@@ -44,13 +39,11 @@ export class AdminHomePageComponent implements OnInit, OnDestroy {
   }
 
   newClient(): void {
-    this.formControlService.clearForm();
-    const edit = false;
-    this.store.dispatch(showClientModalAction({edit}));
+    this.modalVisible = true;
   }
 
   hideModal(): void {
-    this.store.dispatch(hideClientModalAction());
+    this.modalVisible = false;
   }
 
 }
