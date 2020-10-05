@@ -925,6 +925,9 @@ main {
         display: flex;
         align-items: center;
         color: #838383;
+        .file-input{
+          display: none;
+        }
 
         a {
           text-decoration: inherit;

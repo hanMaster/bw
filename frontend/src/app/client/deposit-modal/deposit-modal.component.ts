@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, HostBinding, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import {DepositService} from '../services/deposit.service';
 import {CurrentUser} from '../../models/currentUser';
 import {currentUserSelector} from '../../auth/store/selectors';
-import {take} from 'rxjs/operators';
+import {filter, first, take} from 'rxjs/operators';
 import {RussCompanyService} from '../../shared/modules/companies/services/russCompanies.service';
 import {RussCompany} from '../../models/russCompany';
 import {QueryParams} from '@ngrx/data';
@@ -30,6 +30,7 @@ export class DepositModalComponent implements OnInit {
   currentUser: CurrentUser;
   adminCompanies$: Observable<RussCompany[]>;
   clientCompanies$: Observable<RussCompany[]>;
+  selectedFile = null;
 
   constructor(
     private depositService: DepositService,
@@ -50,14 +51,14 @@ export class DepositModalComponent implements OnInit {
     );
 
     this.form = new FormGroup({
-      admin_company_invoice_number: new FormControl('', Validators.required),
+      admin_company_invoice_number: new FormControl(null, Validators.required),
       admin_company_invoice_date: new FormControl('', [Validators.required]),
-      payment_order_number: new FormControl('', Validators.required),
+      payment_order_number: new FormControl(null, Validators.required),
       payment_order_date: new FormControl('', Validators.required),
-      admin_company_bank_id: new FormControl('', [Validators.required]),
-      admin_company_id: new FormControl('', Validators.required),
-      user_company_id: new FormControl('', Validators.required),
-      amount: new FormControl('', Validators.required),
+      admin_company_bank_id: new FormControl(null, [Validators.required]),
+      admin_company_id: new FormControl(null, Validators.required),
+      user_company_id: new FormControl(null, Validators.required),
+      amount: new FormControl(null, Validators.required),
       payment_purpose: new FormControl('', Validators.required),
       payment_order_pdf: new FormControl('', Validators.required),
     });
@@ -76,5 +77,25 @@ export class DepositModalComponent implements OnInit {
 
   onSubmit(): void {
 
+    console.log('valid: ', this.form.valid)
+    console.log(this.form.value);
+
+
+    // if (this.selectedFile) {
+    //   this.depositService.uploadFile(this.selectedFile).pipe(take(3)).subscribe(
+    //     info => {
+    //       console.log('info', info)
+    //     },
+    //     error => {
+    //       console.log('error', error);
+    //     }
+    //   );
+    // }
+
+  }
+
+  onFileSelect($event: any): void {
+    this.selectedFile = $event.target.files[0];
+    this.form.value.payment_order_pdf = this.selectedFile.name;
   }
 }

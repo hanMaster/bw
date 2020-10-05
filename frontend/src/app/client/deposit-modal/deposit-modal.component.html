@@ -5,7 +5,7 @@
       <h2>New deposit in {{currencyProp.toUpperCase()}}</h2>
       <span>Fill in all fields to add a new deposit</span>
     </div>
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">
       <svg width="20" height="15">
         <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
       </svg>
@@ -70,7 +70,7 @@
     <div class="double">
       <div>
         <label for="adminCompany">Наименование продавца:</label>
-        <select id="adminCompany">
+        <select id="adminCompany" formControlName="admin_company_id">
           <option *ngFor="let adm of adminCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
         </select>
       </div>
@@ -90,7 +90,7 @@
 
     <div>
       <label for="clientCompany">Наименование покупателя:</label>
-      <select id="clientCompany">
+      <select id="clientCompany" formControlName="user_company_id">
         <option *ngFor="let client of clientCompanies$ | async" value="{{client.id}}">{{client.company_name}}</option>
       </select>
     </div>
@@ -106,7 +106,7 @@
       />
     </div>
     <div>
-      <label for="payment_purpose">Сумма платежа:</label>
+      <label for="payment_purpose">Назначение платежа:</label>
       <input
         id="payment_purpose"
         type="text"
@@ -119,17 +119,22 @@
     <div class="upload">
       <p> Добавить PDF (Платежка в PDF формате с отметкой банка исполнено) </p>
       <div class="upload-group">
-        <button class="btn btn-upload">upload file</button>
+        <input
+          type="file"
+          class="file-input" #file
+          formControlName="payment_order_pdf"
+          (change)="onFileSelect($event)"
+        >
+        <button type="button" class="btn btn-upload" (click)="file.click()">upload file</button>
         <p>
-          <span>uploaded</span>21.09.2020_invoise_ooo
-          gent_and_gent_production.pdf
+          <span *ngIf="form.value.payment_order_pdf">selected</span>{{form.value.payment_order_pdf}}
         </p>
       </div>
     </div>
   </form>
   <div class="deposit-modal-footer">
 
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="onSubmit()">
       <svg width="20" height="15">
         <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
       </svg>

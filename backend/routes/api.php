@@ -56,3 +56,5 @@ Route::put('foreignaccount/{account}', 'ForeignAccountsController@updateAccount'
 
 Route::post('usercompanies', 'UserCompaniesController@assignCompany')->middleware('auth:sanctum');
 Route::put('usercompanies/{id}', 'UserCompaniesController@reassignCompany')->middleware('auth:sanctum');
+
+Route::post('upload', 'DepositController@uploadFile')->middleware('auth:sanctum');
