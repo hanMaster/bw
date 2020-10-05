@@ -1,8 +1,10 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {StoreModule} from '@ngrx/store';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {BrowserModule} from '@angular/platform-browser';
+import {EffectsModule} from '@ngrx/effects';
+import {EntityDataModule} from '@ngrx/data';
+import {StoreModule} from '@ngrx/store';
+import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -10,16 +12,12 @@ import {UtilsService} from './shared/services/utils.service';
 import {AuthModule} from './auth/auth.module';
 import {HttpRequestInterceptor} from './shared/services/httpRequest.interceptor';
 import {environment} from '../environments/environment';
-import {EffectsModule} from '@ngrx/effects';
 import {PersistanceService} from './shared/services/persistance.service';
 import {AdminModule} from './admin/admin.module';
 import {ClientModule} from './client/client.module';
 import {CompaniesModule} from './shared/modules/companies/companies.module';
-import {RussBanksModule} from './shared/modules/banks/russBanks.module';
-import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './store/entity-metadata';
+import {entityConfig} from './store/entity-metadata';
 import {SharedModule} from './shared/modules/shared.module';
-import {ForeignBanksModule} from './shared/modules/foreignBanks/foreignBanks.module';
 import {BeneficiaryModule} from './shared/modules/beneficiary/beneficiary.module';
 
 @NgModule({
@@ -40,8 +38,6 @@ import {BeneficiaryModule} from './shared/modules/beneficiary/beneficiary.module
     AdminModule,
     ClientModule,
     CompaniesModule,
-    RussBanksModule,
-    ForeignBanksModule,
     BeneficiaryModule,
     EntityDataModule.forRoot(entityConfig),
     SharedModule

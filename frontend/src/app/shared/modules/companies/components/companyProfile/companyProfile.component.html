@@ -19,39 +19,15 @@
   <h4><span class="label">ИНН:</span> {{(company$ | async).inn}}</h4>
   <h4><span class="label">КПП:</span> {{(company$ | async).kpp}}</h4>
   <h4><span class="label">ОГРН/ОГРНИП:</span> {{(company$ | async).reg_number}}</h4>
+  <h4><span class="label">Банк:</span> {{(company$ | async).bank_name}}</h4>
+  <h4><span class="label">БИК:</span> {{(company$ | async).bic_code}}</h4>
+  <h4><span class="label">Корр. счет:</span> {{(company$ | async).corr_account}}</h4>
+  <h4><span class="label">Расчетный счет:</span> {{(company$ | async).account_number}}</h4>
+
+
   <h4><span class="label">Дата создания:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
   <h4><span class="label">Дата изменения:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
 </div>
 
-<hr class="mt-10">
-
-<div class="beneficiary-controls">
-  <h2>Банковские счета</h2>
-  <button class="btn btn-primary add-btn-icon" (click)="addAccount()">
-    new account
-  </button>
-</div>
-
-<table class="tbl">
-  <thead>
-  <tr>
-    <th>Account</th>
-    <th>Bank</th>
-  </tr>
-  </thead>
-  <tbody *ngIf="company$ | async">
-  <tr *ngFor="let account of (company$ | async).accounts" (click)="editAccount(account)">
-    <td class="client-name">{{account.account_number}}</td>
-    <td>{{account.bank_name}}</td>
-  </tr>
-  </tbody>
-</table>
-
 <app-company-modal *ngIf="companyModalVisible" [company]="company$ | async"
                    (closeClicked)="hideCompanyModal()"></app-company-modal>
-<app-account-modal
-  *ngIf="accountModalVisible"
-  [selected]="selected"
-  [company]="company$ | async"
-  (closeClicked)="hideAccountModal()"
-></app-account-modal>

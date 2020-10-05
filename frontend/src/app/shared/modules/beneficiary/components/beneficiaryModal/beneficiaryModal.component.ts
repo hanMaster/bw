@@ -44,12 +44,17 @@ export class BeneficiaryModalComponent implements OnInit, OnDestroy {
     );
 
     this.form = new FormGroup({
+      beneficiary_alias: new FormControl('', Validators.required),
       beneficiary_name: new FormControl('', Validators.required),
       address_line1: new FormControl('', Validators.required),
       address_line2: new FormControl(''),
       address_line3: new FormControl(''),
       beneficiary_email_www: new FormControl('', Validators.required),
       contact_email: new FormControl('', Validators.required),
+      bank_name: new FormControl('', Validators.required),
+      bank_address: new FormControl('', Validators.required),
+      swift_code: new FormControl('', Validators.required),
+      account_number: new FormControl('', Validators.required),
     });
 
     if (this.company && this.company.id) {

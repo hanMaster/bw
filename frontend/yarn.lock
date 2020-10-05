@@ -1115,10 +1115,24 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
 
+"@ngrx/data@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/data/-/data-10.0.0.tgz#3a8f387e19174162fe3976cd936f78068e334a2b"
+  integrity sha512-gFe/BAkrlmvJnEDgjkdrYEiENFoliNLfUNcp0BSkRhBvNTBh5RFV9Zxkksln2u6rIbKEStR+zUeyocPG/ILLvQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/effects@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-10.0.0.tgz#d58151b1d7f5731ea42de7ed239bbab3d5866542"
   integrity sha512-HHcQQ6mj1Cd0rQgnX5Wp3f7G8PKhh+Rk+jofsOsE6aHQPuuNhmnDwSA1U4PT4sXNv6JmFi5GjUqBz+tuw83oFQ==
+  dependencies:
+    tslib "^2.0.0"
+
+"@ngrx/entity@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-10.0.0.tgz#ad46f448c856c4c5902b7f9446af88a580f4d50d"
+  integrity sha512-vm8vR6hbJKuIq+PjX4C7li3thPPt1Wnrl9Zf2VYgSP+Mr6vaU0Q+5UgBIRbMDKS1AthGPv+MDVI+kAOlhOyDog==
   dependencies:
     tslib "^2.0.0"
 
@@ -5603,6 +5617,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4, mkdirp@~1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+moment@^2.24.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
+  integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -5689,6 +5708,14 @@ next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
+
+ng2-date-picker@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/ng2-date-picker/-/ng2-date-picker-10.0.0.tgz#2f563d46bd3fc0c0551d8f8caa777c968fe0c961"
+  integrity sha512-ty+pp7p4XhpUp7ZuL+ANWoHJpYYk0ukRFm9c+ZvD1QP5+Xs6JKu/fuDOMAgk3Mx7hGZqORxQf4i/UhWi7WyQGQ==
+  dependencies:
+    moment "^2.24.0"
+    tslib "^2.0.0"
 
 ngx-mask@^10.0.3:
   version "10.0.3"

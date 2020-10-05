@@ -1,4 +1,3 @@
-import {RussAccount} from './russAccount';
 import {OrganizationFormsType} from '../shared/types/organizationForms.type';
 
 export class RussCompany {
@@ -10,7 +9,10 @@ export class RussCompany {
   inn: string;
   kpp: string;
   reg_number: string;
-  accounts: RussAccount[];
+  bank_name: string;
+  bic_code: string;
+  corr_account: string;
+  account_number: string;
   created_at?: string;
   updated_at?: string;
 }

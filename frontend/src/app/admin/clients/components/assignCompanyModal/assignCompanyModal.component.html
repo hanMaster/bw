@@ -22,7 +22,6 @@
       <option
         *ngFor="let company of (adminCompanies$ | async)"
         value="{{company.id}}"
-        [selected]="company.id === selected.id"
       >{{company.company_name}}</option>
     </select>
   </form>

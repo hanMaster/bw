@@ -32,14 +32,6 @@ class CompaniesController extends Controller
 
     public function getCompanyById(RussCompanies $company)
     {
-
-        $accounts = DB::table('russian_accounts')
-            ->join('russian_banks', 'russian_banks.id', '=', 'russian_accounts.russian_bank_id')
-            ->select('russian_accounts.*', 'russian_banks.bank_name')
-            ->where('russian_accounts.russ_company_id', $company->id)
-            ->get();
-
-        $company['accounts'] = $accounts;
         return response()->json($company, 201);
     }
 
@@ -52,7 +44,11 @@ class CompaniesController extends Controller
             'kpp' => ['required'],
             'reg_number' => ['required'],
             'law_address' => ['required'],
-            'user_id' => ['required']
+            'user_id' => ['required'],
+            'bank_name' => ['required'],
+            'bic_code' => ['required', 'string', 'min:9', 'max:9'],
+            'corr_account' => ['required'],
+            'account_number' => ['required']
         ]);
 
         $company = new RussCompanies();
@@ -78,7 +74,11 @@ class CompaniesController extends Controller
             'kpp' => ['required'],
             'reg_number' => ['required'],
             'law_address' => ['required'],
-            'id' => ['required']
+            'id' => ['required'],
+            'bank_name' => ['required'],
+            'bic_code' => ['required', 'string', 'min:9', 'max:9'],
+            'corr_account' => ['required'],
+            'account_number' => ['required']
         ]);
 
         $company->fill($validated);

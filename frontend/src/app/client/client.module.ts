@@ -9,12 +9,11 @@ import {DepositCurrencyPageComponent} from './pages/deposit-currency-page/deposi
 import {TransferPageComponent} from './pages/transfer-page/transfer-page.component';
 import {DepositModalComponent} from './deposit-modal/deposit-modal.component';
 import {CompaniesListComponent} from '../shared/modules/companies/components/companiesList/companiesList.component';
-import {BanksListComponent} from '../shared/modules/banks/components/banks-list/banks-list.component';
 import {CompanyProfileComponent} from '../shared/modules/companies/components/companyProfile/companyProfile.component';
-import {ForeignBanksListComponent} from '../shared/modules/foreignBanks/components/foreignBanksList/foreignBanksList.component';
 import {BeneficiariesListComponent} from '../shared/modules/beneficiary/components/beneficiariesList/beneficiariesList.component';
 import {BeneficiaryProfileComponent} from '../shared/modules/beneficiary/components/beneficiaryProfile/beneficiaryProfile.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 const routes: Routes = [
   {
@@ -23,10 +22,8 @@ const routes: Routes = [
       {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
       {path: 'beneficiary', component: BeneficiariesListComponent, canActivate: [AuthGuard]},
       {path: 'beneficiary-profile/:beneficiaryId', component: BeneficiaryProfileComponent, canActivate: [AuthGuard]},
-      {path: 'foreign-banks', component: ForeignBanksListComponent, canActivate: [AuthGuard]},
       {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
       {path: 'company-profile/:companyId', component: CompanyProfileComponent, canActivate: [AuthGuard] },
-      {path: 'rus-banks', component: BanksListComponent, canActivate: [AuthGuard]},
       {path: 'deposit', component: DepositPageComponent, canActivate: [AuthGuard]},
       {path: 'deposit/:currency', component: DepositCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'transfer', component: TransferPageComponent, canActivate: [AuthGuard]},
@@ -38,7 +35,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DpDatePickerModule
   ],
   declarations: [
     DepositModalComponent,

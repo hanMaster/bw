@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 
 import {RussCompany} from '../../../../../models/russCompany';
 import {RussCompanyService} from '../../services/russCompanies.service';
-import {RussAccount} from '../../../../../models/russAccount';
 
 @Component({
   selector: 'app-company-profile',
@@ -19,9 +18,6 @@ export class CompanyProfileComponent implements OnInit {
   companyId: number;
   company$: Observable<RussCompany>;
   companyModalVisible = false;
-  accountModalVisible = false;
-  selected: RussAccount = null;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -46,20 +42,6 @@ export class CompanyProfileComponent implements OnInit {
   hideCompanyModal(): void {
     this.companyModalVisible = false;
     this.company$ = this.companyService.getByKey(this.companyId);
-  }
-
-  hideAccountModal(): void {
-    this.accountModalVisible = false;
-    this.company$ = this.companyService.getByKey(this.companyId);
-  }
-
-  addAccount(): void {
-    this.accountModalVisible = true;
-  }
-
-  editAccount(account: RussAccount): void {
-    this.accountModalVisible = true;
-    this.selected = account;
   }
 
   goBack(): void {

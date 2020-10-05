@@ -34,13 +34,14 @@
       &nbsp;&nbsp;
       <div>
         <label for="invoiceDate">Дата счета на оплату:</label>
-        <input
+        <dp-date-picker
           id="invoiceDate"
-          type="text"
           placeholder="Дата счета на оплату"
           formControlName="admin_company_invoice_date"
+          theme="theme - dp-material"
+          [config]="datePickerConfig"
           [ngClass]="{invalid: form.get('admin_company_invoice_date').touched && form.get('admin_company_invoice_date').invalid}"
-        />
+        ></dp-date-picker>
       </div>
     </div>
     <div class="double">
@@ -57,13 +58,14 @@
       &nbsp;&nbsp;
       <div>
         <label for="paymentDate">Дата платежного поручения:</label>
-        <input
+        <dp-date-picker
           id="paymentDate"
-          type="text"
           placeholder="Дата платежного поручения"
           formControlName="payment_order_date"
+          theme="theme - dp-material"
+          [config]="datePickerConfig"
           [ngClass]="{invalid: form.get('payment_order_date').touched && form.get('payment_order_date').invalid}"
-        />
+        ></dp-date-picker>
       </div>
     </div>
 

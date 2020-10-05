@@ -3,7 +3,6 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 import {Beneficiary} from '../../../../../models/beneficiary';
-import {ForeignAccount} from '../../../../../models/foreignAccount';
 import {BeneficiaryService} from '../../services/beneficiaries.service';
 import {Location} from '@angular/common';
 
@@ -20,8 +19,6 @@ export class BeneficiaryProfileComponent implements OnInit {
   beneficiaryId: number;
   company$: Observable<Beneficiary>;
   companyModalVisible = false;
-  accountModalVisible = false;
-  selected: ForeignAccount = null;
 
 
   constructor(
@@ -48,20 +45,6 @@ export class BeneficiaryProfileComponent implements OnInit {
   hideCompanyModal(): void {
     this.companyModalVisible = false;
     this.company$ = this.companyService.getByKey(this.beneficiaryId);
-  }
-
-  hideAccountModal(): void {
-    this.accountModalVisible = false;
-    this.company$ = this.companyService.getByKey(this.beneficiaryId);
-  }
-
-  addAccount(): void {
-    this.accountModalVisible = true;
-  }
-
-  editAccount(account: ForeignAccount): void {
-    this.accountModalVisible = true;
-    this.selected = account;
   }
 
   goBack(): void {

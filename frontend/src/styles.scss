@@ -834,6 +834,8 @@ main {
     }
 
     .modal-content {
+      height: 300px;
+      overflow: auto;
       .double{
         display: flex;
         justify-content: space-around;
@@ -842,6 +844,7 @@ main {
         }
       }
       label{
+        display: block;
         font-size: 12px;
         margin-left: 10px;
         color: #118e67;

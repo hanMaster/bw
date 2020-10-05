@@ -22,40 +22,13 @@
   <h4><span class="label">Email/www:</span> {{(company$ | async).beneficiary_email_www}}</h4>
   <h4><span class="label">Conatct email:</span> {{(company$ | async).contact_email}}</h4>
 
+  <h4><span class="label">Bank:</span> {{(company$ | async).bank_name}}</h4>
+  <h4><span class="label">Bank address:</span> {{(company$ | async).bank_address}}</h4>
+  <h4><span class="label">Account:</span> {{(company$ | async).account_number}}</h4>
 
   <h4><span class="label">Created at:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
   <h4><span class="label">Updated at:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
 </div>
 
-<hr class="mt-10">
-
-<div class="beneficiary-controls">
-  <h2>Банковские счета</h2>
-  <button class="btn btn-primary add-btn-icon" (click)="addAccount()">
-    new account
-  </button>
-</div>
-
-<table class="tbl">
-  <thead>
-  <tr>
-    <th>Account</th>
-    <th>Bank</th>
-  </tr>
-  </thead>
-  <tbody *ngIf="company$ | async">
-  <tr *ngFor="let account of (company$ | async).accounts" (click)="editAccount(account)">
-    <td class="client-name">{{account.account_number}}</td>
-    <td>{{account.bank_name}}</td>
-  </tr>
-  </tbody>
-</table>
-
 <app-beneficiary-modal *ngIf="companyModalVisible" [company]="company$ | async"
                    (closeClicked)="hideCompanyModal()"></app-beneficiary-modal>
-<app-account-modal
-  *ngIf="accountModalVisible"
-  [selected]="selected"
-  [company]="company$ | async"
-  (closeClicked)="hideAccountModal()"
-></app-account-modal>

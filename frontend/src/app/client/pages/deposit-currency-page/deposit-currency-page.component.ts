@@ -1,5 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
+import {WindowScrolling} from '../../../shared/services/windowScrolliing.service';
 
 @Component({
   selector: 'app-deposit-currency-page',
@@ -12,7 +13,10 @@ export class DepositCurrencyPageComponent implements OnInit {
   currency: string;
   isPopupVisible = false;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private scrollService: WindowScrolling
+  ) {
   }
 
   ngOnInit(): void {
@@ -23,9 +27,11 @@ export class DepositCurrencyPageComponent implements OnInit {
 
   newDeposit(): void {
     this.isPopupVisible = true;
+    this.scrollService.disable();
   }
 
   hideModal(): void {
     this.isPopupVisible = false;
+    this.scrollService.enable();
   }
 }

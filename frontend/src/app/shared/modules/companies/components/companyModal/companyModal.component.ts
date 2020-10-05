@@ -1,6 +1,5 @@
-import {Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {take} from 'rxjs/operators';
 
@@ -48,6 +47,10 @@ export class CompanyModalComponent implements OnInit {
       inn: new FormControl('', Validators.required),
       kpp: new FormControl('', Validators.required),
       reg_number: new FormControl('', Validators.required),
+      bank_name: new FormControl('', Validators.required),
+      bic_code: new FormControl('', Validators.required),
+      corr_account: new FormControl('', Validators.required),
+      account_number: new FormControl('', Validators.required),
     });
 
     if (this.company && this.company.id) {

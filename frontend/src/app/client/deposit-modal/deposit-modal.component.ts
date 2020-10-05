@@ -10,6 +10,7 @@ import {filter, first, take} from 'rxjs/operators';
 import {RussCompanyService} from '../../shared/modules/companies/services/russCompanies.service';
 import {RussCompany} from '../../models/russCompany';
 import {QueryParams} from '@ngrx/data';
+import {IDatePickerConfig} from 'ng2-date-picker';
 
 @Component({
   selector: 'app-deposit-modal',
@@ -31,6 +32,11 @@ export class DepositModalComponent implements OnInit {
   adminCompanies$: Observable<RussCompany[]>;
   clientCompanies$: Observable<RussCompany[]>;
   selectedFile = null;
+  datePickerConfig: IDatePickerConfig = {
+    locale: 'ru',
+    firstDayOfWeek: 'mo',
+    format: 'DD MMM yyyy'
+  };
 
   constructor(
     private depositService: DepositService,

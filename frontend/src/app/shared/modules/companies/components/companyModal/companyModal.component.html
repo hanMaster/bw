@@ -99,6 +99,51 @@
       />
     </div>
 
+
+    <div>
+      <label for="bank_name">Банк:</label>
+      <input
+        id="bank_name"
+        type="text"
+        placeholder="Банк"
+        formControlName="bank_name"
+        [ngClass]="{invalid: form.get('bank_name').touched && form.get('bank_name').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="bic_code">БИК:</label>
+      <input
+        id="bic_code"
+        type="text"
+        placeholder="БИК"
+        formControlName="bic_code"
+        [ngClass]="{invalid: form.get('bic_code').touched && form.get('bic_code').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="corr_account">Корр. счет:</label>
+      <input
+        id="corr_account"
+        type="text"
+        placeholder="Корр. счет"
+        formControlName="corr_account"
+        [ngClass]="{invalid: form.get('corr_account').touched && form.get('corr_account').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="account_number">Расчетный счет:</label>
+      <input
+        id="account_number"
+        type="text"
+        placeholder="Расчетный счет"
+        formControlName="account_number"
+        [ngClass]="{invalid: form.get('account_number').touched && form.get('account_number').invalid}"
+      />
+    </div>
+
   </form>
 
   <div class="new-client-footer">

@@ -22,6 +22,10 @@ class CreateRussCompaniesTable extends Migration
             $table->string('kpp')->nullable();
             $table->string('reg_number');
             $table->boolean('belongs_to_admin');
+            $table->string('bank_name');
+            $table->string('bic_code');
+            $table->string('corr_account');
+            $table->string('account_number');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

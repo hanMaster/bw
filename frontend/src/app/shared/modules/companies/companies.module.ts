@@ -7,7 +7,6 @@ import {CompaniesListComponent} from './components/companiesList/companiesList.c
 import {CompanyModalComponent} from './components/companyModal/companyModal.component';
 import {CompanyProfileComponent} from './components/companyProfile/companyProfile.component';
 import {RussCompanyService} from './services/russCompanies.service';
-import {AccountModalComponent} from './components/accountModal/accountModal.component';
 
 @NgModule({
     imports: [
@@ -18,8 +17,7 @@ import {AccountModalComponent} from './components/accountModal/accountModal.comp
   declarations: [
     CompaniesListComponent,
     CompanyProfileComponent,
-    CompanyModalComponent,
-    AccountModalComponent
+    CompanyModalComponent
   ],
   providers: [
     RussCompanyService
