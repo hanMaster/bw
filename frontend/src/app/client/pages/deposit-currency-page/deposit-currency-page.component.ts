@@ -4,8 +4,8 @@ import {WindowScrolling} from '../../../shared/services/windowScrolliing.service
 import {Observable} from 'rxjs';
 import {Deposit} from '../../../models/deposit';
 import {DepositService} from '../../services/deposit.service';
-import {first} from 'rxjs/operators';
 import {QueryParams} from '@ngrx/data';
+import {filter, first, map, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-deposit-currency-page',
@@ -16,7 +16,7 @@ export class DepositCurrencyPageComponent implements OnInit {
 
   currency: string;
   isPopupVisible = false;
-  deposits$: Observable<Deposit[]>;
+  deposits: Deposit[] = [];
   loading$: Observable<boolean>;
 
   constructor(
@@ -25,16 +25,20 @@ export class DepositCurrencyPageComponent implements OnInit {
     private depositService: DepositService
   ) {
     this.loading$ = this.depositService.loading$;
-    this.deposits$ = this.depositService.entities$;
   }
 
   ngOnInit(): void {
+    console.log('currency page init');
     this.route.params.subscribe((param: Params) => {
       this.currency = param.currency;
       const params: QueryParams = {
         currency: this.currency
       };
-      this.depositService.getWithQuery(params).pipe(first());
+      this.depositService.getWithQuery(params).pipe(first()).subscribe(
+        deposits => {
+          this.deposits = deposits;
+        }
+      );
     });
   }
 

@@ -25,7 +25,7 @@
   <a href="#" class="received-deposits">view received deposits</a>
 </div>
 
-<table class="tbl deposit" *ngIf="deposits$ | async">
+<table class="tbl deposit" *ngIf="deposits;else loading">
   <thead>
   <tr>
     <th>Ref.№.</th>
@@ -37,7 +37,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let deposit of (deposits$ | async)">
+  <tr *ngFor="let deposit of deposits">
     <td>{{deposit.id}}</td>
     <td>{{deposit.created_at | date:'dd MMM yyyy'}}</td>
     <td class="cell-name">{{deposit.company_name}}</td>
@@ -58,3 +58,7 @@
 <p class="more"><a href="#">↓ more deposits</a></p>
 
 <app-deposit-modal [currency]="currency" *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-deposit-modal>
+
+<ng-template #loading>
+  Loading...
+</ng-template>
