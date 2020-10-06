@@ -912,6 +912,7 @@ main {
       }
     }
 
+
     .upload {
       margin-top: 30px;
       font-style: normal;
@@ -992,6 +993,17 @@ main {
       }
     }
   }
+}
+
+.errors{
+  color: crimson;
+  li{
+    list-style-type: none;
+  }
+}
+
+dp-date-picker{
+  width: 100%;
 }
 
 .mt-10 {

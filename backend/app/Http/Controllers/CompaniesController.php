@@ -6,7 +6,6 @@ use App\RussCompanies;
 use App\UserCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CompaniesController extends Controller
 {

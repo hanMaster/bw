@@ -19,9 +19,8 @@ class CreateDepositsTable extends Migration
             $table->string('admin_company_invoice_date');
             $table->string('payment_order_number');
             $table->string('payment_order_date');
-            $table->foreignId('admin_company_bank_id')->constrained();
-            $table->foreignId('admin_company_id')->constrained();
-            $table->foreignId('user_company_id')->constrained();
+            $table->bigInteger('admin_company_id');
+            $table->bigInteger('user_company_id');
             $table->foreignId('user_id')->constrained();
             $table->enum('currency', ['usd', 'eur', 'rub']);
             $table->integer('amount');
@@ -29,9 +28,6 @@ class CreateDepositsTable extends Migration
             $table->string('payment_order_pdf');
             $table->enum('status', ['in processing', 'confirmed', 'canceled']);
             $table->timestamps();
-            $table->foreign('admin_company_bank_id')->references('id')->on('banks');
-            $table->foreign('admin_company_id')->references('id')->on('russ_companies');
-            $table->foreign('user_company_id')->references('id')->on('russ_companies');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

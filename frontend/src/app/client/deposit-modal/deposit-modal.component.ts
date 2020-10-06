@@ -11,6 +11,8 @@ import {RussCompanyService} from '../../shared/modules/companies/services/russCo
 import {RussCompany} from '../../models/russCompany';
 import {QueryParams} from '@ngrx/data';
 import {IDatePickerConfig} from 'ng2-date-picker';
+import {Beneficiary} from '../../models/beneficiary';
+import {Deposit} from '../../models/deposit';
 
 @Component({
   selector: 'app-deposit-modal',
@@ -28,7 +30,6 @@ export class DepositModalComponent implements OnInit {
 
   form: FormGroup;
   errors: string[];
-  currentUser: CurrentUser;
   adminCompanies$: Observable<RussCompany[]>;
   clientCompanies$: Observable<RussCompany[]>;
   selectedFile = null;
@@ -40,7 +41,6 @@ export class DepositModalComponent implements OnInit {
 
   constructor(
     private depositService: DepositService,
-    private store: Store,
     private russCompanyService: RussCompanyService
   ) {
     let params: QueryParams = {assigned: 'true'};
@@ -50,18 +50,11 @@ export class DepositModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(currentUserSelector), take(1)).subscribe(
-      user => {
-        this.currentUser = user;
-      }
-    );
-
     this.form = new FormGroup({
       admin_company_invoice_number: new FormControl(null, Validators.required),
       admin_company_invoice_date: new FormControl('', [Validators.required]),
       payment_order_number: new FormControl(null, Validators.required),
       payment_order_date: new FormControl('', Validators.required),
-      admin_company_bank_id: new FormControl(null, [Validators.required]),
       admin_company_id: new FormControl(null, Validators.required),
       user_company_id: new FormControl(null, Validators.required),
       amount: new FormControl(null, Validators.required),
@@ -75,16 +68,28 @@ export class DepositModalComponent implements OnInit {
   }
 
   handleErrors(err): void {
+    console.log('err', err)
     this.errors = [];
-    for (const [_, value] of Object.entries(err.error.error.errors)) {
+    for (const [_, value] of Object.entries(err.error.errors)) {
       this.errors.push(value[0]);
     }
   }
 
   onSubmit(): void {
 
-    console.log('valid: ', this.form.valid)
-    console.log(this.form.value);
+    const deposit: Deposit = {
+      ...this.form.value,
+      currency: this.currencyProp,
+      selectedFile: this.selectedFile
+    };
+    this.depositService.addDeposit(deposit).pipe(take(1)).subscribe(
+      () => {
+        this.closeModal();
+      },
+      err => {
+        this.handleErrors(err);
+      }
+    );
 
 
     // if (this.selectedFile) {

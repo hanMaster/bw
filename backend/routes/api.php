@@ -41,4 +41,5 @@ Route::get('russcompany/{company}', 'CompaniesController@getCompanyById')->middl
 Route::post('usercompanies', 'UserCompaniesController@assignCompany')->middleware('auth:sanctum');
 Route::put('usercompanies/{id}', 'UserCompaniesController@reassignCompany')->middleware('auth:sanctum');
 
-Route::post('upload', 'DepositController@uploadFile')->middleware('auth:sanctum');
+Route::get('deposits', 'DepositController@getDeposits')->middleware('auth:sanctum');
+Route::post('deposit', 'DepositController@addDeposit')->middleware('auth:sanctum');

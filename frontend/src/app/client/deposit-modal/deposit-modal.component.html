@@ -69,29 +69,14 @@
       </div>
     </div>
 
-    <div class="double">
-      <div>
-        <label for="adminCompany">Наименование продавца:</label>
-        <select id="adminCompany" formControlName="admin_company_id">
-          <option *ngFor="let adm of adminCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
-        </select>
-      </div>
-      &nbsp;&nbsp;
-      <div>
-        <label for="adminBank">Банк продавца:</label>
-        <input
-          id="adminBank"
-          type="text"
-          placeholder="Банк продавца"
-          formControlName="admin_company_bank_id"
-          [ngClass]="{invalid: form.get('admin_company_bank_id').touched && form.get('admin_company_bank_id').invalid}"
-        />
-      </div>
-
-    </div>
-
     <div>
-      <label for="clientCompany">Наименование покупателя:</label>
+      <label for="adminCompany">Продавец:</label>
+      <select id="adminCompany" formControlName="admin_company_id">
+        <option *ngFor="let adm of adminCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
+      </select>
+    </div>
+    <div>
+      <label for="clientCompany">Покупатель:</label>
       <select id="clientCompany" formControlName="user_company_id">
         <option *ngFor="let client of clientCompanies$ | async" value="{{client.id}}">{{client.company_name}}</option>
       </select>
@@ -136,7 +121,7 @@
   </form>
   <div class="deposit-modal-footer">
 
-    <button class="btn btn-primary" (click)="onSubmit()">
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">
       <svg width="20" height="15">
         <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
       </svg>

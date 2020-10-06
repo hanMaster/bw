@@ -1,6 +1,5 @@
 import {Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {take} from 'rxjs/operators';
 
@@ -11,11 +10,9 @@ import {BeneficiaryService} from '../../services/beneficiaries.service';
 import {Beneficiary} from '../../../../../models/beneficiary';
 
 
-
 @Component({
   selector: 'app-beneficiary-modal',
-  templateUrl: './beneficiaryModal.component.html',
-  styleUrls: ['./beneficiaryModal.component.scss']
+  templateUrl: './beneficiaryModal.component.html'
 })
 export class BeneficiaryModalComponent implements OnInit, OnDestroy {
 

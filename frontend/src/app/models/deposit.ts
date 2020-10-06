@@ -7,7 +7,6 @@ export class Deposit{
   admin_company_invoice_date: string;
   payment_order_number: string;
   payment_order_date: string;
-  admin_company_bank_id: number;
   admin_company_id: number;
   user_company_id: number;
   user_id: number;
@@ -15,7 +14,9 @@ export class Deposit{
   status: DepositStatusesType;
   amount: number;
   payment_purpose: string;
-  payment_order_pdf: string;
+  selectedFile: any;
+  company_name?: string;
+  bank_name?: string;
   created_at?: string;
   updated_at?: string;
 }
