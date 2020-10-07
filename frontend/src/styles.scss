@@ -924,7 +924,7 @@ main {
 
 
     .upload {
-      margin-top: 30px;
+      margin-top: 17px;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -1036,5 +1036,11 @@ dp-date-picker{
   .main-content {
     margin-left: 0;
     width: 74%;
+  }
+}
+
+@media (screen and max-width: 1368px) {
+  main .bg .login-form{
+    padding: 30px 96px;
   }
 }

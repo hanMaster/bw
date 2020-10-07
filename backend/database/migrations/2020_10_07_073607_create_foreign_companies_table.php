@@ -23,6 +23,7 @@ class CreateForeignCompaniesTable extends Migration
             $table->string('bank_address');
             $table->string('swift_code');
             $table->string('account_number');
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }

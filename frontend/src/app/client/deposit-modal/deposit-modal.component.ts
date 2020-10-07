@@ -13,6 +13,8 @@ import {QueryParams} from '@ngrx/data';
 import {IDatePickerConfig} from 'ng2-date-picker';
 import {Beneficiary} from '../../models/beneficiary';
 import {Deposit} from '../../models/deposit';
+import {ForeignCompanyService} from '../../shared/modules/foreignCompanies/services/foreignCompanies.service';
+import {ForeignCompany} from '../../models/foreignCompany';
 
 @Component({
   selector: 'app-deposit-modal',
@@ -21,8 +23,7 @@ import {Deposit} from '../../models/deposit';
 })
 export class DepositModalComponent implements OnInit {
 
-  // tslint:disable-next-line:no-input-rename
-  @Input('currency') currencyProp: string;
+  @Input() currency: string;
 
   @Output() closeClicked = new EventEmitter();
 
@@ -30,7 +31,8 @@ export class DepositModalComponent implements OnInit {
 
   form: FormGroup;
   errors: string[];
-  adminCompanies$: Observable<RussCompany[]>;
+  rusCompanies$: Observable<RussCompany[]>;
+  forCompanies$: Observable<ForeignCompany[]>;
   clientCompanies$: Observable<RussCompany[]>;
   selectedFile = null;
   datePickerConfig: IDatePickerConfig = {
@@ -41,26 +43,38 @@ export class DepositModalComponent implements OnInit {
 
   constructor(
     private depositService: DepositService,
-    private russCompanyService: RussCompanyService
+    private rusCompanyService: RussCompanyService,
+    private forCompanyService: ForeignCompanyService
   ) {
     let params: QueryParams = {assigned: 'true'};
-    this.adminCompanies$ = this.russCompanyService.getWithQuery(params);
+    this.rusCompanies$ = this.rusCompanyService.getWithQuery(params);
+    this.forCompanies$ = this.forCompanyService.getWithQuery(params);
     params = {client: 'true'};
-    this.clientCompanies$ = this.russCompanyService.getWithQuery(params);
+    this.clientCompanies$ = this.rusCompanyService.getWithQuery(params);
   }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      admin_company_invoice_number: new FormControl(null, Validators.required),
-      admin_company_invoice_date: new FormControl('', [Validators.required]),
-      payment_order_number: new FormControl(null, Validators.required),
-      payment_order_date: new FormControl('', Validators.required),
-      admin_company_id: new FormControl(null, Validators.required),
-      user_company_id: new FormControl(null, Validators.required),
-      amount: new FormControl(null, Validators.required),
-      payment_purpose: new FormControl('', Validators.required),
-      payment_order_pdf: new FormControl('', Validators.required),
-    });
+    if (this.currency === 'rub') {
+      this.form = new FormGroup({
+        admin_company_invoice_number: new FormControl(null, Validators.required),
+        admin_company_invoice_date: new FormControl('', [Validators.required]),
+        payment_order_number: new FormControl(null, Validators.required),
+        payment_order_date: new FormControl('', Validators.required),
+        admin_company_id: new FormControl(null, Validators.required),
+        user_company_id: new FormControl(null, Validators.required),
+        amount: new FormControl(null, Validators.required),
+        payment_purpose: new FormControl('', Validators.required),
+        payment_order_pdf: new FormControl('', Validators.required),
+      });
+    } else {
+      this.form = new FormGroup({
+        admin_company_id: new FormControl(null, Validators.required),
+        user_company_id: new FormControl(null, Validators.required),
+        amount: new FormControl(null, Validators.required),
+        payment_purpose: new FormControl('', Validators.required),
+        payment_order_pdf: new FormControl('', Validators.required),
+      });
+    }
   }
 
   closeModal(): void {
@@ -68,7 +82,6 @@ export class DepositModalComponent implements OnInit {
   }
 
   handleErrors(err): void {
-    console.log('err', err)
     this.errors = [];
     for (const [_, value] of Object.entries(err.error.errors)) {
       this.errors.push(value[0]);
@@ -79,7 +92,7 @@ export class DepositModalComponent implements OnInit {
 
     const deposit: Deposit = {
       ...this.form.value,
-      currency: this.currencyProp,
+      currency: this.currency,
       selectedFile: this.selectedFile
     };
     this.depositService.addDeposit(deposit).pipe(take(1)).subscribe(
@@ -90,19 +103,6 @@ export class DepositModalComponent implements OnInit {
         this.handleErrors(err);
       }
     );
-
-
-    // if (this.selectedFile) {
-    //   this.depositService.uploadFile(this.selectedFile).pipe(take(3)).subscribe(
-    //     info => {
-    //       console.log('info', info)
-    //     },
-    //     error => {
-    //       console.log('error', error);
-    //     }
-    //   );
-    // }
-
   }
 
   onFileSelect($event: any): void {

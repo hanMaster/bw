@@ -26,6 +26,7 @@ class CreateRussCompaniesTable extends Migration
             $table->string('bic_code');
             $table->string('corr_account');
             $table->string('account_number');
+            $table->boolean('isActive')->default(true);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

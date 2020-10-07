@@ -28,17 +28,9 @@ export class DepositCurrencyPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('currency page init');
     this.route.params.subscribe((param: Params) => {
       this.currency = param.currency;
-      const params: QueryParams = {
-        currency: this.currency
-      };
-      this.depositService.getWithQuery(params).pipe(first()).subscribe(
-        deposits => {
-          this.deposits = deposits;
-        }
-      );
+      this.fetchDeposits();
     });
   }
 
@@ -50,5 +42,17 @@ export class DepositCurrencyPageComponent implements OnInit {
   hideModal(): void {
     this.isPopupVisible = false;
     this.scrollService.enable();
+    this.fetchDeposits();
+  }
+
+  private fetchDeposits(): void {
+    const params: QueryParams = {
+      currency: this.currency
+    };
+    this.depositService.getWithQuery(params).pipe(first()).subscribe(
+      deposits => {
+        this.deposits = deposits;
+      }
+    );
   }
 }

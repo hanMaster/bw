@@ -2,7 +2,7 @@
   <span class="close" (click)="closeModal()">&times;</span>
   <div class="modal-header">
     <div class="modal-header_header">
-      <h2>New deposit in {{currencyProp.toUpperCase()}}</h2>
+      <h2>New deposit in {{currency.toUpperCase()}}</h2>
       <span>Fill in all fields to add a new deposit</span>
     </div>
     <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">
@@ -20,7 +20,7 @@
   </div>
 
   <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
-    <div class="double">
+    <div class="double" *ngIf="currency==='rub'">
       <div>
         <label for="invoice">Номер счета на оплату:</label>
         <input
@@ -44,7 +44,7 @@
         ></dp-date-picker>
       </div>
     </div>
-    <div class="double">
+    <div class="double" *ngIf="currency==='rub'">
       <div>
         <label for="paymentOrder">Номер платежного поручения:</label>
         <input
@@ -72,7 +72,12 @@
     <div>
       <label for="adminCompany">Продавец:</label>
       <select id="adminCompany" formControlName="admin_company_id">
-        <option *ngFor="let adm of adminCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
+        <ng-container *ngIf="currency==='rub'">
+          <option *ngFor="let adm of rusCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
+        </ng-container>
+        <ng-container *ngIf="currency!='rub'">
+          <option *ngFor="let adm of forCompanies$ | async" value="{{adm.id}}">{{adm.company_name}}</option>
+        </ng-container>
       </select>
     </div>
     <div>

@@ -15,10 +15,10 @@ class CreateDepositsTable extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->string('admin_company_invoice_number');
-            $table->string('admin_company_invoice_date');
-            $table->string('payment_order_number');
-            $table->string('payment_order_date');
+            $table->string('admin_company_invoice_number')->nullable();
+            $table->string('admin_company_invoice_date')->nullable();
+            $table->string('payment_order_number')->nullable();
+            $table->string('payment_order_date')->nullable();
             $table->bigInteger('admin_company_id');
             $table->bigInteger('user_company_id');
             $table->foreignId('user_id')->constrained();

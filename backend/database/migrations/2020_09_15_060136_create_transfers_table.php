@@ -18,12 +18,13 @@ class CreateTransfersTable extends Migration
             $table->foreignId('beneficiary_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->integer('amount');
-            $table->string('payment_purposes');
+            $table->string('payment_purpose');
+            $table->string('invoice_pdf');
             $table->enum('currency', ['usd', 'eur']);
             $table->enum('status', ['in processing', 'completed']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('beneficiary_id')->references('id')->on('beneficiary');
+            $table->foreign('beneficiary_id')->references('id')->on('beneficiaries');
         });
     }
 

@@ -1,0 +1,119 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>New transfer</h2>
+      <span>Fill in all fields to add a new deposit</span>
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save transfer
+    </button>
+  </div>
+
+  <div class="errors" *ngIf="errors">
+    <ul>
+      <li *ngFor="let err of errors">{{err}}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="beneficiary">Beneficiary:</label>
+      <select id="beneficiary" formControlName="beneficiary_id" (ngModelChange)="setValues()">
+        <option *ngFor="let beneficiary of beneficiaries"
+                value="{{beneficiary.id}}">{{beneficiary.beneficiary_name}}</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="account_number">Account number:</label>
+      <input
+        id="account_number"
+        type="text"
+        placeholder="Account number"
+        formControlName="account_number"
+      />
+    </div>
+    <div>
+      <label for="beneficiary_bank_name">Bank name:</label>
+      <input
+        id="beneficiary_bank_name"
+        type="text"
+        placeholder="Bank name"
+        formControlName="beneficiary_bank_name"
+      />
+    </div>
+    <div>
+      <label for="bank_address">Bank address:</label>
+      <input
+        id="bank_address"
+        type="text"
+        placeholder="Bank address"
+        formControlName="bank_address"
+      />
+    </div>
+    <div>
+      <label for="swift_code">SWIFT:</label>
+      <input
+        id="swift_code"
+        type="text"
+        placeholder="SWIFT"
+        formControlName="swift_code"
+      />
+    </div>
+
+    <div>
+      <label for="currency">Currency:</label>
+      <select id="currency" formControlName="currency">
+        <option value="usd" selected>USD</option>
+        <option value="eur">EUR</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="amount">Amount:</label>
+      <input
+        id="amount"
+        type="text"
+        placeholder="Amount"
+        formControlName="amount"
+        [ngClass]="{invalid: form.get('amount').touched && form.get('amount').invalid}"
+      />
+    </div>
+    <div>
+      <label for="payment_purpose">Payment purpose:</label>
+      <select id="payment_purpose" formControlName="payment_purpose">
+        <option value="Payment for goods" selected>Payment for goods</option>
+        <option value="Payment for logistic service">Payment for logistic service</option>
+      </select>
+    </div>
+
+    <div class="upload">
+      <p>Attach a PDF invoice file form from the factory \ manufacturer.</p>
+      <div class="upload-group">
+        <input
+          type="file"
+          class="file-input" #file
+          formControlName="invoice_pdf"
+          (change)="onFileSelect($event)"
+        >
+        <button type="button" class="btn btn-upload" (click)="file.click()">upload file</button>
+        <p>
+          <span *ngIf="form.value.invoice_pdf">selected</span>{{form.value.invoice_pdf}}
+        </p>
+      </div>
+    </div>
+  </form>
+  <div class="deposit-modal-footer">
+
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save transfer
+    </button>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import {BeneficiariesListComponent} from '../shared/modules/beneficiary/componen
 import {BeneficiaryProfileComponent} from '../shared/modules/beneficiary/components/beneficiaryProfile/beneficiaryProfile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DpDatePickerModule} from 'ng2-date-picker';
+import {TransferModalComponent} from './transferModal/transferModal.component';
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
     DepositPageComponent,
     DepositCurrencyPageComponent,
     HomePageComponent,
-    TransferPageComponent
+    TransferPageComponent,
+    TransferModalComponent
   ]
 })
 export class ClientModule{

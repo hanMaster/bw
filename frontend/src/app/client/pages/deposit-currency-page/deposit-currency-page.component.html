@@ -45,8 +45,11 @@
     <td class="cell-currency">{{deposit.amount}}</td>
     <td class="cell-action">
       <a href="#">
-        <svg width="19" height="20">
+        <svg width="19" height="20" *ngIf="deposit.status==='in processing'">
           <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+        <svg width="26" height="20" *ngIf="deposit.status==='confirmed'">
+          <use xlink:href="./assets/img/icons.svg#deposit-done"></use>
         </svg>
       </a>
       <span class="tooltiptext">{{deposit.status}}</span>

@@ -6,7 +6,13 @@ export class Transfer{
   beneficiary_id: number;
   user_id: number;
   amount: number;
-  payment_purposes: string;
+  payment_purpose: string;
   currency: CurrencyType;
   status: TransferStatusesType;
+  invoice_pdf: string;
+  selectedFile: any;
+  beneficiary_name?: string;
+  bank_name?: string;
+  created_at?: string;
+  updated_at?: string;
 }
