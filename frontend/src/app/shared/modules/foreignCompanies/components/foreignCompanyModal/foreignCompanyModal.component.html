@@ -1,0 +1,136 @@
+<div class="modal-window">
+  <span class="close" (click)="closeModal()">&times;</span>
+  <div class="modal-header">
+    <div class="modal-header_header">
+      <h2>{{company ? 'Edit' : 'New'}} company</h2>
+      <span *ngIf="!company">Fill in all fields to create a new client</span>
+    </div>
+    &nbsp;
+    <button
+      class="btn btn-primary"
+      (click)="onSubmit()"
+      [disabled]="!form.valid"
+    >
+      <svg width="20" height="15">
+        <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+      </svg>
+      save company
+    </button>
+  </div>
+
+  <div class="errors" *ngIf="errors">
+    <ul>
+      <li *ngFor="let err of errors">{{err}}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="companyName">Company name:</label>
+      <input
+        id="companyName"
+        type="text"
+        placeholder="Company name"
+        formControlName="company_name"
+        [ngClass]="{invalid: form.get('company_name').touched && form.get('company_name').invalid}"
+      />
+    </div>
+
+
+    <div>
+      <label for="address_line1">Address:</label>
+      <input
+        id="address_line1"
+        type="text"
+        placeholder="Address"
+        formControlName="address_line1"
+        [ngClass]="{invalid: form.get('address_line1').touched && form.get('address_line1').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="bank_name">Bank name:</label>
+      <input
+        id="bank_name"
+        type="text"
+        placeholder="Bank name"
+        formControlName="bank_name"
+        [ngClass]="{invalid: form.get('bank_name').touched && form.get('bank_name').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="bank_code">Bank code:</label>
+      <input
+        id="bank_code"
+        type="text"
+        placeholder="Bank code"
+        formControlName="bank_code"
+        [ngClass]="{invalid: form.get('bank_code').touched && form.get('bank_code').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="branch_code">Branch code:</label>
+      <input
+        id="branch_code"
+        type="text"
+        placeholder="Branch code"
+        formControlName="branch_code"
+        [ngClass]="{invalid: form.get('branch_code').touched && form.get('branch_code').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="bank_address">Bank address:</label>
+      <input
+        id="bank_address"
+        type="text"
+        placeholder="bank address"
+        formControlName="bank_address"
+        [ngClass]="{invalid: form.get('bank_address').touched && form.get('bank_address').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="swift_code">SWIFT:</label>
+      <input
+        id="swift_code"
+        type="text"
+        placeholder="SWIFT"
+        formControlName="swift_code"
+        [ngClass]="{invalid: form.get('swift_code').touched && form.get('swift_code').invalid}"
+      />
+    </div>
+
+    <div>
+      <label for="account_number">Расчетный счет:</label>
+      <input
+        id="account_number"
+        type="text"
+        placeholder="Расчетный счет"
+        formControlName="account_number"
+        [ngClass]="{invalid: form.get('account_number').touched && form.get('account_number').invalid}"
+      />
+    </div>
+
+  </form>
+
+  <div class="new-client-footer">
+
+    <span class="warning">*fill in all important fields</span>
+    <div>
+      <button
+        class="btn btn-primary"
+        (click)="onSubmit()"
+        [disabled]="!form.valid"
+      >
+        <svg width="20" height="15">
+          <use xlink:href="./assets/img/icons.svg#save-deposit"></use>
+        </svg>
+        save company
+      </button>
+    </div>
+
+  </div>
+</div>

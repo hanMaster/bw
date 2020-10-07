@@ -1,0 +1,32 @@
+<div *ngIf="company$ | async">
+  <div class="action-panel">
+    <div class="title">
+      <h1>{{(company$ | async).company_name}}</h1>
+    </div>
+    <div>
+      <button class="btn btn-back" (click)="goBack()">come back</button>
+      &nbsp;
+      <button class="btn btn-primary" (click)="updateCompany()">
+        <svg width="30" height="20">
+          <use xlink:href="./assets/img/icons.svg#pencil-edit"></use>
+        </svg>
+        Change
+      </button>
+    </div>
+  </div>
+
+  <h4><span class="label">Address:</span> {{(company$ | async).address_line1}}</h4>
+  <h4><span class="label">Bank name:</span> {{(company$ | async).bank_name}}</h4>
+  <h4><span class="label">Bank code:</span> {{(company$ | async).bank_code}}</h4>
+  <h4><span class="label">Bank address:</span> {{(company$ | async).bank_address}}</h4>
+  <h4><span class="label">Branch code:</span> {{(company$ | async).branch_code}}</h4>
+  <h4><span class="label">Account number:</span> {{(company$ | async).account_number}}</h4>
+  <h4><span class="label">SWIFT:</span> {{(company$ | async).swift_code}}</h4>
+
+
+  <h4><span class="label">Created at:</span> {{(company$ | async).created_at | date:'dd MMM yyyy hh:mm'}}</h4>
+  <h4><span class="label">Updated at:</span> {{(company$ | async).updated_at | date:'dd MMM yyyy hh:mm'}}</h4>
+</div>
+
+<app-foreign-company-modal *ngIf="companyModalVisible" [company]="company$ | async"
+                   (closeClicked)="hideCompanyModal()"></app-foreign-company-modal>

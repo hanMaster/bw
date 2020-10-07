@@ -6,7 +6,7 @@
     </div>
     <button
       class="btn btn-primary"
-      (click)="onSubmit()"
+      (click)="RusFor==='rus' ? onRusSubmit() : onForSubmit()"
       [disabled]="!form.valid"
     >
       <svg width="20" height="15">
@@ -16,11 +16,20 @@
     </button>
   </div>
 
-  <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onRusSubmit()" *ngIf="RusFor==='rus'">
     <select formControlName="admin_company_id">
       <option value="" disabled selected>Select company</option>
       <option
-        *ngFor="let company of (adminCompanies$ | async)"
+        *ngFor="let company of (rusCompanies$ | async)"
+        value="{{company.id}}"
+      >{{company.company_name}}</option>
+    </select>
+  </form>
+  <form [formGroup]="form" class="modal-content" (ngSubmit)="onForSubmit()" *ngIf="RusFor==='for'">
+    <select formControlName="admin_company_id">
+      <option value="" disabled selected>Select company</option>
+      <option
+        *ngFor="let company of (forCompanies$ | async)"
         value="{{company.id}}"
       >{{company.company_name}}</option>
     </select>

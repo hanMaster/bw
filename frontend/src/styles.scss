@@ -358,7 +358,7 @@ main {
     color: #c6c6c6;
 
     li {
-      padding: 12px 43px;
+      padding: 12px 0 12px 20px;
       border-left: 6px solid transparent;
 
       svg {
@@ -423,6 +423,16 @@ main {
 .main-content {
   width: 80%;
   margin: 36px 0 0 260px;
+
+  .switch{
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .switch_active{
+    text-decoration: underline;
+    color: $primary;
+    cursor: auto;
+  }
 
   .action-panel {
     display: flex;

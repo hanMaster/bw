@@ -24,33 +24,67 @@
 
 <hr class="mt-10">
 
-<div class="beneficiary-controls">
-  <h2>Administrator companies</h2>
-  <button class="btn btn-primary add-btn-icon" (click)="addCompany()">
-    new company
-  </button>
-</div>
+<span class="switch" [ngClass]="{switch_active: RusForCompanies==='rus' }"
+      (click)="RusForCompanies = 'rus'">Russian</span>
+&nbsp;
+<span class="switch" [ngClass]="{switch_active: RusForCompanies==='for' }"
+      (click)="RusForCompanies = 'for'">Foreign</span>
 
-<table class="tbl">
-  <thead>
-  <tr>
-    <th>Company name</th>
-    <th>Address</th>
-  </tr>
-  </thead>
-  <tbody *ngIf="client$ | async">
-  <tr *ngFor="let company of (client$ | async).companies" (click)="editCompany(company)">
-    <td class="client-name">{{company.company_name}}</td>
-    <td>{{company.law_address}}</td>
-  </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="RusForCompanies==='rus'">
+  <div class="beneficiary-controls">
+    <h2>Administrator russian companies</h2>
+    <button class="btn btn-primary add-btn-icon" (click)="addCompany()">
+      new company
+    </button>
+  </div>
+
+  <table class="tbl">
+    <thead>
+    <tr>
+      <th>Company name</th>
+      <th>Address</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="client$ | async">
+    <tr *ngFor="let company of (client$ | async).russCompanies" (click)="editCompany(company)">
+      <td class="client-name">{{company.company_name}}</td>
+      <td>{{company.law_address}}</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-container *ngIf="RusForCompanies==='for'">
+  <div class="beneficiary-controls">
+    <h2>Administrator foreign companies</h2>
+    <button class="btn btn-primary add-btn-icon" (click)="addCompany()">
+      new company
+    </button>
+  </div>
+
+  <table class="tbl">
+    <thead>
+    <tr>
+      <th>Company name</th>
+      <th>Address</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="client$ | async">
+    <tr *ngFor="let company of (client$ | async).forCompanies" (click)="editCompany(company)">
+      <td class="client-name">{{company.company_name}}</td>
+      <td>{{company.address_line1}}</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
+
 
 <app-client-modal *ngIf="clientModalVisible" [client]="client$ | async"
-                   (closeClicked)="hideClientModal()"></app-client-modal>
+                  (closeClicked)="hideClientModal()"></app-client-modal>
 <app-assign-company-modal
   *ngIf="companiesModalVisible"
   [selected]="selected"
+  [RusFor]="RusForCompanies"
   [client]="client$ | async"
   (closeClicked)="hideAssignCompanyModal()"
 ></app-assign-company-modal>

@@ -38,8 +38,16 @@ Route::post('russcompany', 'CompaniesController@addNewCompany')->middleware('aut
 Route::put('russcompany/{company}', 'CompaniesController@updateCompany')->middleware('auth:sanctum');
 Route::get('russcompany/{company}', 'CompaniesController@getCompanyById')->middleware('auth:sanctum');
 
+Route::get('foreigncompanies', 'ForeignCompaniesController@index');
+Route::post('foreigncompany', 'ForeignCompaniesController@addNewCompany')->middleware('auth:sanctum');
+Route::put('foreigncompany/{company}', 'ForeignCompaniesController@updateCompany')->middleware('auth:sanctum');
+Route::get('foreigncompany/{company}', 'ForeignCompaniesController@getCompanyById')->middleware('auth:sanctum');
+
 Route::post('usercompanies', 'UserCompaniesController@assignCompany')->middleware('auth:sanctum');
 Route::put('usercompanies/{id}', 'UserCompaniesController@reassignCompany')->middleware('auth:sanctum');
+
+Route::post('userforcompanies', 'UserForCompaniesController@assignCompany')->middleware('auth:sanctum');
+Route::put('userforcompanies/{id}', 'UserForCompaniesController@reassignCompany')->middleware('auth:sanctum');
 
 Route::get('deposits', 'DepositController@getDeposits')->middleware('auth:sanctum');
 Route::post('deposit', 'DepositController@addDeposit')->middleware('auth:sanctum');

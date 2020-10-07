@@ -5,6 +5,7 @@ import {ClientService} from '../../services/client.service';
 import {Observable} from 'rxjs';
 import {RussCompany} from '../../../../models/russCompany';
 import {Client} from '../../../../models/client';
+import {ForeignCompany} from '../../../../models/foreignCompany';
 
 @Component({
   selector: 'app-client-profile',
@@ -15,9 +16,10 @@ export class ClientProfileComponent implements OnInit {
 
   clientId: number;
   client$: Observable<Client>;
+  RusForCompanies = 'rus';
   clientModalVisible = false;
   companiesModalVisible = false;
-  selected: RussCompany = null;
+  selected: RussCompany | ForeignCompany = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +49,7 @@ export class ClientProfileComponent implements OnInit {
     this.companiesModalVisible = true;
   }
 
-  editCompany(company: RussCompany): void {
+  editCompany(company: RussCompany | ForeignCompany): void {
     this.companiesModalVisible = true;
     this.selected = company;
   }

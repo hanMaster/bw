@@ -1,0 +1,37 @@
+<div class="action-panel">
+  <div class="title">
+    <h1>Companies</h1>
+  </div>
+</div>
+<div class="beneficiary-controls">
+  <input
+    class="search-input"
+    type="text"
+    placeholder="find company"
+  />
+  <button class="btn btn-primary add-btn-icon" (click)="newCompany()">
+    new company
+  </button>
+</div>
+
+<table class="tbl" *ngIf="(companies$ | async);else loading">
+  <thead>
+  <tr>
+    <th>Company</th>
+    <th>Address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let company of (companies$ | async)" (click)="viewCompany(company)">
+    <td class="client-name">{{company.company_name}}</td>
+    <td>{{company.address_line1}}</td>
+  </tr>
+  </tbody>
+</table>
+<p class="more"><a href="#">↓ more companies</a></p>
+
+<app-foreign-company-modal *ngIf="modalVisible" (closeClicked)="hideModal()"></app-foreign-company-modal>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

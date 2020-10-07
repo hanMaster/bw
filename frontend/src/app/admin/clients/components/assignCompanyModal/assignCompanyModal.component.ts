@@ -7,6 +7,10 @@ import {RussCompany} from '../../../../models/russCompany';
 import {UserCompaniesService} from '../../services/userCompanies.service';
 import {RussCompanyService} from '../../../../shared/modules/companies/services/russCompanies.service';
 import {UserCompanies} from '../../../../models/userCompanies';
+import {ForeignCompany} from '../../../../models/foreignCompany';
+import {ForeignCompanyService} from '../../../../shared/modules/foreignCompanies/services/foreignCompanies.service';
+import {UserForCompanies} from '../../../../models/userForCompanies';
+import {UserForCompaniesService} from '../../services/userForCompanies.service';
 
 
 @Component({
@@ -17,19 +21,24 @@ export class AssignCompanyModalComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Output() closeClicked = new EventEmitter();
+  @Input() RusFor: string;
   @Input() client: Client;
-  @Input() selected: RussCompany;
+  @Input() selected: RussCompany | ForeignCompany;
   @HostBinding('class') classList = 'modal-wrapper';
 
   form: FormGroup;
   errors: string[];
-  adminCompanies$: Observable<RussCompany[] | null>;
+  rusCompanies$: Observable<RussCompany[] | null>;
+  forCompanies$: Observable<ForeignCompany[] | null>;
 
   constructor(
     private userCompaniesService: UserCompaniesService,
-    private adminCompaniesService: RussCompanyService
+    private userForCompaniesService: UserForCompaniesService,
+    private rusCompaniesService: RussCompanyService,
+    private forCompaniesService: ForeignCompanyService
   ) {
-    this.adminCompanies$ = this.adminCompaniesService.getAll();
+    this.rusCompanies$ = this.rusCompaniesService.getAll();
+    this.forCompanies$ = this.forCompaniesService.getAll();
   }
 
 
@@ -48,7 +57,8 @@ export class AssignCompanyModalComponent implements OnInit {
     this.closeClicked.emit();
   }
 
-  onSubmit(): void {
+  onRusSubmit(): void {
+    console.log('rusSubmit');
     const userCompany: UserCompanies = {
       user_id: this.client.id,
       admin_company_id: Number(this.form.value.admin_company_id)
@@ -74,7 +84,36 @@ export class AssignCompanyModalComponent implements OnInit {
         }
       );
     }
+  }
 
+
+  onForSubmit(): void {
+    console.log('forSubmit');
+    const userForCompany: UserForCompanies = {
+      user_id: this.client.id,
+      admin_company_id: Number(this.form.value.admin_company_id)
+    };
+    if (this.selected) {
+      //id = old_company_id need to pass update method of ngrx/data
+      userForCompany.id = this.selected.id;
+      this.userForCompaniesService.update(userForCompany).pipe(take(1)).subscribe(
+        () => {
+          this.closeModal();
+        },
+        err => {
+          this.handleErrors(err);
+        }
+      );
+    } else {
+      this.userForCompaniesService.add(userForCompany).pipe(take(1)).subscribe(
+        () => {
+          this.closeModal();
+        },
+        err => {
+          this.handleErrors(err);
+        }
+      );
+    }
   }
 
   handleErrors(err): void {

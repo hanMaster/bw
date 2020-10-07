@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\ForeignCompanies;
 use App\RussCompanies;
 use App\User;
 use App\UserCompany;
+use App\UserForCompany;
 use Illuminate\Http\Request;
 
 class ClientsController extends Controller
@@ -16,9 +18,13 @@ class ClientsController extends Controller
 
     public function getClientById(User $client)
     {
-        $companies = RussCompanies::whereIn('id', UserCompany::select('admin_company_id')
+        $russCompanies = RussCompanies::whereIn('id', UserCompany::select('admin_company_id')
             ->where('user_id', $client->id))->get();
-        $client['companies'] = $companies;
+        $client['russCompanies'] = $russCompanies;
+
+        $forCompanies = ForeignCompanies::whereIn('id', UserForCompany::select('admin_company_id')
+            ->where('user_id', $client->id))->get();
+        $client['forCompanies'] = $forCompanies;
         return response()->json($client, 200);
     }
 

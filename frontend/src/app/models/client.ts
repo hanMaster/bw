@@ -1,4 +1,5 @@
 import {RussCompany} from './russCompany';
+import {ForeignCompany} from './foreignCompany';
 
 export class Client {
   id?: number;
@@ -7,7 +8,8 @@ export class Client {
   password: string;
   phone_number: string;
   contact_name: string;
-  companies?: RussCompany[];
+  russCompanies?: RussCompany[];
+  forCompanies?: ForeignCompany[];
   created_at?: string;
   updated_at?: string;
 }

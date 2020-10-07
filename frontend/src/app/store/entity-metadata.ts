@@ -3,19 +3,18 @@ import {EntityMetadataMap, EntityDataModuleConfig} from '@ngrx/data';
 const entityMetadata: EntityMetadataMap = {
   Beneficiary: {},
   RussCompany: {},
+  ForeignCompany: {},
   Deposit: {},
   Transfer: {},
-  ForeignBank: {},
-  ForeignAccount: {},
-  RussBank: {},
-  RussAccount: {},
   Client: {},
-  UserCompanies: {}
+  UserCompanies: {},
+  UserForCompanies: {}
 };
 
 const pluralNames = {
   Beneficiary: 'Beneficiaries',
   RussCompany: 'RussCompanies',
+  ForeignCompany: 'ForeignCompanies',
   Client: 'Clients'
 };
 
