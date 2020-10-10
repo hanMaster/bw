@@ -1,6 +1,7 @@
 <div class="action-panel">
-  <div class="title">
-    <h1>Transfer</h1>
+  <div class="breadcrumbs">
+    <a [routerLink]="['/admin','transfers']" class="root__breadcrumb">Transfers</a>&nbsp;
+    <span class="tail__breadcrumb">→ archived transfers</span>
   </div>
 </div>
 
@@ -10,10 +11,7 @@
     type="text"
     placeholder="find transfer"
   />
-  <a href="#" class="received-deposits">view completed transfers</a>
-  <button class="btn btn-primary add-btn-icon" (click)="newTransfer()">
-    new transfer
-  </button>
+
 </div>
 
 <table class="tbl" *ngIf="transfers$ | async">
@@ -39,7 +37,7 @@
         <svg width="19" height="20" *ngIf="transfer.status === 'in processing'">
           <use xlink:href="./assets/img/icons.svg#in-progress"></use>
         </svg>
-        <svg width="26" height="20" *ngIf="transfer.status==='confirmed'">
+        <svg width="26" height="20" *ngIf="transfer.status==='completed'">
           <use xlink:href="./assets/img/icons.svg#deposit-done"></use>
         </svg>
       </a>
@@ -51,4 +49,4 @@
 </table>
 <p class="more"><a href="#">↓ more transfers</a></p>
 
-<app-transfer-modal *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-transfer-modal>
+<!--<app-transfer-modal *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-transfer-modal>-->

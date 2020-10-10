@@ -19,6 +19,9 @@ import {CompanyProfileComponent} from '../shared/modules/companies/components/co
 import {ForeignCompaniesModule} from '../shared/modules/foreignCompanies/foreignCompanies.module';
 import {ForeignCompaniesListComponent} from '../shared/modules/foreignCompanies/components/foreignCompaniesList/foreignCompaniesList.component';
 import {ForeignCompanyProfileComponent} from '../shared/modules/foreignCompanies/components/foreignCompanyProfile/foreignCompanyProfile.component';
+import {AdminTransfersArchivedPageComponent} from './pages/adminTransfersArchivedPage/adminTransfersArchivedPage.component';
+import {ClientMainPageComponent} from './clients/components/clientMainPage/clientMainPage.component';
+import {AdminDepositsCurrencyPageModule} from './pages/adminDepositsCurrencyPage/adminDepositsCurrencyPage.module';
 
 const routes: Routes = [
   {
@@ -26,6 +29,7 @@ const routes: Routes = [
       {path: '', redirectTo: '/admin', pathMatch: 'full'},
       {path: '', component: AdminHomePageComponent, canActivate: [AuthGuard]},
       {path: 'clients', component: AdminClientsPageComponent, canActivate: [AuthGuard]},
+      {path: 'clients/:clientId', component: ClientMainPageComponent, canActivate: [AuthGuard]},
       {path: 'client-profile/:clientId', component: ClientProfileComponent, canActivate: [AuthGuard]},
       {path: 'companies', component: CompaniesListComponent, canActivate: [AuthGuard]},
       {path: 'company-profile/:companyId', component: CompanyProfileComponent, canActivate: [AuthGuard] },
@@ -34,7 +38,10 @@ const routes: Routes = [
       {path: 'deposits', component: AdminDepositsPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},
       {path: 'deposits/:currency/completed', component: AdminDepositsCurrencyCompletedPageComponent, canActivate: [AuthGuard]},
+      {path: 'deposits/:currency/:clientId', component: AdminDepositsCurrencyPageComponent, canActivate: [AuthGuard]},
+      {path: 'deposits/:currency/:clientId/completed', component: AdminDepositsCurrencyCompletedPageComponent, canActivate: [AuthGuard]},
       {path: 'transfers', component: AdminTransfersPageComponent, canActivate: [AuthGuard]},
+      {path: 'transfers/archived', component: AdminTransfersArchivedPageComponent, canActivate: [AuthGuard]},
     ]
   }
 ];
@@ -45,16 +52,17 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CompleteDepositModalModule,
     ClientsModule,
-    ForeignCompaniesModule
+    ForeignCompaniesModule,
+    AdminDepositsCurrencyPageModule
   ],
   declarations: [
     MainLayoutComponent,
     HeaderComponent,
     NavComponent,
     AdminDepositsPageComponent,
-    AdminDepositsCurrencyPageComponent,
     AdminHomePageComponent,
     AdminTransfersPageComponent,
+    AdminTransfersArchivedPageComponent,
     AdminDepositsCurrencyCompletedPageComponent
   ]
 })

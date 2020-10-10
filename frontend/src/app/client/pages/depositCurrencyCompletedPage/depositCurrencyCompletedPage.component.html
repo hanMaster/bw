@@ -1,16 +1,20 @@
 <div class="action-panel">
   <div class="breadcrumbs">
-    <a routerLink="/admin/deposits" class="root__breadcrumb">Deposits</a>
-    <span class="tail__breadcrumb">→ accounts in {{currency.toUpperCase()}}</span>
+    <a [routerLink]="['/','deposit']" class="root__breadcrumb">Deposit</a>&nbsp;
+    <a [routerLink]="['/','deposit', currency]" class="tail__breadcrumb">→ account in {{currency.toUpperCase()}}</a>&nbsp;
+    <span class="tail__breadcrumb">→ completed deposits</span>
   </div>
-  <button class="btn btn-back" routerLink="/admin/deposits">come back</button>
+  <button class="btn btn-back" [routerLink]="['/','deposit', currency]">come back</button>
 </div>
 
 <div class="panel deposit-panel">
   <div class="deposit-panel__balance">
-    <h2>Total balance of accounts in {{currency.toUpperCase()}}</h2>
+    <h2>Account Balance</h2>
     <span class="deposit-balance" [ngClass]="currency">898,800</span>
   </div>
+  <button class="btn btn-primary add-btn-icon" (click)="newDeposit()">
+    new deposit
+  </button>
 </div>
 
 <div class="search-block">
@@ -19,10 +23,9 @@
     type="text"
     placeholder="find deposit"
   />
-  <a [routerLink]="['/admin', 'deposits', currency, 'completed']" class="btn btn-black">completed deposits</a>
 </div>
 
-<table class="tbl deposit" *ngIf="deposits">
+<table class="tbl deposit" *ngIf="deposits;else loading">
   <thead>
   <tr>
     <th>Ref.№.</th>
@@ -34,7 +37,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr (click)="openCompleteDepositModal()" *ngFor="let deposit of deposits">
+  <tr *ngFor="let deposit of deposits">
     <td>{{deposit.id}}</td>
     <td>{{deposit.created_at | date:'dd MMM yyyy'}}</td>
     <td class="cell-name">{{deposit.company_name}}</td>
@@ -42,8 +45,11 @@
     <td class="cell-currency">{{deposit.amount}}</td>
     <td class="cell-action">
       <a href="#">
-        <svg width="19" height="20">
+        <svg width="19" height="20" *ngIf="deposit.status==='in processing'">
           <use xlink:href="./assets/img/icons.svg#in-progress"></use>
+        </svg>
+        <svg width="26" height="20" *ngIf="deposit.status==='confirmed'">
+          <use xlink:href="./assets/img/icons.svg#deposit-done"></use>
         </svg>
       </a>
       <span class="tooltiptext">{{deposit.status}}</span>
@@ -54,4 +60,8 @@
 
 <p class="more"><a href="#">↓ more deposits</a></p>
 
-<app-complete-deposit-modal [currency]="currency" *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-complete-deposit-modal>
+<app-deposit-modal [currency]="currency" *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-deposit-modal>
+
+<ng-template #loading>
+  Loading...
+</ng-template>

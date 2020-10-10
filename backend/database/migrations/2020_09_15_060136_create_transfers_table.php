@@ -20,6 +20,7 @@ class CreateTransfersTable extends Migration
             $table->integer('amount');
             $table->string('payment_purpose');
             $table->string('invoice_pdf');
+            $table->string('swift_pdf')->nullable();
             $table->enum('currency', ['usd', 'eur']);
             $table->enum('status', ['in processing', 'completed']);
             $table->timestamps();

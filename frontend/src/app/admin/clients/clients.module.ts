@@ -9,6 +9,8 @@ import {ClientModalComponent} from './components/clientModal/clientModal.compone
 import {ClientService} from './services/client.service';
 import {ClientProfileComponent} from './components/clientProfile/clientProfile.component';
 import {UserCompaniesService} from './services/userCompanies.service';
+import { ClientMainPageComponent } from './components/clientMainPage/clientMainPage.component';
+import {RouterModule} from '@angular/router';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -19,12 +21,14 @@ const maskConfig: Partial<IConfig> = {
     CommonModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfig),
+    RouterModule,
   ],
   declarations: [
     AdminClientsPageComponent,
     ClientModalComponent,
     AssignCompanyModalComponent,
     ClientProfileComponent,
+    ClientMainPageComponent,
   ],
   providers: [
     ClientService,

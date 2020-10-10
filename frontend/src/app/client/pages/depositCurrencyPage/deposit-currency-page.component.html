@@ -1,6 +1,6 @@
 <div class="action-panel">
   <div class="breadcrumbs">
-    <a routerLink="/deposit" class="root__breadcrumb">Deposit</a>
+    <a [routerLink]="['/','deposit']" class="root__breadcrumb">Deposit</a>&nbsp;
     <span class="tail__breadcrumb">→ account in {{currency.toUpperCase()}}</span>
   </div>
   <button class="btn btn-back" routerLink="/deposit">come back</button>
@@ -22,7 +22,7 @@
     type="text"
     placeholder="find deposit"
   />
-  <a href="#" class="received-deposits">view received deposits</a>
+  <a [routerLink]="['/', 'deposit', currency, 'completed']" class="received-deposits">view received deposits</a>
 </div>
 
 <table class="tbl deposit" *ngIf="deposits;else loading">

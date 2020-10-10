@@ -13,7 +13,8 @@ class CompaniesController extends Controller
     {
         $user_id = Auth::user()->getAuthIdentifier();
         if($request->has(['assigned'])) {
-            $companies = RussCompanies::select('id','company_name')->whereIn('id', UserCompany::select('admin_company_id')->where('user_id', $user_id))->get();
+            $companies = RussCompanies::select('id','company_name')
+                ->whereIn('id', UserCompany::select('admin_company_id')->where('user_id', $user_id))->get();
             return response()->json($companies, 200);
         }
         if($request->has(['client'])) {

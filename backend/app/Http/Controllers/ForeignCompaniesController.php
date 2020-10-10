@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ForeignCompanies;
 use App\UserCompany;
+use App\UserForCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,8 @@ class ForeignCompaniesController extends Controller
     {
         $user_id = Auth::user()->getAuthIdentifier();
         if($request->has(['assigned'])) {
-            $companies = ForeignCompanies::select('id','company_name')->whereIn('id', UserCompany::select('admin_company_id')->where('user_id', $user_id))->get();
+            $companies = ForeignCompanies::select('id','company_name')
+                ->whereIn('id', UserForCompany::select('admin_company_id')->where('user_id', $user_id))->get();
             return response()->json($companies, 200);
         }
         return ForeignCompanies::all();

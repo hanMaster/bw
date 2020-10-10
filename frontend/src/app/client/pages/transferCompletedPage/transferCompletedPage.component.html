@@ -1,7 +1,9 @@
 <div class="action-panel">
-  <div class="title">
-    <h1>Transfers</h1>
+  <div class="breadcrumbs">
+    <a [routerLink]="['/','transfer']" class="root__breadcrumb">Transfer</a>&nbsp;
+    <span class="tail__breadcrumb">→ completed transfers</span>
   </div>
+  <button class="btn btn-back" [routerLink]="['/','transfer']">come back</button>
 </div>
 
 <div class="search-block">
@@ -10,11 +12,9 @@
     type="text"
     placeholder="find transfer"
   />
-  <a [routerLink]="['/admin','transfers','archived']" class="received-deposits">view archived transfers</a>
-
 </div>
 
-<table class="tbl" *ngIf="transfers$ | async">
+<table class="tbl" *ngIf="transfers">
   <thead>
   <tr>
     <th>Ref.№.</th>
@@ -26,7 +26,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let transfer of (transfers$ | async)">
+  <tr *ngFor="let transfer of transfers">
     <td>{{transfer.id}}</td>
     <td>{{transfer.created_at | date:'dd MMM yyyy'}}</td>
     <td class="cell-name">{{transfer.beneficiary_name}}</td>
@@ -49,4 +49,4 @@
 </table>
 <p class="more"><a href="#">↓ more transfers</a></p>
 
-<!--<app-transfer-modal *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-transfer-modal>-->
+<app-transfer-modal *ngIf="isPopupVisible" (closeClicked)="hideModal()"></app-transfer-modal>

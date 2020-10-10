@@ -39,7 +39,7 @@ export class AdminClientsPageComponent implements OnInit {
   }
 
   viewClient(client: Client): void {
-    this.router.navigate(['/admin', 'client-profile', client.id]);
+    this.router.navigate(['/admin', 'clients', client.id]);
   }
 
 }

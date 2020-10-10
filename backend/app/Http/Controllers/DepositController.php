@@ -12,12 +12,14 @@ class DepositController extends Controller
     public function getDeposits(Request $request)
     {
         $deposits = null;
+        $user_id = $request->has(['clientId']) ? $request['clientId'] : Auth::user()->getAuthIdentifier();
+
         if ($request->has(['currency']) && $request['currency'] == 'rub') {
 
             $deposits = DB::table('deposits')
                 ->join('russ_companies', 'russ_companies.id', '=', 'deposits.admin_company_id')
                 ->select('deposits.id', 'deposits.created_at', 'deposits.currency', 'deposits.amount', 'deposits.status', 'deposits.user_id', 'russ_companies.company_name', 'russ_companies.bank_name')
-                ->where('deposits.user_id', '=', Auth::user()->getAuthIdentifier())
+                ->where('deposits.user_id', '=', $user_id)
                 ->where('deposits.currency', '=', 'rub')
                 ->get();
         }
@@ -25,10 +27,28 @@ class DepositController extends Controller
             $deposits = DB::table('deposits')
                 ->join('foreign_companies', 'foreign_companies.id', '=', 'deposits.admin_company_id')
                 ->select('deposits.id', 'deposits.created_at', 'deposits.currency', 'deposits.amount', 'deposits.status', 'deposits.user_id', 'foreign_companies.company_name', 'foreign_companies.bank_name')
-                ->where('deposits.user_id', '=', Auth::user()->getAuthIdentifier())
+                ->where('deposits.user_id', '=', $user_id)
                 ->where('deposits.currency', '=', $request['currency'])
                 ->get();
         }
+
+        if ($request->has(['admin'])) {
+            if ($request->has(['currency']) && $request['currency'] == 'rub') {
+                $deposits = DB::table('deposits')
+                    ->join('russ_companies', 'russ_companies.id', '=', 'deposits.admin_company_id')
+                    ->select('deposits.id', 'deposits.created_at', 'deposits.currency', 'deposits.amount', 'deposits.status', 'deposits.user_id', 'russ_companies.company_name', 'russ_companies.bank_name')
+                    ->where('deposits.currency', '=', 'rub')
+                    ->get();
+            }
+            if ($request->has(['currency']) && $request['currency'] != 'rub') {
+                $deposits = DB::table('deposits')
+                    ->join('foreign_companies', 'foreign_companies.id', '=', 'deposits.admin_company_id')
+                    ->select('deposits.id', 'deposits.created_at', 'deposits.currency', 'deposits.amount', 'deposits.status', 'deposits.user_id', 'foreign_companies.company_name', 'foreign_companies.bank_name')
+                    ->where('deposits.currency', '=', $request['currency'])
+                    ->get();
+            }
+        }
+
         return response()->json($deposits, 200);
     }
 

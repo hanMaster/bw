@@ -5,13 +5,13 @@ import {Observable} from 'rxjs';
 import {Deposit} from '../../../models/deposit';
 import {DepositService} from '../../services/deposit.service';
 import {QueryParams} from '@ngrx/data';
-import {filter, first, map, tap} from 'rxjs/operators';
+import {filter, first, map, mergeMap, tap, toArray} from 'rxjs/operators';
 
 @Component({
   selector: 'app-deposit-currency-page',
-  templateUrl: './deposit-currency-page.component.html'
+  templateUrl: './depositCurrencyCompletedPage.component.html'
 })
-export class DepositCurrencyPageComponent implements OnInit {
+export class DepositCurrencyCopletedPageComponent implements OnInit {
   @HostBinding('class') classList = 'main-content';
 
   currency: string;
@@ -49,7 +49,13 @@ export class DepositCurrencyPageComponent implements OnInit {
     const params: QueryParams = {
       currency: this.currency
     };
-    this.depositService.getWithQuery(params).pipe(first()).subscribe(
+    this.depositService.getWithQuery(params).pipe(
+      first(),
+      mergeMap((deposits,_) => {
+        return deposits.filter(dep => (dep.status === 'confirmed'));
+      }),
+      toArray()
+    ).subscribe(
       deposits => {
         this.deposits = deposits;
       }

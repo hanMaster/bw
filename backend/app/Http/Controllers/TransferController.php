@@ -4,18 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Transfer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TransferController extends Controller
 {
-    public function getTransfers()
+    public function getTransfersByClient()
     {
-        $transfers  = DB::table('transfers')
-                ->join('beneficiaries', 'beneficiaries.id', '=', 'transfers.beneficiary_id')
-                ->select('transfers.id', 'transfers.created_at', 'transfers.currency', 'transfers.amount', 'transfers.status', 'transfers.user_id', 'beneficiaries.beneficiary_name', 'beneficiaries.bank_name')
-                ->where('transfers.user_id', '=', Auth::user()->getAuthIdentifier())
-                ->get();
+        $transfers = DB::table('transfers')
+            ->join('beneficiaries', 'beneficiaries.id', '=', 'transfers.beneficiary_id')
+            ->select('transfers.id', 'transfers.created_at', 'transfers.currency', 'transfers.amount', 'transfers.status', 'transfers.user_id', 'beneficiaries.beneficiary_name', 'beneficiaries.bank_name')
+            ->where('transfers.user_id', '=', Auth::user()->getAuthIdentifier())
+            ->get();
+        return response()->json($transfers, 200);
+    }
+
+    public function getActiveTransfersForAdmin()
+    {
+        $transfers = DB::table('transfers')
+            ->join('beneficiaries', 'beneficiaries.id', '=', 'transfers.beneficiary_id')
+            ->select('transfers.id', 'transfers.created_at', 'transfers.currency', 'transfers.amount', 'transfers.status', 'transfers.user_id', 'beneficiaries.beneficiary_name', 'beneficiaries.bank_name')
+            ->where('transfers.status', '=', 'in processing')
+            ->orWhere(function ($query) {
+                $query->where('transfers.status', 'completed')
+                    ->where('transfers.created_at', '>', Carbon::now()->subDays(30));
+            })->get();
+        return response()->json($transfers, 200);
+    }
+
+    public function getArchivedTransfersForAdmin()
+    {
+        $transfers = DB::table('transfers')
+            ->join('beneficiaries', 'beneficiaries.id', '=', 'transfers.beneficiary_id')
+            ->select('transfers.id', 'transfers.created_at', 'transfers.currency', 'transfers.amount', 'transfers.status', 'transfers.user_id', 'beneficiaries.beneficiary_name', 'beneficiaries.bank_name')
+            ->where('transfers.status', 'completed')
+            ->where('transfers.created_at', '<=', Carbon::now()->subDays(30))
+            ->get();
         return response()->json($transfers, 200);
     }
 

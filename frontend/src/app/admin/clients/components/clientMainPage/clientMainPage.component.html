@@ -1,0 +1,50 @@
+<ng-container *ngIf="client$ | async">
+  <div class="action-panel">
+    <div class="title">
+      <h1>{{(client$ | async).client_name}}</h1>
+    </div>
+    <a [routerLink]="['/admin', 'client-profile', (client$ | async).id]" class="received-deposits">view profile</a>
+  </div>
+  <div class="panel balance-panel">
+    <h2>Total balance of clients</h2>
+    <span class="usd mr-70">1,000,000</span>
+    <span class="eur mr-70">898,800</span>
+    <span class="rub mr-70">69,711,400</span>
+  </div>
+
+  <h2 class="deposit-title">Сhoose operation</h2>
+  <div class="deposit-panels">
+    <a [routerLink]="['/admin','deposits', 'rub', (client$ | async).id]">
+      <div class="panel operation-btn">
+        <svg width="50" height="44">
+          <use xlink:href="./assets/img/icons.svg#atm"></use>
+        </svg>
+        RUB
+      </div>
+    </a>
+    <a [routerLink]="['/admin', 'deposits', 'usd', (client$ | async).id]">
+      <div class="panel operation-btn">
+        <svg width="50" height="44">
+          <use xlink:href="./assets/img/icons.svg#atm"></use>
+        </svg>
+        USD
+      </div>
+    </a>
+    <a [routerLink]="['/admin', 'deposits', 'eur', (client$ | async).id]">
+      <div class="panel operation-btn">
+        <svg width="50" height="44">
+          <use xlink:href="./assets/img/icons.svg#atm"></use>
+        </svg>
+        EUR
+      </div>
+    </a>
+    <a [routerLink]="['/admin', 'transfers', (client$ | async).id]">
+      <div class="panel operation-btn">
+        <svg width="52" height="44">
+          <use xlink:href="./assets/img/icons.svg#arrow-right"></use>
+        </svg>
+        transfer
+      </div>
+    </a>
+  </div>
+</ng-container>

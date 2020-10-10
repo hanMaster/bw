@@ -4,17 +4,17 @@ import {Observable} from 'rxjs';
 import {Transfer} from '../../../models/transfer';
 
 @Component({
-  selector: 'app-admin-transfers-page',
-  templateUrl: './adminTransfersPage.component.html',
-  styleUrls: ['./adminTransfersPage.component.scss']
+  selector: 'app-admin-archived-transfers-page',
+  templateUrl: './adminTransfersArchivedPage.component.html',
+  styleUrls: ['./adminTransfersArchivedPage.component.scss']
 })
-export class AdminTransfersPageComponent implements OnInit {
+export class AdminTransfersArchivedPageComponent implements OnInit {
 
   @HostBinding('class') classList = 'main-content';
   transfers$: Observable<Transfer[]>;
 
   constructor(private transferService: TransferService) {
-    this.transfers$ = this.transferService.getActiveTransfers();
+    this.transfers$ = this.transferService.getArchivedTransfers();
   }
 
   ngOnInit(): void {

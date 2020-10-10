@@ -546,6 +546,28 @@ main {
       color: #ffffff;
     }
   }
+  .operation-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    color: #000000;
+    padding: 77px 59px;
+    cursor: pointer;
+    width: 210px;
+
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primary;
+      color: #ffffff;
+      svg{
+        fill: #ffffff;
+      }
+    }
+  }
 }
 
 .search-input {

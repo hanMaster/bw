@@ -52,5 +52,7 @@ Route::put('userforcompanies/{id}', 'UserForCompaniesController@reassignCompany'
 Route::get('deposits', 'DepositController@getDeposits')->middleware('auth:sanctum');
 Route::post('deposit', 'DepositController@addDeposit')->middleware('auth:sanctum');
 
-Route::get('transfers', 'TransferController@getTransfers')->middleware('auth:sanctum');
+Route::get('transfers', 'TransferController@getTransfersByClient')->middleware('auth:sanctum');
+Route::get('active-transfers', 'TransferController@getActiveTransfersForAdmin')->middleware('auth:sanctum');
+Route::get('archived-transfers', 'TransferController@getArchivedTransfersForAdmin')->middleware('auth:sanctum');
 Route::post('transfer', 'TransferController@addTransfer')->middleware('auth:sanctum');
